@@ -7,19 +7,21 @@
           <br>
           <h2 class="card-title text-center">Acceso</h2>
           <br>
-          <form class="form-signin" method="POST">
+          <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="enviar(signupForm.value)">
             <div class="form-label-group">
-              <input type="email" id="inputEmail"  class="form-control" placeholder="Nombre de usuario" required autofocus>
-              <label for="inputEmail">Nombre de usuario</label>
+              <label for="inputEmail">Email</label>
+              <input type="email" id="inputEmail"  class="form-control" placeholder="Email" required autofocus formControlName="email">
+              <div *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Email requerido</div>
             </div>
             <br>
             <div class="form-label-group">
-              <input type="password" id="inputPassword"  class="form-control" placeholder="Contraseña" required>
               <label for="inputPassword">Contraseña</label>
+              <input type="password" id="inputPassword"  class="form-control" placeholder="Contraseña" required formControlName="password">
+              <div *ngIf="signupForm.get('password').touched">Contraseña requerida</div>
             </div>
             <br>
             <div class="section1 text-center">
-              <button type="button" class="btn btn-outline-dark center-block" (click)="userlist()">Ingresar</button>
+              <button type="submit" class="btn btn-outline-dark center-block" [disabled]="signupForm.invalid">Ingresar</button>
             </div>
             <br>
           </form>
