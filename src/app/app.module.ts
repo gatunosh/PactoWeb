@@ -7,6 +7,7 @@ import { ReactiveFormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/users/users.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 // Routes
 import { APP_ROUTING } from './app.routes';
@@ -16,7 +17,8 @@ import { APP_ROUTING } from './app.routes';
   declarations: [
     AppComponent,
     LoginComponent,
-    UsersComponent
+    UsersComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
