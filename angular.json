@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PactoDesign"
+    }
+  },
+  "defaultProject": "PactoDesign",
+  "cli": {
+    "analytics": false
+  }
 }

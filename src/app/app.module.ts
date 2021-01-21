@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule, FormsModule} from '@angular/forms'
 
 //Components
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { APP_ROUTING } from './app.routes';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     APP_ROUTING
   ],
   providers: [],
