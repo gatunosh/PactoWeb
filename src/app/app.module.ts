@@ -10,7 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { ProductosComponent } from './components/productos/productos.component';
 
 // Routes
-import { APP_ROUTING } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { APP_ROUTING } from './app.routes';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    APP_ROUTING
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

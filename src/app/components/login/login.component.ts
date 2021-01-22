@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   enviar(values){
+    console.log('#############VALORES################');
+    
     console.log(values);
   }
 
