@@ -4,57 +4,45 @@
             <div class="card my-3">
                 <div class="card-body">
                     <nav class="navbar navbar-light bg-light">
-
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">&nbsp;
+                            <button class="btn btn-pct" type="submit">Buscar</button>
                         </form>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Opciones
-                 </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Admnistrar Cuenta</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <button class="dropdown-item" (click)="salir()">Cerrar Sesión</button>
-                                </div>
-                            </li>
-                        </ul>
+                        <button class="btn btn-pct" (click)="salir()">Cerrar Sesión</button>
                     </nav>
-
                 </div>
-
-            </div>
-            <div>
-                <table class="table table-bordered">
-                    <thead class="table1">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Móvil</th>
-                            <th scope="col">E-mail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-light">
-                            <th scope="row"></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="container-fluid">
+                  <button type="button" class="btn btn-pct" (click)="getUser()">GET</button>&nbsp;
+                  <button type="button" class="btn btn-pct">POST</button>&nbsp;
+                  <button type="button" class="btn btn-pct">PUT</button>&nbsp;
+                  <button type="button" class="btn btn-pct">DELETE</button>
+                </div>
+                <br>
+                <div class="container-fluid">
+                    <table class="table table-bordered">
+                        <thead class="table1">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Móvil</th>
+                                <th scope="col">E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let usuario of user">
+                            <tr class="table-light">
+                                <th scope="row"></th>
+                                <td>{{user.nombre}}</td>
+                                <td>{{user.apellido}}</td>
+                                <td>{{user.tlfc}}</td>
+                                <td>{{user.tlfm}}</td>
+                                <td>{{user.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-
-
     </div>
 </div>

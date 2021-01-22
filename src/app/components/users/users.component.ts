@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { UsuarioModel } from '../../models/usuario.models';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-users',
@@ -8,11 +11,23 @@ import { Router } from '@angular/router';
   styles: [
   ]
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent{
 
-  constructor(private _auth: LoginService, private _router:Router) { }
+  notFound = false;
+  user: UsuarioModel;
 
-  ngOnInit(): void {
+  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) { }
+
+  getUser(){
+    this.notFound = false;
+    this.user = null;
+
+    this._userService.getUser().subscribe((userFromApi : UsuarioModel) => {
+      this.user = userFromApi;
+    }, (err: any) => {
+        console.error(err);
+        this.notFound = true;
+    });
   }
 
   salir() {

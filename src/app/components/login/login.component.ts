@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
 
   signupForm: FormGroup;
 
-
   usuario: UsuarioModel = new UsuarioModel();
 
   constructor(private _router:Router, private _builder: FormBuilder, private auth: LoginService) {
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   enviar(values){
-
     this.usuario.email = values['email'];
     this.usuario.password = values['password'];
 
@@ -42,13 +40,9 @@ export class LoginComponent implements OnInit {
     Swal.showLoading();
 
     this.auth.login(this.usuario).subscribe(resp => {
-      
       this.usuario.role = resp['role'];
-
       Swal.close();
-
       this._router.navigateByUrl('/users');
-      
     },(err) => {
       Swal.fire({
         title: 'Error',
@@ -56,9 +50,6 @@ export class LoginComponent implements OnInit {
         icon: 'error',
       });
     });
-
-    
-      
   }
 
 }

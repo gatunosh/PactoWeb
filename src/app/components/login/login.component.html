@@ -10,14 +10,14 @@
                     <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="enviar(signupForm.value)">
                         <div class="form-label-group">
                             <label for="inputEmail">Email</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus formControlName="email">
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required formControlName="email">
                             <div class="alert alert-danger" role="alert" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Email requerido</div>
                         </div>
                         <br>
                         <div class="form-label-group">
                             <label for="inputPassword">Contraseña</label>
                             <input type="password" minlength="6" id="inputPassword" class="form-control" placeholder="Contraseña" required formControlName="password">
-                            <div class="alert alert-danger" role="alert" *ngIf="signupForm.get('password').touched">Contraseña minima de 6 caracteres</div>
+                            <div class="alert alert-danger" role="alert" *ngIf="signupForm.get('password').hasError('password') && signupForm.get('password').touched">Contraseña minima de 6 caracteres</div>
                         </div>
                         <br>
                         <div class="section1 text-center">

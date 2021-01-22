@@ -1,5 +1,3 @@
-
-
 export class UsuarioModel {
     id: string;
     nombre:string;
@@ -15,5 +13,3 @@ export class UsuarioModel {
     estado:boolean;
     role:string;
 }
-
-

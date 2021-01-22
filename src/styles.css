@@ -14,3 +14,13 @@ height: 50px;
 .btn-prod {
 background-color: #7a9e35;
 }
+
+.btn-pct:hover{
+  background-color: #7a9e35;
+  color: white;
+}
+.btn-pct{
+  background-color: transparent;
+  border: 1px solid #7a9e35;
+  color: #557714;
+}
