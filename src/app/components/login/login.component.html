@@ -5,24 +5,35 @@
             <div class="card card-signin my-5">
                 <div class="card-body rounded">
                     <br>
-                    <h2 class="card-title text-center">Acceso</h2>
+                    <h5 class="card-title text-center">Acceso</h5>
                     <br>
                     <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="enviar(signupForm.value)">
                         <div class="form-label-group">
-                            <label for="inputEmail">Email</label>
                             <input type="email" id="inputEmail" class="form-control" placeholder="Email" required formControlName="email">
+                            <label for="inputEmail">Email</label>
+
                             <div class="alert alert-danger" role="alert" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">Email requerido</div>
                         </div>
                         <br>
+
                         <div class="form-label-group">
-                            <label for="inputPassword">Contraseña</label>
                             <input type="password" minlength="6" id="inputPassword" class="form-control" placeholder="Contraseña" required formControlName="password">
+                            <label for="inputPassword">Contraseña</label>
+                           
                             <div class="alert alert-danger" role="alert" *ngIf="signupForm.get('password').hasError('password') && signupForm.get('password').touched">Contraseña minima de 6 caracteres</div>
                         </div>
                         <br>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                          </div>
+
+
                         <div class="section1 text-center">
-                            <button type="submit" class="btn btn-outline-dark btn-block center-block" [disabled]="signupForm.invalid">Ingresar</button>
+                            <button class="btn btn-lg btn btn-outline-dark btn-block text-uppercase" type="submit" [disabled]="signupForm.invalid">Ingresar</button>
                         </div>
+                        <hr class="my-4">
+                        <p><a href="#">Olvidaste tú contraseña?</a>
                         <br>
                     </form>
                 </div>

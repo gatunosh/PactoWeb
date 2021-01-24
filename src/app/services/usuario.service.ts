@@ -10,15 +10,30 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class UsuarioService {
-    baseURL = environment.apiURL + 'users/';
+    baseURL = environment.apiURL + 'usuario';
 
     userToken: string;
 
     constructor(private _http: HttpClient) {}
 
-    getUser(): Observable<UsuarioModel> {
+    getUser(): Observable<any> {
       const url = this.baseURL;
-      return this._http.get<UsuarioModel>(url);
+      this.userToken = localStorage.getItem('token');
+      var employees = this._http.get<UsuarioModel>(url,{headers:{token: this.userToken}});
+      
+      var employees = {   
+        kiran: { age:30,salary:10000},  
+        john: { age:35,salary:15000},  
+        Tom: { age: 21, salary:5000}  
+    }  
+    let arr = [];  
+    Object.keys(employees).map(function(key){  
+        arr.push({[key]:employees[key]})  
+        return arr;  
+    });  
+    console.log('Object=',employees)  
+    console.log('Array=',arr)
+    return this._http.get<UsuarioModel>(url,{headers:{token: this.userToken}});
     }
 
 }
