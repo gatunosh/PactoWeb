@@ -12,22 +12,32 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
   signupForm: FormGroup;
-
+  recordarme = false;
   usuario: UsuarioModel = new UsuarioModel();
 
   constructor(private _router:Router, private _builder: FormBuilder, private auth: LoginService) {
     this.signupForm = this._builder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      recordarme: ['',],
     });
   }
 
   ngOnInit(): void {
+    // Recordarme
+    
+    if(localStorage.getItem('email')) {
+      this.usuario.email = localStorage.getItem('email');
+      this.recordarme = true;
+    }
+
   }
 
   enviar(values){
+    
     this.usuario.email = values['email'];
     this.usuario.password = values['password'];
+    this.recordarme = values['recordarme'];
 
     Swal.fire({
       title: 'Espere',
@@ -42,6 +52,13 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.usuario).subscribe(resp => {
       this.usuario.role = resp['role'];
       Swal.close();
+
+      // Recordarme
+      if (this.recordarme) {
+        localStorage.setItem('email',this.usuario.email);
+      }
+
+
       this._router.navigateByUrl('/users');
     },(err) => {
       Swal.fire({

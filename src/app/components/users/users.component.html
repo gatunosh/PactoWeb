@@ -11,12 +11,6 @@
                         <button class="btn btn-pct" (click)="salir()">Cerrar Sesión</button>
                     </nav>
                 </div>
-                <div class="container-fluid">
-                  <button type="button" class="btn btn-pct" (click)="getUser()">GET</button>&nbsp;
-                  <button type="button" class="btn btn-pct">POST</button>&nbsp;
-                  <button type="button" class="btn btn-pct">PUT</button>&nbsp;
-                  <button type="button" class="btn btn-pct">DELETE</button>
-                </div>
                 <br>
                 <div class="container-fluid">
                     <table class="table table-bordered">
@@ -28,16 +22,20 @@
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Móvil</th>
                                 <th scope="col">E-mail</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let usuario of user">
+                        <tbody *ngFor="let usuario of usuarios">
                             <tr class="table-light">
                                 <th scope="row"></th>
-                                <td>{{user.nombre}}</td>
-                                <td>{{user.apellido}}</td>
-                                <td>{{user.tlfc}}</td>
-                                <td>{{user.tlfm}}</td>
-                                <td>{{user.email}}</td>
+                                <td>{{usuario.nombre}}</td>
+                                <td>{{usuario.apellido}}</td>
+                                <td>{{usuario.tlfc}}</td>
+                                <td>{{usuario.tlfm}}</td>
+                                <td>{{usuario.email}}</td>
+                                <td><button type="button" class="btn btn-outline-warning">EDITAR</button>
+                                    <button type="button" class="btn btn-outline-danger">ELIMINAR</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

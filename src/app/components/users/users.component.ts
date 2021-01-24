@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { UsuarioModel } from '../../models/usuario.models';
+import { UsuarioModel, Usuario } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
@@ -11,22 +11,27 @@ import { UsuarioService } from '../../services/usuario.service';
   styles: [
   ]
 })
-export class UsersComponent{
+export class UsersComponent implements OnInit{
 
-  notFound = false;
-  user: UsuarioModel;
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) { }
+  usuarios: Usuario[] = [];
 
-  getUser(){
-    this.notFound = false;
-    this.user = null;
+  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) {
+    this.getUsers();
+  }
+  
+  
+  
+  ngOnInit(): void {
+    
+  }
 
-    this._userService.getUser().subscribe((userFromApi : UsuarioModel) => {
-      this.user = userFromApi;
-    }, (err: any) => {
-        console.error(err);
-        this.notFound = true;
+
+  getUsers(){
+    this._userService.getUsers().subscribe((resp:any) => {
+      this.usuarios = resp.usuarios;
+      console.log(this.usuarios);
+      
     });
   }
 
