@@ -4,14 +4,20 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
+import {CapacitacionComponent} from './components/capacitacion/capacitacion.component';
+import {AsiscapacitacionComponent} from './components/asiscapacitacion/asiscapacitacion.component';
 
 
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
+    { path: 'productos',component: ProductosComponent,canActivate: [AuthGuard]  },
+    {path:'capacitacion',component:CapacitacionComponent},
+    {path:'asiscapacitacion/:id',component:AsiscapacitacionComponent},
     { path: '', pathMatch:'full', redirectTo:'login' },
     { path: '**', pathMatch:'full', redirectTo:'login'},
+
 ];
 
 

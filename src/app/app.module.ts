@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms'
+import {CapacitacionComponent} from './components/capacitacion/capacitacion.component';
+import {AsiscapacitacionComponent} from './components/asiscapacitacion/asiscapacitacion.component';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -19,6 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     LoginComponent,
     UsersComponent,
+    CapacitacionComponent,
+    AsiscapacitacionComponent,
     ProductosComponent
   ],
   imports: [

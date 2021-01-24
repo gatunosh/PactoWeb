@@ -1,0 +1,167 @@
+
+
+
+
+<!--MODALLLLLL-->
+<!-- ADD Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Nueva Asistencia</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label><b>Nombre:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Hora Entrada:</b></label>
+						<input type="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Hora Salida:</b></label>
+						<input type="time" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Asistencia:</b></label>
+						<select class="form-control" id="exampleFormControlSelect1">
+                            
+                            <option value="0">Asiste</option>
+                            <option value="1">Atraso</option>
+                            <option value="2">Falta</option>
+                          </select>
+                    </div>			
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Edit Modal HTML-->
+<div id="editEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Editar Asistencia</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label><b>Nombre:</b></label>
+						<input name="nombre" type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input name="fecha" type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Hora Entrada:</b></label>
+						<input name="horaentrada" type="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Hora Salida:</b></label>
+						<input name="horasalida"type="time" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Asistencia:</b></label>
+						<select class="form-control" id="exampleFormControlSelect1">
+                            <option value="0">Asiste</option>
+                            <option value="1">Atraso</option>
+                            <option value="2">Falta</option>
+                          </select>
+                    </div>			
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Actualizar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Eliminar Asistencia</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>¿Esta seguro que quieres eliminar?</p>
+					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-danger" value="Eliminar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<!--FIN      MODALLLLLL-->
+
+<!--TABLA-->
+
+<div class="table-title">
+    <div class="row">
+        <div class="col"><h2><b>Asistencia Capacitacion </b></h2></div>
+        <div class="col-sm-2">
+            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
+            
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+	<table id="userList" class="table table-bordered table-hover table-striped">
+		<thead class="thead-dark">
+		<tr>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col" class="text-center">Nombre</th>
+            <th scope="col" class="text-center">Fecha</th>
+            <th scope="col" class="text-center">Hora Entrada</th>
+            <th scope="col" class="text-center">Hora Salida</th>
+            <th scope="col" class="text-center">Asistencia</th>
+            <th scope="col" class="text-center">Acciones</th>
+		</tr>
+		</thead>
+		<tbody>
+            <tr>
+              <th scope="row" class="text-center">1</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div style="text-align: center">
+                  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                  <a href="#deleteEmployeeModal" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+				</div>
+
+              </td>
+            </tr>
+            
+          </tbody>
+	</table>
+</div>
