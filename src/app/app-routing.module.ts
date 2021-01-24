@@ -11,7 +11,7 @@ import {AsiscapacitacionComponent} from './components/asiscapacitacion/asiscapac
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
-    { path: 'productos',component: ProductosComponent,canActivate: [AuthGuard]  },
+    { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
     {path:'capacitacion',component:CapacitacionComponent},
     {path:'asiscapacitacion/:id',component:AsiscapacitacionComponent},
     { path: '', pathMatch:'full', redirectTo:'login' },
