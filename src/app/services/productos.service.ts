@@ -14,15 +14,15 @@ export class ProductosService{
     constructor(private _http: HttpClient){}
 
     prodToken(){
-        if (localStorage.getItem('prodtoken')) {
-            this.productToken = localStorage.getItem('prodtoken')
+        if (localStorage.getItem('token1')) {
+            this.productToken = localStorage.getItem('token1')
         }
         return this.productToken;
     }
 
     getProductos(){
         const headers = new HttpHeaders({
-            'prodtoken': this.prodToken()
+            'token1': this.prodToken()
         });
         console.log(this.productToken);
         

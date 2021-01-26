@@ -30,9 +30,4 @@ export class ProductosComponent implements OnInit {
   }
 
 
-  salir() {
-    this._auth.logout();
-    this._router.navigateByUrl('/login');
-  }
-
 }
