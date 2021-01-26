@@ -10,7 +10,8 @@ import { ProductosModel, Producto } from '../../models/productos.models';
   templateUrl: './productos.component.html'
 })
 export class ProductosComponent implements OnInit {
-
+  
+  p: number = 1
   productos: Producto[] = [];
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, public _productosService:ProductosService) { 
