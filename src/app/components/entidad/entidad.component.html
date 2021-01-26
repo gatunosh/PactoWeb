@@ -1,39 +1,36 @@
-<!--<app-navbar></app-navbar>-->
 <!--MODAL-->
 <!-- ADD Modal HTML -->
-
-<!-- ADD Modal HTML -->
-<div id="addCapacitacion" class="modal fade">
+<div id="addEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Nueva Capacitacion</h4>
+					<h4 class="modal-title">NUEVA ENTIDAD</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label><b>Tema:</b></label>
+						<label><b>Nombre:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Fecha:</b></label>
-						<input type="date" class="form-control" required>
+						<label><b>Tipo:</b></label>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Hora Inicio:</b></label>
-						<input type="Time" class="form-control" required>
+						<label><b>Direccion:</b></label>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Hora Fin:</b></label>
-						<input type="Time" class="form-control" required>
+						<label><b>Telefono:</b></label>
+						<input type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
-						<label><b>Capacitador:</b></label>
+						<label><b>Pais:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Entidad:</b></label>
+						<label><b>Ciudad:</b></label>
 						<input type="text" class="form-control" required>
                     </div>
                   
@@ -49,39 +46,41 @@
 </div>
 
 <!-- Edit Modal HTML-->
-<div id="editCapacitacion" class="modal fade">
+<div id="editEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Editar Capacitacion</h4>
+					<h4 class="modal-title">Editar Entidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label><b>Tema:</b></label>
+						<label><b>Nombre:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Fecha:</b></label>
-						<input type="date" class="form-control" required>
+						<label><b>Tipo:</b></label>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Hora Inicio:</b></label>
-						<input type="Time" class="form-control" required>
+						<label><b>Direccion:</b></label>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Hora Fin:</b></label>
-						<input type="Time" class="form-control" required>
+						<label><b>Telefono:</b></label>
+						<input type="text" class="form-control" required>
                     </div>
                     <div class="form-group">
-						<label><b>Capacitador:</b></label>
+						<label><b>Pais:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Entidad:</b></label>
-						<input type="text" class="form-control" required><br>						
-                    </div>					
+						<label><b>Ciudad:</b></label>
+						<input type="text" class="form-control" required>
+                    </div>
+                  
+										
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -92,19 +91,19 @@
 	</div>
 </div>
 <!-- Delete Modal HTML -->
-<div id="deleteCapacitacion" class="modal fade">
+<div id="deleteEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Eliminar Capacitacion</h4>
+					<h4 class="modal-title">Eliminar Entidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<p>¿Está seguro que quieres eliminar?</p>					
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
 					<input type="submit" class="btn btn-danger" value="Eliminar">
 				</div>
 			</form>
@@ -176,9 +175,9 @@
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-			<div class="col"><h2><b>Capacitaciones</b></h2></div>	
+			<div class="col"><h2><b>Entidades Externas</b></h2></div>	
 			<div class="col-sm-2">			
-				<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+				<a href="#addEntidad" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
 			</div>
 		</div>
 	</div>
@@ -192,12 +191,12 @@
 						<thead >
 						  <tr>
 							  <th scope="col" class="text-center">#</th>
-							  <th scope="col" class="text-center">Tema</th>
-							  <th scope="col" class="text-center">Fecha</th>
-							  <th scope="col" class="text-center">Hora Inicio</th>
-							  <th scope="col" class="text-center">Hora Fin</th>
-							  <th scope="col" class="text-center">Capacitador</th>
-							  <th scope="col" class="text-center">Entidad</th>
+							  <th scope="col" class="text-center">Nombre</th>
+							  <th scope="col" class="text-center">Tipo</th>
+							  <th scope="col" class="text-center">Direccion</th>
+							  <th scope="col" class="text-center">Telefono</th>
+							  <th scope="col" class="text-center">Pais</th>
+							  <th scope="col" class="text-center">Ciudad</th>
 							  <th scope="col" class="text-center">Acciones</th>
 						  </tr>
 						</thead>
@@ -211,10 +210,9 @@
 							  <td></td>
 							  <td></td>
 							  <td>
-								<div style="text-align: center">
-									  <a class="btn btn-outline-info" [routerLink]="['/asiscapacitacion/:id']">Detalle</a>&nbsp;&nbsp;
-									  <a href="#editCapacitacion" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-									  <a href="#deleteCapacitacion" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+								<div style="text-align: center">									  
+                                    <a href="#editEntidad" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="#deleteEntidad" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
 								</div>
 							  </td>
 							</tr>

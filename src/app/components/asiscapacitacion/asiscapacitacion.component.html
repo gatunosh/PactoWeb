@@ -1,10 +1,6 @@
-
-
-
-
 <!--MODALLLLLL-->
 <!-- ADD Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+<div id="addAsiscapa" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -23,12 +19,11 @@
                     </div>
 					<div class="form-group">
 						<label><b>Asistencia:</b></label>
-						<select class="form-control" id="exampleFormControlSelect1">
-                            
+						<select class="form-control" id="exampleFormControlSelect1">                            
                             <option value="0">Asiste</option>
                             <option value="1">Atraso</option>
                             <option value="2">Falta</option>
-                          </select>
+                        </select>
                     </div>			
 				</div>
 				<div class="modal-footer">
@@ -40,7 +35,7 @@
 	</div>
 </div>
 <!-- Edit Modal HTML-->
-<div id="editEmployeeModal" class="modal fade">
+<div id="editAsiscapa" class="modal fade">
     <div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -77,7 +72,7 @@
 </div>
 
 <!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
+<div id="deleteAsiscapa" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -86,7 +81,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
-					<p>¿Esta seguro que quieres eliminar?</p>
+					<p>¿Está seguro que quieres eliminar?</p>
 					
 				</div>
 				<div class="modal-footer">
@@ -97,52 +92,104 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
 <!--FIN      MODALLLLLL-->
 
 <!--TABLA-->
-<div class="body2"></div>
-<div class="table-title">
-    <div class="row">
-        <div class="col"><h2><b>Asistencia Capacitacion </b></h2></div>
-        <div class="col-sm-2">
-            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
-            
-        </div>
-    </div>
-</div>
-<div class="table-responsive">
-	<table id="userList" class="table table-bordered table-hover table-striped">
-		<thead class="thead-dark">
-		<tr>
-            <th scope="col" class="text-center">#</th>
-            <th scope="col" class="text-center">Nombre</th>
-            <th scope="col" class="text-center">Fecha</th>
-            <th scope="col" class="text-center">Asistencia</th>
-            <th scope="col" class="text-center">Acciones</th>
-		</tr>
-		</thead>
-		<tbody>
-            <tr>
-              <th scope="row" class="text-center">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div style="text-align: center">
-                  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="#deleteEmployeeModal" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-				</div>
+<!--
+<div class="container main-container">
+	<div class="body2"></div>
+	<div class="table-title">
+		<div class="row">
+			<div class="col"><h2><b>Asistencia Capacitacion </b></h2></div>
+			<div class="col-sm-2">
+				<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
+				
+			</div>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table id="userList" class="table table-bordered table-hover table-striped">
+			<thead class="thead-dark">
+			<tr>
+				<th scope="col" class="text-center">#</th>
+				<th scope="col" class="text-center">Nombre</th>
+				<th scope="col" class="text-center">Fecha</th>
+				<th scope="col" class="text-center">Asistencia</th>
+				<th scope="col" class="text-center">Acciones</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <th scope="row" class="text-center">1</th>
+				  <td></td>
+				  <td></td>
+				  <td></td>
+				  <td>
+					<div style="text-align: center">
+					  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+					  <a href="#deleteEmployeeModal" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+					</div>
+	
+				  </td>
+				</tr>
+				
+			  </tbody>
+		</table>
+	</div>
 
-              </td>
-            </tr>
-            
-          </tbody>
-	</table>
 </div>
+-->
+
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+			<div class="col"><h2><b>Asistencia Capacitaciones</b></h2></div>	
+			<div class="col-sm-2">			
+				<a href="#addAsiscapa" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
+			</div>
+		</div>
+	</div>
+	<div class="body animated fadeIn">
+		<div class="container-fluid">
+		  <div>
+			<div class="card my-3">
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+							<tr>
+								<th scope="col" class="text-center">#</th>
+								<th scope="col" class="text-center">Nombre</th>
+								<th scope="col" class="text-center">Fecha</th>
+								<th scope="col" class="text-center">Asistencia</th>
+								<th scope="col" class="text-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+						  <tr >
+							  <th scope="row" class="text-center">1</th>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td>
+								<div style="text-align: center">
+									<a href="#editCapacitacion" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+									<a href="#deleteCapacitacion" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+								</div>				
+							  </td>
+							</tr>
+						</tbody>
+					  </table>
+				  </div>
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+</div>
+
+  
