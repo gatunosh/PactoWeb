@@ -30,10 +30,21 @@
     </nav>
   </div>
   <div class="container-fluid">
-    <div>
+    <div aria-label="Page navigation example">
       <br>
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
       <div class="card my-3">
-        <div class="container-fluid" aria-label="Page navigation example">
+        <div class="container-fluid">
           <table class="table table-hover">
             <thead >
               <tr>
@@ -55,23 +66,12 @@
                 <td>{{usuario.tlfm}}</td>
                 <td>{{usuario.email}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-secondary"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-secondary"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning">EDITAR</button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger">ELIMINAR</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
