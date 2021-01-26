@@ -13,9 +13,9 @@ const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
-    { path:'capacitacion',component:CapacitacionComponent },
-    { path:'asiscapacitacion/:id',component:AsiscapacitacionComponent },
-    { path:'entidad',component:EntidadComponent },
+    { path: 'capacitacion',component:CapacitacionComponent },
+    { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent },
+    { path: 'entidad',component:EntidadComponent },
     { path: '', pathMatch:'full', redirectTo:'login' },
     { path: '**', pathMatch:'full', redirectTo:'login'},
 

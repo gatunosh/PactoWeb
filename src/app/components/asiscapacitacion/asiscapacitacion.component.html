@@ -23,7 +23,16 @@
                             <option value="0">Asiste</option>
                             <option value="1">Atraso</option>
                             <option value="2">Falta</option>
-                        </select>
+                          </select>
+					</div>
+					<div class="form-group">
+						<label><b>Certificado:</b></label>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="validatedCustomFile" lang="es">
+    						<label class="custom-file-label" for="validatedCustomFile">Escoger Archivo</label>
+						</div>
+						
+    					<!--<label class="form-control" for="validatedCustomFile">Archivo</label>-->
                     </div>			
 				</div>
 				<div class="modal-footer">
@@ -93,57 +102,11 @@
 	</div>
 </div>
 <!--FIN      MODALLLLLL-->
-
-<!--TABLA-->
-<!--
-<div class="container main-container">
-	<div class="body2"></div>
-	<div class="table-title">
-		<div class="row">
-			<div class="col"><h2><b>Asistencia Capacitacion </b></h2></div>
-			<div class="col-sm-2">
-				<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
-				
-			</div>
-		</div>
-	</div>
-	<div class="table-responsive">
-		<table id="userList" class="table table-bordered table-hover table-striped">
-			<thead class="thead-dark">
-			<tr>
-				<th scope="col" class="text-center">#</th>
-				<th scope="col" class="text-center">Nombre</th>
-				<th scope="col" class="text-center">Fecha</th>
-				<th scope="col" class="text-center">Asistencia</th>
-				<th scope="col" class="text-center">Acciones</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-				  <th scope="row" class="text-center">1</th>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td>
-					<div style="text-align: center">
-					  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-					  <a href="#deleteEmployeeModal" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-					</div>
-	
-				  </td>
-				</tr>
-				
-			  </tbody>
-		</table>
-	</div>
-
-</div>
--->
-
+<!--TABLA ASISTENCIA CAPACITACION-->
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-			<div class="col"><h2><b>Asistencia Capacitaciones</b></h2></div>	
+			<h3 class="col-md-10">&nbsp;&nbsp;Asistencia Capacitacion</h3>	
 			<div class="col-sm-2">			
 				<a href="#addAsiscapa" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
 			</div>
@@ -162,6 +125,7 @@
 								<th scope="col" class="text-center">Nombre</th>
 								<th scope="col" class="text-center">Fecha</th>
 								<th scope="col" class="text-center">Asistencia</th>
+								<th scope="col" class="text-center">Certificado</th>
 								<th scope="col" class="text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -171,13 +135,16 @@
 							  <td></td>
 							  <td></td>
 							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
+
+							  <td> 
+								<div style="text-align: center">
+								<button type="button" class="btn btn-outline-danger">Certificado</button>								
+								</div>
+							  </td>							
 							  <td>
 								<div style="text-align: center">
-									<a href="#editCapacitacion" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-									<a href="#deleteCapacitacion" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+									<a href="#editAsiscapa" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+									<a href="#deleteAsiscapa" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
 								</div>				
 							  </td>
 							</tr>

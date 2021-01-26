@@ -1,8 +1,9 @@
-<!--<app-navbar></app-navbar>-->
+<!--NAVBAR-->
+<app-navbar></app-navbar>
 <!--MODAL-->
 <!-- ADD Modal HTML -->
 
-<div id="addEmployeeModal" class="modal fade">
+<div id="addCapacitacion" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -103,7 +104,7 @@
 					<p>¿Está seguro que quieres eliminar?</p>					
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
 					<input type="submit" class="btn btn-danger" value="Eliminar">
 				</div>
 			</form>
@@ -165,51 +166,13 @@
 		nextLabel="Siguiente">
 	</pagination-controls>-->
 
-<div class="table-title">
-    <div class="row">
-        <div class="col"><h2><b>Detalle Capacitacion </b></h2></div>
-        <div class="col-sm-2">
-            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
-
-        </div>
-    </div>
-</div>
-<div class="table-responsive">
-	<table id="userList" class="table table-bordered table-hover table-striped">
-		<thead class="thead-dark">
-		<tr>
-            <th scope="col" class="text-center">#</th>
-            <th scope="col" class="text-center">Tema</th>
-            <th scope="col" class="text-center">Fecha</th>
-			<th scope="col" class="text-center">Hora Inicio</th>
-			<th scope="col" class="text-center">Hora Fin</th>
-            <th scope="col" class="text-center">Capacitador</th>
-            <th scope="col" class="text-center">Acciones</th>
-		</tr>
-		</thead>
-		<tbody>
-            <tr>
-              <th scope="row" class="text-center">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-			  <td></td>
-			  <td></td>
-              <td>
-				<div style="text-align: center">
-					<a class="btn btn-info" [routerLink]="['/asiscapacitacion/:id']">Detalle</a>&nbsp;&nbsp;
-                  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                  <a href="#deleteEmployeeModal" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-				</div>
-
-
 
 
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-			<div class="col"><h2><b>Capacitaciones</b></h2></div>	
-			<div class="col-sm-2">			
+			<h3 class="col-md-10">&nbsp;&nbsp;Capacitaciones</h3>			
+			<div class="col">			
 				<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
 			</div>
 		</div>

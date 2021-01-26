@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
       this._auth.logout();
       this._router.navigateByUrl('/login');
     }
-
+/*
     goproducts(){
       this._router.navigateByUrl('/productos');
     }
@@ -28,4 +28,12 @@ export class NavbarComponent implements OnInit {
     gousuarios(){
       this._router.navigateByUrl('/users');
     }
+
+    gocapacitacion(){
+      this._router.navigateByUrl('/capacitacion');
+    }
+
+    goentidad(){
+      this._router.navigateByUrl('/entidad');
+    }*/
 }
