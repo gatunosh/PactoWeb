@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
-import { ProductosModel } from '../models/productos.models';
 
 
 @Injectable({
@@ -12,9 +9,24 @@ export class ProductosService{
 
     private url:string = 'https://restserver-pacto.herokuapp.com';
 
+    productToken: string;
+
     constructor(private _http: HttpClient){}
 
+    prodToken(){
+        if (localStorage.getItem('prodtoken')) {
+            this.productToken = localStorage.getItem('prodtoken')
+        }
+        return this.productToken;
+    }
+
     getProductos(){
+        const headers = new HttpHeaders({
+            'prodtoken': this.prodToken()
+        });
+        console.log(this.productToken);
+        
+        return this._http.get(`${this.url}/producto`,{headers});
     }
 
     updateProductos(){

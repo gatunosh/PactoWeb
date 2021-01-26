@@ -17,8 +17,7 @@ import { AsiscapacitacionComponent } from './components/asiscapacitacion/asiscap
 
 // Routes
 import { AppRoutingModule } from './app-routing.module';
-
-
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 
 @NgModule({
@@ -29,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     CapacitacionComponent,
     AsiscapacitacionComponent,
     ProductosComponent,
-    EntidadComponent
+    EntidadComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,41 +1,119 @@
+<app-navbar></app-navbar>
+
+<div id="addUser" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Nueva Capacitacion</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Tema:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input type="date" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Hora Inicio:</b></label>
+						<input type="Time" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Hora Fin:</b></label>
+						<input type="Time" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Capacitador:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="editUser" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Editar Capacitacion</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Tema:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input type="date" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Hora Inicio:</b></label>
+						<input type="Time" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Hora Fin:</b></label>
+						<input type="Time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Capacitador:</b></label>
+						<input type="text" class="form-control" required>
+                    </div>
+
+
+				</div>
+
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-info" value="Guardar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="deleteUser" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Eliminar Capacitacion</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>¿Esta seguro que quieres eliminar?</p>
+
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <div class="body animated fadeIn">
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Pacto</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link">Usuarios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Pedido</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Maquinaria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Capacitación</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Asistencia</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <button class="btn btn-outline-dark" (click)="salir()">Cerrar Sesión</button>
-    </nav>
-  </div>
   <div class="container-fluid">
     <div>
       <br>
+      <div class="row">
+        <h3 class="col-md-10">&nbsp;&nbsp;Usuarios</h3>
+        <button class="btn btn-success fas fa-plus-square" href="#addUser" data-toggle="modal">&nbsp;&nbsp;Agregar</button>
+      </div>
       <div class="card my-3">
-        <div class="container-fluid" aria-label="Page navigation example">
+        <div class="container-fluid table-responsive" aria-label="Page navigation example">
           <table class="table table-hover">
-            <thead >
+            <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
@@ -55,25 +133,25 @@
                 <td>{{usuario.tlfm}}</td>
                 <td>{{usuario.email}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-secondary"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-secondary"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning" href="#editUser" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" href="#deleteUser" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
         </div>
       </div>
+			<ul class="pagination justify-content-end">
+				<li class="page-item disabled">
+					<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#">Siguiente</a>
+				</li>
+			</ul>
     </div>
   </div>
 </div>

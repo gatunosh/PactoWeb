@@ -23,10 +23,10 @@ export class ProductosComponent implements OnInit {
   }
 
   getProductos(){
-    /*this._productosService.getProductos().subscribe((res:any) =>{
+    this._productosService.getProductos().subscribe((res:any) =>{
       this.productos= res.productos;
       console.log(this.productos);
-    });*/
+    });
   }
 
 
