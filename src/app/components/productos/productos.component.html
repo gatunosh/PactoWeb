@@ -1,44 +1,44 @@
 <div class="body animated fadeIn">
-    <div class="container-fluid">
-        <div class="">
-            <div class="card my-3">
-                <div class="card-body">
-                    <nav class="navbar navbar-light bg-light">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">&nbsp;
-                            <button class="btn btn-pct" type="submit">Buscar</button>
-                        </form>
-                        <button class="btn btn-pct" (click)="salir()">Cerrar Sesión</button>
-                    </nav>
-                </div>
-                <div class="container-fluid">
-                  <button type="button" class="btn btn-pct">GET</button>&nbsp;
-                  <button type="button" class="btn btn-pct">POST</button>&nbsp;
-                  <button type="button" class="btn btn-pct">PUT</button>&nbsp;
-                  <button type="button" class="btn btn-pct">DELETE</button>
-                </div>
-                <br>
-                <div class="container-fluid">
-                    <table class="table table-bordered">
-                      <thead class="table1">
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Detalle</th>
-                          <th scope="col">Precio</th>
-                        </tr>
-                      </thead>
-                      <tbody *ngFor="let i = index">
-                        <tr class="table-light">
-                          <th scope="row"></th>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container-fluid">
+      <div class="">
+          <div class="card my-3">
+              <div class="card-body">
+                  <nav class="navbar navbar-light bg-light">
+                      <form class="d-flex">
+                          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">&nbsp;
+                          <button class="btn btn-pct" type="submit">Buscar</button>
+                      </form>
+                      <button class="btn btn-pct" (click)="salir()">Cerrar Sesión</button>
+                  </nav>
+              </div>
+              <div class="container-fluid">
+                <button type="button" class="btn btn-pct">GET</button>&nbsp;
+                <button type="button" class="btn btn-pct">POST</button>&nbsp;
+                <button type="button" class="btn btn-pct">PUT</button>&nbsp;
+                <button type="button" class="btn btn-pct">DELETE</button>
+              </div>
+              <br>
+              <div class="container-fluid">
+                  <table class="table table-bordered">
+                    <thead class="table1">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Detalle</th>
+                        <th scope="col">Precio</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let i = index">
+                      <tr class="table-light">
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
