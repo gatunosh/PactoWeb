@@ -5,9 +5,8 @@
 
 body {
   background: #ffffff;
-  background: linear-gradient(to right, #f3f3f3, #92969e);
+  background: linear-gradient(to right, #ffffff, #a5abb6);
 }
-
 
 .main-container{
   padding-top: 40px;

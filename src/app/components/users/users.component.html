@@ -1,37 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
-  <div class="container-fluid">
-    <a class="navbar-brand">Pacto</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav  mr-auto">
-        <li class="nav-item">
-          <a class="nav-link">Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Pedido</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Maquinaria</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Capacitación</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Asistencia</a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-outline-dark nav-item" (click)="salir()">Cerrar Sesión</button>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
+<app-navbar></app-navbar>
 <div class="body animated fadeIn">
   <div class="container-fluid">
     <div>
@@ -41,13 +8,11 @@
         <button class="btn btn-success fas fa-plus-square">&nbsp;&nbsp;Agregar</button>
       </div>
       <div class="card my-3">
-
-        <div class="container-fluid" aria-label="Page navigation example">
-
+        <div class="container-fluid table-responsive" aria-label="Page navigation example">
           <table class="table table-hover">
             <thead >
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Teléfono</th>
@@ -71,19 +36,19 @@
               </tr>
             </tbody>
           </table>
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
         </div>
       </div>
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

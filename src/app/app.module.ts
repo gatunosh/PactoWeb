@@ -14,9 +14,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 
 // Routes
 import { AppRoutingModule } from './app-routing.module';
-
-
-
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     UsersComponent,
     CapacitacionComponent,
     AsiscapacitacionComponent,
-    ProductosComponent
+    ProductosComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
