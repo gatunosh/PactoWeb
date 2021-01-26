@@ -13,6 +13,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class UsersComponent implements OnInit{
 
+  p: number = 1
   usuarios: Usuario[] = [];
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) {
