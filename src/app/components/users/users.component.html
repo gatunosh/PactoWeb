@@ -1,43 +1,18 @@
+<app-navbar></app-navbar>
 <div class="body animated fadeIn">
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Pacto</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link">Usuarios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Pedido</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Maquinaria</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Capacitación</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Asistencia</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <button class="btn btn-outline-dark" (click)="salir()">Cerrar Sesión</button>
-    </nav>
-  </div>
   <div class="container-fluid">
     <div>
       <br>
+      <div class="row">
+        <h3 class="col-md-10">&nbsp;&nbsp;Usuarios</h3>
+        <button class="btn btn-success fas fa-plus-square">&nbsp;&nbsp;Agregar</button>
+      </div>
       <div class="card my-3">
-        <div class="container-fluid" aria-label="Page navigation example">
+        <div class="container-fluid table-responsive" aria-label="Page navigation example">
           <table class="table table-hover">
             <thead >
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Teléfono</th>
@@ -55,25 +30,25 @@
                 <td>{{usuario.tlfm}}</td>
                 <td>{{usuario.email}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-secondary"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-secondary"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning"><i class="fas fa-edit"></i></button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
         </div>
       </div>
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

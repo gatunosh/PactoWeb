@@ -13,31 +13,22 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class UsersComponent implements OnInit{
 
-
   usuarios: Usuario[] = [];
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) {
     this.getUsers();
   }
-  
-  
-  
-  ngOnInit(): void {
-    
-  }
 
+  ngOnInit(): void {
+
+  }
 
   getUsers(){
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       console.log(this.usuarios);
-      
     });
   }
 
-  salir() {
-    this._auth.logout();
-    this._router.navigateByUrl('/login');
-  }
 
 }
