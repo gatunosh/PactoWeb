@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div id="addProduct" class="modal fade">
+<!--<div id="addProduct" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -39,7 +39,7 @@
           </div>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="button" class="btn btn-default"  data-dismiss="modal" value="Cancelar">
 					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
@@ -52,7 +52,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">
-					<h4 class="modal-title">Editar Capacitacion</h4>
+					<h4 class="modal-title">Editar Producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -94,7 +94,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">
-					<h4 class="modal-title">Eliminar Capacitacion</h4>
+					<h4 class="modal-title">Eliminar Producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -108,7 +108,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <div class="body animated fadeIn">
   <div class="container-fluid">
@@ -116,7 +116,7 @@
       <br>
       <div class="row">
         <h3 class="col-md-10">&nbsp;&nbsp;Productos</h3>
-        <button class="btn btn-success fas fa-plus-square" href="#addProduct" data-toggle="modal">&nbsp;&nbsp;Agregar</button>
+        <button class="btn btn-success fas fa-plus-square" data-toggle="modal" (click)="nuevoProducto()">&nbsp;&nbsp;Agregar</button>
       </div>
       <div class="card my-3">
         <div class="container-fluid table-responsive" aria-label="Page navigation example">
@@ -132,30 +132,24 @@
             </thead>
             <tbody *ngFor="let producto of productos">
               <tr>
-                <th scope="row"></th>
+                <th scope="row" class="text-center"></th>
                 <td>{{producto.nom_pro}}</td>
                 <td>{{producto.desc_pro}}</td>
                 <td>{{producto.pvp_pro}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-warning" href="#editProduct" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" href="#deleteProduct" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning" href="#editProduct" data-toggle="modal" (click)="editarProducto(producto.id_cat)"><i class="fas fa-edit"></i></button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" href="#deleteProduct" data-toggle="modal" (click)="eliminarProducto()"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Siguiente</a>
-        </li>
-      </ul>
+	  <div class="float-right">
+		<pagination-controls (pageChange)="p = $event" responsive="true"
+		previousLabel="Anterior"
+		nextLabel="Siguiente"></pagination-controls>
+		  </div>
     </div>
   </div>
 </div>

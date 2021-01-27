@@ -3,14 +3,15 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductosService } from 'src/app/services/productos.service';
-import { ProductosModel, Producto } from '../../models/productos.models';
+import { ProductosModel, Producto, ResponseI } from '../../models/productos.models';
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html'
 })
 export class ProductosComponent implements OnInit {
-
+  
+  p: number = 1
   productos: Producto[] = [];
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, public _productosService:ProductosService) { 
@@ -26,8 +27,19 @@ export class ProductosComponent implements OnInit {
     this._productosService.getProductos().subscribe((res:any) =>{
       this.productos= res.productos;
       console.log(this.productos);
+      console.log("Peticion finalizada");
     });
   }
+
+
+  editarProducto(id){
+    this._router.navigate(['editar',id]);
+  }
+
+  nuevoProducto(){
+    this._router.navigate(['nuevo']);
+  }
+
 
 
 }

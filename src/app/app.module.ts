@@ -24,9 +24,12 @@ import { MantenimientoComponent } from './components/mantenimiento/mantenimiento
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
 
+import { DataTablesModule } from 'angular-datatables';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { NuevoComponent } from './components/nuevo/nuevo.component';
+import { EditarComponent } from './components/editar/editar.component';
 
 
 
@@ -57,7 +60,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     MaquinarianComponent,
     MantenimientoComponent,
     MaquinariaasoComponent,
-    MantenimientoasoComponent
+    MantenimientoasoComponent,
+    NuevoComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    AppRoutingModule
+    DataTablesModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

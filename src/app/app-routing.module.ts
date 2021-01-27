@@ -17,12 +17,16 @@ import { MaquinarianComponent } from './components/maquinarian/maquinarian.compo
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
+import { NuevoComponent } from './components/nuevo/nuevo.component';
+import { EditarComponent } from './components/editar/editar.component';
 
 
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
+    { path: 'nuevo',component: NuevoComponent, canActivate:[AuthGuard]},
+    { path: 'editar',component: EditarComponent},
     { path: 'capacitacion',component:CapacitacionComponent },
     { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent },
     { path: 'entidad',component:EntidadComponent },

@@ -19,3 +19,8 @@ export interface Producto{
     fecha_ela_pro:Date;
     fecha_cad_pro:Date;
 }
+
+export interface ResponseI{
+    status: string;
+    response: string;
+}
