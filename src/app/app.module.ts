@@ -13,7 +13,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { EntidadComponent } from './components/entidad/entidad.component';
 import { CapacitacionComponent } from './components/capacitacion/capacitacion.component';
 import { AsiscapacitacionComponent } from './components/asiscapacitacion/asiscapacitacion.component';
-
+import { DataTablesModule } from 'angular-datatables';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -36,7 +36,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    AppRoutingModule
+    DataTablesModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
