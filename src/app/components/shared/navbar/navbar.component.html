@@ -10,22 +10,26 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/productos']">Productos</a>
       </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" (click)="">Pedidos</a>
+      <li class="nav-item"routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/pedido']">Pedido</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="">Maquinaria</a>
-      </li>-->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/maquinaria']">Maquinaria</a>
+      </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/capacitacion']">Capacitación</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/entidad']">Entidad</a>
       </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/reunion']">Reunión</a>
+      </li>
+   
       <!--<li class="nav-item">
         <a class="nav-link" (click)="">Reunión</a>
       </li>-->
     </ul>
     </div>
-  <button class="btn btn-outline-light nav-item-righ" (click)="salir()">Cerrar Sesión</button>
+    <button class="btn btn-outline-light nav-item-righ" (click)="salir()">Cerrar Sesión</button>
 </nav>

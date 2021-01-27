@@ -1,0 +1,54 @@
+<!--NAVBAR-->
+<app-navbar></app-navbar>
+<!--MODAL-->
+<!-- ADD Modal HTML -->
+
+<!--TABLA-->
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+            <h3 class="col-md-10">&nbsp;&nbsp;Maquinaria</h3><br><br>			 			
+		</div>
+	</div>
+	<div class="body animated fadeIn">
+		<div class="container-fluid">
+		  <div>
+			<div class="card my-3">
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tipo</th>                            
+                            <th scope="col">Estado</th> 
+                            <th scope="col"></th>                                                   
+						  </tr>
+						</thead>
+						<tbody>
+						    <tr >
+                                <td scope="row" class="text-center">1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>                                
+                                <td><!-- Default checkbox -->
+                                    <div align="center">
+                                        <a [routerLink]="['/mantenimientoaso/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
+                                    </div>
+                                </td>					  							  
+							</tr>
+						</tbody>
+                      </table>                     
+                    </div>
+				  </div>			
+              </div>        
+		  </div>
+		</div>
+	  </div>
+</div>
+
+  
+

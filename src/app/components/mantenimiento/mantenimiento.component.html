@@ -1,0 +1,130 @@
+<!--NAVBAR-->
+
+<!--MODAL-->
+<!-- ADD Modal HTML -->
+<!-- ADD Modal HTML -->
+
+<div id="addCapacitacion" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Nuevo Mantenimiento</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input type="date" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Tipo:</b></label>
+						<select class="form-control" id="exampleFormControlSelect1">                            
+                            <option value="0">Tipo 1</option>
+                            <option value="1">Tipo 2</option>
+                            <option value="2">Tipo 3</option>
+            </select>
+					</div>
+					<div class="form-group">
+						<label><b>Descripción:</b></label>
+						<textarea type="text" class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label><b>Estado:</b></label>
+						<select class="form-control" id="exampleFormControlSelect1">                            
+              <option value="0">Estado 1</option>
+              <option value="1">Estado 2</option>
+              <option value="2">Estado 3</option>
+</select>
+          </div>
+          <div class="form-group">
+						<label><b>Costo:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Marca:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Kilometraje:</b></label>
+						<input type="number" min="1" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Placa:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Origen:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+
+
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--TABLA-->
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+            <h3 class="col-md-10">&nbsp;&nbsp;Mantenimiento</h3><br><br>
+            <div class="col">			
+              <a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+            </div>			 			
+		</div>
+	</div>
+	<div class="body animated fadeIn">
+		<div class="container-fluid">
+		  <div>
+			<div class="card my-3">
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Descripción</th>                            
+                            <th scope="col">Estado</th> 
+                            <th scope="col">Costo</th>  
+                            <th scope="col">Marca</th> 
+                            <th scope="col">Kilometraje</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Origen</th>                                                   
+						  </tr>
+						</thead>
+						<tbody>
+						    <tr >
+                                <td scope="row" class="text-center">1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>                                
+                                <td></td>
+                                <td></td>	
+                                <td></td>
+                                <td></td>					  							  
+							</tr>
+						</tbody>
+                      </table>
+                     
+                    </div>
+				  </div>
+				
+              </div>
+             
+		  </div>
+		</div>
+	  </div>
+</div>
+
+  
+

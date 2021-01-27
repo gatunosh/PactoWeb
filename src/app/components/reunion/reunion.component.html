@@ -1,0 +1,104 @@
+<!--NAVBAR-->
+<app-navbar></app-navbar>
+<!--MODAL-->
+<!-- ADD Modal HTML -->
+<div id="addPedidoCli" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Nueva Reunión</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Código:</b></label>
+						<input type="text" min="1" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Tema:</b></label>
+						<input type="text" min="1" class="form-control" required>
+                    </div>
+					<div class="form-group">
+						<label><b>Fecha:</b></label>
+						<input type="date" min="1" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Hora:</b></label>
+						<input type="time" min="1" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+						<label><b>Multa:</b></label>
+						<input type="number" min="1" class="form-control" required>
+                    </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--TABLA-->
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+            <h3 class="col-md-10">&nbsp;&nbsp;Reunión</h3><br><br>			 
+			<div class="col">			
+				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+			</div>
+		</div>
+	</div>
+	<div class="body animated fadeIn">
+		<div class="container-fluid">
+		  <div>
+			<div class="card my-3">
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Código</th>
+							<th scope="col">Tema</th>
+							<th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Multa</th>  
+                            <th></th>                                                   
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr >
+							  <th scope="row" class="text-center">1</th>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td>
+                                  <button class="btn btn-outline-info">Asistencia</button>
+                              </td>							  							  
+							</tr>
+						</tbody>
+                      </table>
+                     
+                    </div>
+				  </div>
+				
+              </div>
+              <div class="row">
+                       		 
+                <div class="col">			
+                    <a href="" class="btn btn-success" >&nbsp;&nbsp;<span>Convocar</span></a>&nbsp;&nbsp;
+                </div>
+
+			</div>
+		  </div>
+		</div>
+	  </div>
+</div>
+
+  
+

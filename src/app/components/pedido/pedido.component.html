@@ -1,0 +1,171 @@
+<!--NAVBAR-->
+<app-navbar></app-navbar>
+<!--MODAL-->
+<!-- ADD Modal HTML -->
+<div id="addPedidoCli" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Nuevo Pedido</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+                        <label for="sel1">Categoría:</label>
+                        <select class="form-control" id="sel1">
+                          <option>Categoría A</option>
+                          <option>Categoría B</option>
+                          <option>Categoría C</option>
+                          <option>Categoría D</option>
+                        </select>
+                      </div> 
+                      <div class="form-group">
+                        <label for="sel1">Prodcuto:</label>
+                        <select class="form-control" id="sel1">
+                          <option>Prodcuto A</option>
+                          <option>Prodcuto B</option>
+                          <option>Prodcuto C</option>
+                          <option>Prodcuto D</option>
+                        </select>
+                      </div> 
+					<div class="form-group">
+						<label><b>Cantidad:</b></label>
+						<input type="number" min="1" class="form-control" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Edit Modal HTML-->
+<div id="editPedidoCli" class="modal fade">
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Editar Pedido</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+                        <label for="sel1">Categoría:</label>
+                        <select class="form-control" id="sel1">
+                          <option>Categoría A</option>
+                          <option>Categoría B</option>
+                          <option>Categoría C</option>
+                          <option>Categoría D</option>
+                        </select>
+                      </div> 
+                      <div class="form-group">
+                        <label for="sel1">Prodcuto:</label>
+                        <select class="form-control" id="sel1">
+                          <option>Prodcuto A</option>
+                          <option>Prodcuto B</option>
+                          <option>Prodcuto C</option>
+                          <option>Prodcuto D</option>
+                        </select>
+                      </div> 
+					<div class="form-group">
+						<label><b>Cantidad:</b></label>
+						<input type="number" min="1" class="form-control" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deletePedidoCli" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Eliminar Pedido</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>¿Está seguro que quieres eliminar?</p>					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-danger" value="Eliminar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--TABLA-->
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+            <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3><br><br>			 
+			<div class="col">			
+				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+			</div>
+		</div>
+	</div>
+	<div class="body animated fadeIn">
+		<div class="container-fluid">
+		  <div>
+			<div class="card my-3">
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Categoría</th>
+							<th scope="col">Producto</th>
+							<th scope="col">Descripción</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio Unitario</th>                                                     
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr >
+							  <td scope="row" class="text-center">1</td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td>
+								<div style="text-align: center">
+									  
+									  <a href="#editPedidoCli" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+									  <a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+								</div>
+							  </td>
+							</tr>
+						</tbody>
+                      </table>
+                     
+                    </div>
+				  </div>
+				
+              </div>
+              <div class="row">
+                       		 
+                <div class="col">			
+                    <a href="" class="btn btn-success" >&nbsp;&nbsp;<span> Confirmar Pedido</span></a>&nbsp;&nbsp;
+                    <a href="#" [routerLink]="['/detallepedido/:id']" class="btn btn-info" >&nbsp;&nbsp;<span> Detalle</span></a>
+                </div>
+
+			</div>
+		  </div>
+		</div>
+	  </div>
+</div>
+
+  
