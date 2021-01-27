@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductosModel, Producto, ResponseI } from '../models/productos.models';
+import { ProductosModel, Producto} from '../models/productos.models';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Injectable({
@@ -31,14 +32,11 @@ export class ProductosService{
         return this._http.get(`${this.url}/producto`,{headers});
     }
 
-    putProductos(){
-        const headers = new HttpHeaders({
-            'token': this.leerToken()
-        });
-        console.log(this.prodToken);
-        
-        return this._http.put(`${this.url}/producto`,{headers});
-    }
+    deleteProducts(id:string):Observable<any>{
+        return this._http.delete(`${this.url}/producto/${id}`);
+      }
+
+    
 
     /*postProductos(){
         const headers = new HttpHeaders({
@@ -50,12 +48,6 @@ export class ProductosService{
 
     }*/
 
-    getSingleProduct(id_cat:Observable<Producto>){
-
-    }
-    deleteProductos(from: Producto):Observable<ResponseI>{
-        let direccion = this.url + "/productos";
-        return this._http.delete<ResponseI>(direccion);
-    }
+    
 
 }

@@ -28,8 +28,6 @@ import { DataTablesModule } from 'angular-datatables';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { NuevoComponent } from './components/nuevo/nuevo.component';
-import { EditarComponent } from './components/editar/editar.component';
 
 
 
@@ -61,8 +59,6 @@ import { EditarComponent } from './components/editar/editar.component';
     MantenimientoComponent,
     MaquinariaasoComponent,
     MantenimientoasoComponent,
-    NuevoComponent,
-    EditarComponent
   ],
   imports: [
     BrowserModule,

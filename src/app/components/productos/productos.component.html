@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<!--<div id="addProduct" class="modal fade">
+<div id="addProduct" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -57,32 +57,37 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label><b>Tema:</b></label>
+						<label><b>Nombre:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Fecha:</b></label>
+            <label><b>Detalle:</b></label>
+            <input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Unidades:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><b>Stock:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Precio:</b></label>
+						<input type="text" class="form-control" required>
+          </div>
+          <div class="form-group">
+						<label><b>Fecha elaboración:</b></label>
 						<input type="date" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label><b>Hora Inicio:</b></label>
-						<input type="Time" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label><b>Hora Fin:</b></label>
-						<input type="Time" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-						<label><b>Capacitador:</b></label>
-						<input type="text" class="form-control" required>
-                    </div>
-
-
+          </div>
+          <div class="form-group">
+						<label><b>Fecha caducidad:</b></label>
+						<input type="date" class="form-control" required>
+          </div>
 				</div>
-
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-info" value="Guardar">
+					<input type="button" class="btn btn-default"  data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -108,19 +113,21 @@
 			</form>
 		</div>
 	</div>
-</div>-->
+</div>
 
 <div class="body animated fadeIn">
   <div class="container-fluid">
     <div>
       <br>
       <div class="row">
-        <h3 class="col-md-10">&nbsp;&nbsp;Productos</h3>
-        <button class="btn btn-success fas fa-plus-square" data-toggle="modal" (click)="nuevoProducto()">&nbsp;&nbsp;Agregar</button>
+		<h3 class="col-md-10">&nbsp;&nbsp;Productos</h3>
+		<button type="button" class="btn btn-outline-danger" href="#deleteProduct" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
+        <button class="btn btn-success fas fa-plus-square" data-toggle="modal" href="#addProduct">&nbsp;&nbsp;Agregar</button>
       </div>
       <div class="card my-3">
+		  <br>
         <div class="container-fluid table-responsive" aria-label="Page navigation example">
-          <table class="table table-hover">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -132,24 +139,23 @@
             </thead>
             <tbody *ngFor="let producto of productos">
               <tr>
+				  <!--<th th scope="row" class="text-center">1</th>
+				  <td>sdfzd</td>
+				  <td></td>
+				  <td></td>-->
                 <th scope="row" class="text-center"></th>
                 <td>{{producto.nom_pro}}</td>
                 <td>{{producto.desc_pro}}</td>
                 <td>{{producto.pvp_pro}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-warning" href="#editProduct" data-toggle="modal" (click)="editarProducto(producto.id_cat)"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" href="#deleteProduct" data-toggle="modal" (click)="eliminarProducto()"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning" href="#editProduct" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" href="#deleteProduct" (click)="deleteProducts()" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-	  <div class="float-right">
-		<pagination-controls (pageChange)="p = $event" responsive="true"
-		previousLabel="Anterior"
-		nextLabel="Siguiente"></pagination-controls>
-		  </div>
     </div>
   </div>
 </div>
