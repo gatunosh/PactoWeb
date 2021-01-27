@@ -17,6 +17,8 @@ import { AsiscapacitacionComponent } from './components/asiscapacitacion/asiscap
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { NuevoComponent } from './components/nuevo/nuevo.component';
+import { EditarComponent } from './components/editar/editar.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     AsiscapacitacionComponent,
     ProductosComponent,
     EntidadComponent,
-    NavbarComponent
+    NavbarComponent,
+    NuevoComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

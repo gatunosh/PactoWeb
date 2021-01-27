@@ -7,12 +7,16 @@ import { AuthGuard } from './guards/auth.guard';
 import { CapacitacionComponent } from './components/capacitacion/capacitacion.component';
 import { AsiscapacitacionComponent } from './components/asiscapacitacion/asiscapacitacion.component';
 import { EntidadComponent } from './components/entidad/entidad.component';
+import { NuevoComponent } from './components/nuevo/nuevo.component';
+import { EditarComponent } from './components/editar/editar.component';
 
 
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
+    { path: 'nuevo',component: NuevoComponent, canActivate:[AuthGuard]},
+    { path: 'editar',component: EditarComponent},
     { path: 'capacitacion',component:CapacitacionComponent },
     { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent },
     { path: 'entidad',component:EntidadComponent },
