@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.usuario).subscribe(resp => {
       this.usuario.role = resp['role'];
+      
       Swal.close();
 
       // Recordarme

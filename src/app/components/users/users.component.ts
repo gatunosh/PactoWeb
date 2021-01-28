@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { UsuarioModel, Usuario } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -13,9 +14,12 @@ import { Subject } from 'rxjs';
   ]
 })
 export class UsersComponent implements OnDestroy, OnInit{
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   usuarios: Usuario[] = [];
+  usersForm: FormGroup;
+  usuario: UsuarioModel = new UsuarioModel();
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) {
   }
@@ -30,13 +34,39 @@ export class UsersComponent implements OnDestroy, OnInit{
       }
     };
 
+
+    
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
 
-      this.dtTrigger.next();
+      
+      
     });
 
+    this.dtTrigger.next();
+
   }
+
+  enviar(values){
+    
+    this.usuario.nombre = values['nombre'];
+    this.usuario.apellido = values['apellido'];
+    this.usuario.tlfc = values['tlfc'];
+    this.usuario.email = values['email'];
+    this.usuario.password = values['password'];
+    this.usuario.tlfm = values['tlfm'];
+    this.usuario.hectareas = values['hectareas'];
+    this.usuario.sector = values['sector'];
+    this.usuario.barrio = values['barrio'];
+    this.usuario.parroquia = values['parroquia'];
+    this.usuario.role = values['role'];
+    this._userService.addUsers(this.usuario).subscribe((resp:any) => {
+      this.usuarios = resp.usuarios;
+      
+    });
+  }
+
+  
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
