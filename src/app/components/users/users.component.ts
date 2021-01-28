@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -19,6 +20,7 @@ export class UsersComponent implements OnDestroy, OnInit{
   usuarios: Usuario[] = [];
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
+  usuarioUpdate: UsuarioModel = new UsuarioModel();
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService,private _builder: FormBuilder) {
     this.usersForm = this._builder.group({
@@ -68,17 +70,64 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.role = values['role'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-      console.log(this.usuario);
+      window.location.reload()
       
     }, (err) => {
       console.log(err);
     });
   }
 
+  openModalActualizar(id:string) {
+    this.usuarioUpdate = this.buscadorUserActual(id);
+  }
+
+  onEdit( form:NgForm ) {
+    if (form.invalid) {return;}
+
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando Información',
+      icon: 'info',
+      allowOutsideClick: false,
+      showConfirmButton: false
+    });
+
+    Swal.showLoading();
+
+    this._userService.updateUser(this.usuarioUpdate).subscribe(resp => {
+      Swal.close();
+      window.location.reload();
+    },(err) => {
+      Swal.fire({
+        title: 'Error',
+        text: err.error.err.message,
+        icon: 'error',
+      });
+    });
+  }
+
+  
+
+
+  buscadorUserActual(id:string){
+      let userActual: Usuario;
+      
+      for (let i = 0; i < this.usuarios.length; i++) {
+        if(this.usuarios[i]._id == id){
+          userActual = this.usuarios[i];
+          break;
+        }
+      }
+
+      return userActual;
+  }
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+
+
 
 
 }

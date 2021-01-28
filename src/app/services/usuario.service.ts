@@ -39,6 +39,7 @@ export class UsuarioService {
     }
 
     addUsers(usuario:Usuario){
+        console.log(usuario.email);
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
@@ -59,8 +60,27 @@ export class UsuarioService {
         return this._http.post(`${this.url}/usuario`,authData, {headers});
     }
 
-    updateUser(){
+    
+
+    updateUser(usuario:Usuario){
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });
+
+        const authData = {
+            nombre: usuario.nombre,
+            apellido:usuario.apellido,
+            tlfc:usuario.tlfc,
+            tlfm:usuario.tlfm,
+            hectareas:usuario.hectareas,
+            sector:usuario.sector,
+            barrio:usuario.barrio,
+            parroquia:usuario.parroquia,
+            estado:usuario.estado,
+            role:usuario.role
+        };
         
+        return this._http.put(`${this.url}/usuario/${usuario._id}`,authData,{headers});
     }
 
     deleteUser() {
