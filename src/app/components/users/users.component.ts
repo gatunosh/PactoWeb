@@ -68,6 +68,7 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.role = values['role'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
+      console.log(this.usuario);
       
     }, (err) => {
       console.log(err);

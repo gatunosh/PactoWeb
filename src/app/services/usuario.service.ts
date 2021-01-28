@@ -20,6 +20,12 @@ export class UsuarioService {
         if (localStorage.getItem('token')) {
             this.userToken = localStorage.getItem('token')
         }
+
+
+
+
+
+        console.log(this.userToken);
         return this.userToken;
     }
 
