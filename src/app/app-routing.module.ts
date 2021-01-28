@@ -17,6 +17,8 @@ import { MaquinarianComponent } from './components/maquinarian/maquinarian.compo
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
+import { HojacampoComponent } from './components/hojacampo/hojacampo.component';
+
 
 
 const APP_ROUTES: Routes = [
@@ -36,6 +38,7 @@ const APP_ROUTES: Routes = [
     { path: 'mantenimiento/:id',component: MantenimientoComponent,canActivate: [AuthGuard] },
     { path: 'maquinariaaso',component: MaquinariaasoComponent,canActivate: [AuthGuard] },
     { path: 'mantenimientoaso/:id',component: MantenimientoasoComponent,canActivate: [AuthGuard] },
+    { path: 'hojacampo',component: HojacampoComponent,canActivate: [AuthGuard] },
     { path: '', pathMatch:'full', redirectTo:'login' },
     { path: '**', pathMatch:'full', redirectTo:'login'},
 ];
