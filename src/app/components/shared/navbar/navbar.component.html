@@ -1,35 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item" routerLinkActive="active" >
-        <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/productos']">Productos</a>
-      </li>
-      <li class="nav-item"routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/pedido']">Pedido</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/maquinaria']">Maquinaria</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/capacitacion']">Capacitación</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/entidad']">Entidad</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/reunion']">Reunión</a>
-      </li>
-   
-      <!--<li class="nav-item">
-        <a class="nav-link" (click)="">Reunión</a>
-      </li>-->
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active" >
+          <a class="nav-link" [routerLink]="['/users']">Usuarios</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/productos']">Productos</a>
+        </li>
+        <li class="nav-item"routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/pedido']">Pedido</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/maquinaria']">Maquinaria</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/capacitacion']">Capacitación</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/entidad']">Entidad</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/reunion']">Reunión</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/hojacampo']">Hoja de Campo</a>
+        </li>
+      </ul>
     </div>
     <button class="btn btn-outline-light nav-item-righ" (click)="salir()">Cerrar Sesión</button>
 </nav>

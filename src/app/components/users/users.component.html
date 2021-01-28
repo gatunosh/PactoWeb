@@ -1,144 +1,211 @@
 <app-navbar></app-navbar>
 
 <div id="addUser" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Nuevo Usuario</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="usersForm" (ngSubmit)="enviar(usersForm.value)">
+                <div class="modal-header">
+                    <h4 class="modal-title">Nuevo Usuario</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sel1"><b>Rol:</b></label>
+                        <select class="form-control" id="sel1" formControlName="role">
+                        <option>ADMIN_ROLE</option>
+                        <option>SOCIO_ROLE</option>
+                        <option>CLIENTE_ROLE</option>
+            </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Nombre:</b></label>
+                            <input type="text" class="form-control" required formControlName="nombre">
+                        </div>
+                        <div class="col">
+                            <label><b>Apellido:</b></label>
+                            <input type="text" class="form-control" required formControlName="apellido">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Teléfono:</b></label>
+                            <input type="text" class="form-control" required formControlName="tlfc">
+                        </div>
+                        <div class="col">
+                            <label><b>Celular:</b></label>
+                            <input type="text" class="form-control" required formControlName="tlfm">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Parroquia:</b></label>
+                            <input type="text" class="form-control" formControlName="parroquia">
+                        </div>
+                        <div class="col">
+                            <label><b>Sector:</b></label>
+                            <input type="text" class="form-control" formControlName="sector">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Barrio:</b></label>
+                            <input type="text" class="form-control" formControlName="barrio">
+                        </div>
+                        <div class="col">
+                            <label><b>Hectáreas:</b></label>
+                            <input type="text" class="form-control" formControlName="hectareas">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><b>E-mail:</b></label>
+                        <input type="email" class="form-control" required formControlName="email">
+                    </div>
+                    <div class="form-group">
+                        <label><b>Contraseña:</b></label>
+                        <input type="password" class="form-control" required formControlName="password">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-success" value="Agregar">
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label><b>Nombre:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Apellido:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Teléfono:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Móvil:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>E-mail:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-          <input type="submit" class="btn btn-success" value="Agregar">
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
 <div id="editUser" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Editar Usuario</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="onEdit( f )" #f="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Usuario</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sel1"><b>Rol:</b></label>
+                        <select [(ngModel)]="usuarioUpdate.role" class="form-control" id="sel1" name="role">
+                            <option>ADMIN_ROLE</option>
+                            <option>SOCIO_ROLE</option>
+                            <option>CLIENTE_ROLE</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Nombre:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.nombre" type="text" class="form-control" required name="nombre">
+                        </div>
+                        <div class="col">
+                            <label><b>Apellido:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.apellido" type="text" class="form-control" required name="apellido">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Teléfono:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.tlfc" type="text" class="form-control" required name="tlfc">
+                        </div>
+                        <div class="col">
+                            <label><b>Celular:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.tlfm" type="text" class="form-control" required name="tlfm">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Parroquia:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.parroquia" type="text" class="form-control" name="parroquia">
+                        </div>
+                        <div class="col">
+                            <label><b>Sector:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.sector" type="text" class="form-control" name="sector">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label><b>Barrio:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.barrio" type="text" class="form-control" name="barrio">
+                        </div>
+                        <div class="col">
+                            <label><b>Hectáreas:</b></label>
+                            <input [(ngModel)]="usuarioUpdate.hectareas" type="text" class="form-control" name="hectareas">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="submit" class="btn btn-success" value="Agregar">
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label><b>Nombre:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Apellido:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Teléfono:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>Móvil:</b></label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label><b>E-mail:</b></label>
-            <input type="email" class="form-control" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-          <input type="submit" class="btn btn-info" value="Actualizar">
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
 <div id="deleteUser" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Eliminar Usuario</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>¿Está seguro que quiere eliminar a este usuario?</p>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-          <input type="submit" class="btn btn-danger" value="Eliminar">
-        </div>
-      </form>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form (ngSubmit)="delete()">
+				<div class="modal-header">
+					<h4 class="modal-title">Eliminar Usuario</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>¿Está seguro que quieres eliminar este Usuario?</p>					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-danger" value="Eliminar">
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 <div class="body animated fadeIn">
-  <div class="container-fluid">
-    <div>
-      <br>
-      <div class="row">
-        <h3 class="col-md-10">&nbsp;&nbsp;Usuarios</h3>
-        <div class="col">
-          <a href="#addUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+    <div class="container-fluid">
+        <div>
+            <br>
+            <div class="row">
+                <h3 class="col-md-10">&nbsp;&nbsp;Usuarios</h3>
+                <div class="col">
+                    <a href="#addUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+                </div>
+            </div>
+            <div class="card my-3">
+                <br>
+                <div class="container-fluid table-responsive" aria-label="Page navigation example">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Rol</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Móvil</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>{{usuario.role}}</td>
+                                <td>{{usuario.nombre}}</td>
+                                <td>{{usuario.apellido}}</td>
+                                <td>{{usuario.tlfc}}</td>
+                                <td>{{usuario.tlfm}}</td>
+                                <td>{{usuario.email}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-warning" href="#editUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
+                                    <button type="button" class="btn btn-outline-danger" href="#deleteUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+            </div>
         </div>
-      </div>
-      <div class="card my-3">
-        <br>
-        <div class="container-fluid table-responsive" aria-label="Page navigation example">
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Móvil</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let usuario of usuarios">
-                <td>{{usuario.nombre}}</td>
-                <td>{{usuario.apellido}}</td>
-                <td>{{usuario.tlfc}}</td>
-                <td>{{usuario.tlfm}}</td>
-                <td>{{usuario.email}}</td>
-                <td>
-                  <button type="button" class="btn btn-outline-warning" href="#editUser" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" href="#deleteUser" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <br>
-      </div>
     </div>
-  </div>
 </div>

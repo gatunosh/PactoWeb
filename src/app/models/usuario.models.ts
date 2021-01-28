@@ -1,5 +1,5 @@
 export class UsuarioModel {
-    id: string;
+    _id: string;
     nombre: string;
     apellido: string;
     tlfc: string;
@@ -14,13 +14,14 @@ export class UsuarioModel {
     role: string;
 }
 
+
 export interface Usuario {
-    id: string;
+    _id: string;
     nombre:string;
     apellido:string;
     tlfc:string;
     email:string;
-    password:string;
+    password:string; 
     tlfm:string;
     hectareas:number;
     sector:string;

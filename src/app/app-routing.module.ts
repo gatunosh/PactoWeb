@@ -17,29 +17,28 @@ import { MaquinarianComponent } from './components/maquinarian/maquinarian.compo
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
-import { NuevoComponent } from './components/nuevo/nuevo.component';
-import { EditarComponent } from './components/editar/editar.component';
+import { HojacampoComponent } from './components/hojacampo/hojacampo.component';
+
 
 
 const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
-    { path: 'nuevo',component: NuevoComponent, canActivate:[AuthGuard]},
-    { path: 'editar',component: EditarComponent},
     { path: 'capacitacion',component:CapacitacionComponent },
-    { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent },
-    { path: 'entidad',component:EntidadComponent },
-    { path: 'pedido',component: PedidoComponent },
-    { path: 'detallepedido/:id',component: DetallepedidoComponent },
-    { path: 'pedidoadmin',component: PedidoadminComponent },
-    { path: 'bodega',component: BodegaComponent },
-    { path: 'reunion',component: ReunionComponent } ,
-    { path: 'asisreunion/:id',component: AsisreunionComponent },
-    { path: 'maquinaria',component: MaquinarianComponent },
-    { path: 'mantenimiento/:id',component: MantenimientoComponent },
-    { path: 'maquinariaaso',component: MaquinariaasoComponent },
-    { path: 'mantenimientoaso/:id',component: MantenimientoasoComponent },
+    { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent,canActivate: [AuthGuard] },
+    { path: 'entidad',component:EntidadComponent,canActivate: [AuthGuard] },
+    { path: 'pedido',component: PedidoComponent,canActivate: [AuthGuard] },
+    { path: 'detallepedido/:id',component: DetallepedidoComponent,canActivate: [AuthGuard] },
+    { path: 'pedidoadmin',component: PedidoadminComponent,canActivate: [AuthGuard] },
+    { path: 'bodega',component: BodegaComponent,canActivate: [AuthGuard] },
+    { path: 'reunion',component: ReunionComponent,canActivate: [AuthGuard] } ,
+    { path: 'asisreunion/:id',component: AsisreunionComponent,canActivate: [AuthGuard] },
+    { path: 'maquinaria',component: MaquinarianComponent,canActivate: [AuthGuard] },
+    { path: 'mantenimiento/:id',component: MantenimientoComponent,canActivate: [AuthGuard] },
+    { path: 'maquinariaaso',component: MaquinariaasoComponent,canActivate: [AuthGuard] },
+    { path: 'mantenimientoaso/:id',component: MantenimientoasoComponent,canActivate: [AuthGuard] },
+    { path: 'hojacampo',component: HojacampoComponent,canActivate: [AuthGuard] },
     { path: '', pathMatch:'full', redirectTo:'login' },
     { path: '**', pathMatch:'full', redirectTo:'login'},
 ];

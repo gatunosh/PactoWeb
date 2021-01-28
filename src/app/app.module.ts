@@ -23,23 +23,12 @@ import { MaquinarianComponent } from './components/maquinarian/maquinarian.compo
 import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
+import { HojacampoComponent } from './components/hojacampo/hojacampo.component';
 import { DataTablesModule } from 'angular-datatables';
 
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { NuevoComponent } from './components/nuevo/nuevo.component';
-import { EditarComponent } from './components/editar/editar.component';
-
-
-
-
-
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -61,8 +50,7 @@ import { EditarComponent } from './components/editar/editar.component';
     MantenimientoComponent,
     MaquinariaasoComponent,
     MantenimientoasoComponent,
-    NuevoComponent,
-    EditarComponent
+    HojacampoComponent,
   ],
   imports: [
     BrowserModule,
