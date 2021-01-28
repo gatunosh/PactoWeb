@@ -20,12 +20,6 @@ export class UsuarioService {
         if (localStorage.getItem('token')) {
             this.userToken = localStorage.getItem('token')
         }
-
-
-
-
-
-        console.log(this.userToken);
         return this.userToken;
     }
 
@@ -60,8 +54,6 @@ export class UsuarioService {
         return this._http.post(`${this.url}/usuario`,authData, {headers});
     }
 
-    
-
     updateUser(usuario:Usuario){
         const headers = new HttpHeaders({
             'token': this.leerToken()
@@ -83,8 +75,11 @@ export class UsuarioService {
         return this._http.put(`${this.url}/usuario/${usuario._id}`,authData,{headers});
     }
 
-    deleteUser() {
-        
+    deleteUser(usuario:Usuario){
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });  
+        return this._http.delete(`${this.url}/usuario/${usuario._id}`,{headers});
     }
 
 

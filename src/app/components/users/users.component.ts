@@ -42,7 +42,7 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       "language": {
         url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
       }
@@ -106,9 +106,6 @@ export class UsersComponent implements OnDestroy, OnInit{
     });
   }
 
-  
-
-
   buscadorUserActual(id:string){
       let userActual: Usuario;
       
@@ -122,12 +119,31 @@ export class UsersComponent implements OnDestroy, OnInit{
       return userActual;
   }
 
+  delete() {
+    Swal.fire({
+      title: 'Espere',
+      text: 'Borrando Información',
+      icon: 'info',
+      allowOutsideClick: false,
+      showConfirmButton: false
+    });
+
+    Swal.showLoading();
+
+    this._userService.deleteUser(this.usuarioUpdate).subscribe(resp => {
+      Swal.close();
+      window.location.reload();
+    },(err) => {
+      Swal.fire({
+        title: 'Error',
+        text: err.error.err.message,
+        icon: 'error',
+      });
+    });
+  }
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-
-
-
-
 }
