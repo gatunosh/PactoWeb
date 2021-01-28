@@ -60,10 +60,4 @@ export class LoginService {
   isAuthenticated(): boolean {
     return this.userToken.length > 2;
   }
-
-  
-  
-  
-
-  
 }
