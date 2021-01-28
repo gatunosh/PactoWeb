@@ -3,7 +3,7 @@
 <div id="addProduct" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form [formGroup]="productosForm" (ngSubmit)="enviar(productosForm.value)">  
 				<div class="modal-header">
 					<h4 class="modal-title">Nuevo Producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,19 +11,19 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label><b>Nombre:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" required formControlName="nom_pro">
 					</div>
 					<div class="form-group">
             <label><b>Detalle:</b></label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" required formControlName="desc_pro">
 					</div>
 					<div class="form-group">
 						<label><b>Unidades:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" required formControlName="uni_pro">
 					</div>
 					<div class="form-group">
 						<label><b>Stock:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control" required formControlName="sto_pro">
           </div>
           <div class="form-group">
 						<label><b>Precio:</b></label>
@@ -31,11 +31,11 @@
           </div>
           <div class="form-group">
 						<label><b>Fecha elaboración:</b></label>
-						<input type="date" class="form-control" required>
+						<input type="date" class="form-control" required formControlName="fecha_ela_pro">
           </div>
           <div class="form-group">
 						<label><b>Fecha caducidad:</b></label>
-						<input type="date" class="form-control" required>
+						<input type="date" class="form-control" required formControlName="fecha_ela_pro">
           </div>
 				</div>
 				<div class="modal-footer">
@@ -147,12 +147,12 @@
       <br>
       <div class="row">
 		<h3 class="col-md-10">&nbsp;&nbsp;Productos</h3>
-        <button class="btn btn-success fas fa-plus-square" data-toggle="modal" href="#addProduct">&nbsp;&nbsp;Agregar</button>
+        <a class="btn btn-success" data-toggle="modal" href="#addProduct"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
       </div>
       <div class="card my-3">
 		  <br>
         <div class="container-fluid table-responsive" aria-label="Page navigation example">
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+         <table datatable class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -162,16 +162,14 @@
                 <th scope="col">Opciones</th>
               </tr>
             </thead>
-            <tbody *ngFor="let producto of productos">
-              <tr>
-				  <!--<th th scope="row" class="text-center">1</th>
-				  <td>sdfzd</td>
-				  <td></td>
-				  <td></td>-->
-                <th scope="row" class="text-center"></th>
+            <tbody >
+              <tr *ngFor="let producto of productos">
+				<th scope="row">{{producto.id_cat}}</th>                
                 <td>{{producto.nom_pro}}</td>
-                <td>{{producto.desc_pro}}</td>
-                <td>{{producto.pvp_pro}}</td>
+				<td>{{producto.desc_pro}}</td>
+				<td>{{producto.uni_pro}}</td>
+				<td>{{producto.sto_pro}}</td>
+				<td>{{producto.pvp_pro}}</td>
                 <td>
 					<button type="button" class="btn btn-outline-primary" href="#detalleProduct" data-toggle="modal" (click)="onClick(producto)">Detalle</button>&nbsp;
                   <button type="button" class="btn btn-outline-warning" href="#editUser" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;

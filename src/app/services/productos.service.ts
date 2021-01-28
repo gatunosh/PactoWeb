@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { ProductosModel, Producto} from '../models/productos.models';
-import { ThrowStmt } from '@angular/compiler';
-
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductosService{
-
-    private url:string = 'https://restserver-pacto.herokuapp.com';
-
     prodToken: string;
 
-    constructor(private _http: HttpClient){}
+    private url:string = "https://restserver-pacto.herokuapp.com";
+
+    constructor( private http: HttpClient){}
 
     leerToken() {
         if (localStorage.getItem('token')) {
@@ -23,33 +19,37 @@ export class ProductosService{
         return this.prodToken;
     }
 
-    getProductos() {
+    getProductos(){
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
         console.log(this.prodToken);
         
-        return this._http.get(`${this.url}/producto`,{headers});
+        return this.http.get(`${this.url}/producto`,{headers});
     }
 
-    
-
-    deleteProducts(id:string):Observable<any>{
-        return this._http.delete(`${this.url}/producto/${id}`);
-      }
-
-    
-
-    /*postProductos(){
+    addProductos(producto1:Producto){
+        console.log(producto1.id_cat);
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        console.log(this.prodToken);
-        
-        return this._http.post(`${this.url}/producto`,{headers});
+        const authData={
+            nom_pro: producto1.nom_pro,
+            desc_pro: producto1.desc_pro,
+            uni_pro: producto1.uni_pro,
+            sto_pro: producto1.sto_pro,
+            pvp_pro:producto1.pvp_pro,
+            fecha_ela_pro: producto1.fecha_ela_pro,
+            fecha_cad_pro: producto1.fecha_cad_pro
+        };
 
-    }*/
+        return this.http.post(`${this.url}/producto`,authData, {headers});
+    }
 
+
+
+
+    
     
 
 }

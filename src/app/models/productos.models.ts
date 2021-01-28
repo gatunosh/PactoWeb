@@ -1,5 +1,5 @@
 export class ProductosModel{
-    id_cat: string;
+    id_cat: object;
     nom_pro: string;
     desc_pro: string;
     uni_pro: number;
@@ -10,7 +10,7 @@ export class ProductosModel{
 }
 
 export interface Producto{
-    id_cat:string;
+    id_cat:object;
     nom_pro:string;
     desc_pro:string;
     uni_pro:number;
