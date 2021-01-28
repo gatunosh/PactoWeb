@@ -102,61 +102,59 @@
 	</div>
 </div>
 <!--FIN      MODALLLLLL-->
-<!--TABLA ASISTENCIA CAPACITACION-->
-<div class="container-fluid main-container">
-	<div class="table-title">
-		<div class="row">
-			<h3 class="col-md-10">&nbsp;&nbsp;Asistencia Capacitacion</h3>	
-			<div class="col-sm-2">			
-				<a href="#addAsiscapa" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Agregar</span></a>
-			</div>
-		</div>
-	</div>
-	<div class="body animated fadeIn">
-		<div class="container-fluid">
-		  <div>
-			<div class="card my-3">
-			  <div class="container-fluid" aria-label="Page navigation example">
-				  <div class="table-responsive">
-					<table class="table table-hover">
-						<thead >
-							<tr>
-								<th scope="col" class="text-center">#</th>
-								<th scope="col" class="text-center">Nombre</th>
-								<th scope="col" class="text-center">Fecha</th>
-								<th scope="col" class="text-center">Asistencia</th>
-								<th scope="col" class="text-center">Certificado</th>
-								<th scope="col" class="text-center">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-						  <tr >
-							  <th scope="row" class="text-center">1</th>
-							  <td></td>
-							  <td></td>
-							  <td></td>
 
-							  <td> 
-								<div style="text-align: center">
-								<button type="button" class="btn btn-outline-danger">Certificado</button>								
-								</div>
-							  </td>							
-							  <td>
-								<div style="text-align: center">
-									<a href="#editAsiscapa" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-									<a href="#deleteAsiscapa" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-								</div>				
-							  </td>
-							</tr>
-						</tbody>
-					  </table>
-				  </div>
-				
-			  </div>
-			</div>
+<!--TABLA ASISTENCIA CAPACITACION-->
+<div class="body animated fadeIn">
+	<div class="container-fluid">
+	  <div>
+		<br>
+		<div class="row">
+		  <h3 class="col-md-10">&nbsp;&nbsp;Asistencia Capacitacion</h3>
+		  <div class="col">
+			<a href="#addAsiscapa" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
 		  </div>
 		</div>
+		<div class="card my-3">
+		  <br>
+		  <div class="container-fluid table-responsive" aria-label="Page navigation example">
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+			  <thead>
+				<tr>
+					<th scope="col" class="text-center">#</th>
+					<th scope="col" class="text-center">Tema</th>
+					<th scope="col" class="text-center">Fecha Inicio</th>
+					<th scope="col" class="text-center">Fecha Fin</th>
+					<th scope="col" class="text-center">Hora Inicio</th>
+					<th scope="col" class="text-center">Hora Fin</th>
+					<th scope="col" class="text-center">Capacitador</th>
+					<th scope="col" class="text-center">Entidad</th>
+					<th scope="col" class="text-center">Acciones</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr *ngFor="let asiscapa of data">
+					<td scope="row" class="text-center">{{asiscapa.id}}</td>
+					<td>{{asiscapa.employee_name}}</td>
+					<td>{{asiscapa.employee_salary}}</td>
+					<td>{{asiscapa.employee_age}}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+					  <div style="text-align: center">
+							<a class="btn btn-outline-info" [routerLink]="['/asiscapacitacion/:id']">Detalle</a>&nbsp;&nbsp;
+							<a href="#editAsiscapa" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+							<a href="#deleteAsiscapa" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+					  </div>
+					</td>
+				  </tr>
+			  </tbody>
+			</table>
+		  </div>
+		  <br>
+		</div>
 	  </div>
-</div>
-
+	</div>
+  </div>
   

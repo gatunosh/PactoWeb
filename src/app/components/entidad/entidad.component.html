@@ -174,59 +174,56 @@
 
 
 
-<div class="container-fluid main-container">
-	<div class="table-title">
+  
+  
+<div class="body animated fadeIn">
+	<div class="container-fluid">
+	  <div>
+		<br>
 		<div class="row">
-			<h3 class="col-md-10">&nbsp;&nbsp;Entidades Externas</h3>
-			<div class="col-sm-2">			
-				<a href="#addEntidad" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
-			</div>
-		</div>
-	</div>
-	<div class="body animated fadeIn">
-		<div class="container-fluid">
-		  <div>
-			<div class="card my-3">
-			  <div class="container-fluid" aria-label="Page navigation example">
-				  <div class="table-responsive">
-					<table class="table table-hover">
-						<thead >
-						  <tr>
-							  <th scope="col" class="text-center">#</th>
-							  <th scope="col" class="text-center">Nombre</th>
-							  <th scope="col" class="text-center">Tipo</th>
-							  <th scope="col" class="text-center">Direccion</th>
-							  <th scope="col" class="text-center">Telefono</th>
-							  <th scope="col" class="text-center">Pais</th>
-							  <th scope="col" class="text-center">Ciudad</th>
-							  <th scope="col" class="text-center">Acciones</th>
-						  </tr>
-						</thead>
-						<tbody>
-						  <tr >
-							  <th scope="row" class="text-center">1</th>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td>
-								<div style="text-align: center">									  
-                                    <a href="#editEntidad" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a href="#deleteEntidad" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-								</div>
-							  </td>
-							</tr>
-						</tbody>
-					  </table>
-				  </div>
-				
-			  </div>
-			</div>
+		  <h3 class="col-md-10">&nbsp;&nbsp;Entidades Externas</h3>
+		  <div class="col">
+			<a href="#addUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
 		  </div>
 		</div>
+		<div class="card my-3">
+		  <br>
+		  <div class="container-fluid table-responsive" aria-label="Page navigation example">
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+			  <thead>
+				<tr>
+					<th scope="col" class="text-center">#</th>
+					<th scope="col" class="text-center">Nombre</th>
+					<th scope="col" class="text-center">Tipo</th>
+					<th scope="col" class="text-center">Direccion</th>
+					<th scope="col" class="text-center">Telefono</th>
+					<th scope="col" class="text-center">Pais</th>
+					<th scope="col" class="text-center">Ciudad</th>
+					<th scope="col" class="text-center">Acciones</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr *ngFor="let e of data">
+					<th scope="row" class="text-center">{{e.id}}</th>
+					<td>{{e.employee_name}}</td>
+					<td>{{e.employee_salary}}</td>
+					<td>{{e.employee_age}}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+					  		<div style="text-align: center">									  
+						  		<a href="#editEntidad" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+						  		<a href="#deleteEntidad" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+					 		</div>
+					</td>
+				  </tr>
+			  </tbody>
+			</table>
+		  </div>
+		  <br>
+		</div>
 	  </div>
-</div>
-
+	</div>
+  </div>
   
