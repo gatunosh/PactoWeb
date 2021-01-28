@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ProductosModel, Producto} from '../../models/productos.models';
 import { Subject } from 'rxjs';
+//import { FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html'
 })
 export class ProductosComponent implements OnInit {
+
+  @Input() producto: any =null;
 
   private url:string = 'https://restserver-pacto.herokuapp.com';
   
@@ -41,12 +44,16 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  deleteProducts(id){
+  /*deleteProducts(id){
     console.log("Eliminado"+id);
     this._productosService.deleteProducts(id).subscribe(data=>{
       console.log(data);
     });
 
+  }*/
+
+  onClick(producto){
+    this.producto=producto;
   }
   
 }

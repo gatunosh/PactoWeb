@@ -32,6 +32,8 @@ export class ProductosService{
         return this._http.get(`${this.url}/producto`,{headers});
     }
 
+    
+
     deleteProducts(id:string):Observable<any>{
         return this._http.delete(`${this.url}/producto/${id}`);
       }
