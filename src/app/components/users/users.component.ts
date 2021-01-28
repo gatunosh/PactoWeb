@@ -21,11 +21,23 @@ export class UsersComponent implements OnDestroy, OnInit{
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService) {
+  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService, private _builder: FormBuilder,) {
+    this.usersForm = this._builder.group({
+      email: ['',],
+      password: ['',],
+      nombre: ['',],
+      apellido: ['',],
+      tlfc: ['',],
+      tlfm: ['',],
+      hectareas: ['',],
+      sector: ['',],
+      parroquia: ['',],
+      barrio: ['',],
+      role: ['',]
+    });
   }
 
   ngOnInit(): void {
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
@@ -34,21 +46,14 @@ export class UsersComponent implements OnDestroy, OnInit{
       }
     };
 
-
-    
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-
-      
-      
     });
 
     this.dtTrigger.next();
-
   }
 
   enviar(values){
-    
     this.usuario.nombre = values['nombre'];
     this.usuario.apellido = values['apellido'];
     this.usuario.tlfc = values['tlfc'];
@@ -66,12 +71,8 @@ export class UsersComponent implements OnDestroy, OnInit{
     });
   }
 
-  
-
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-
-
 }

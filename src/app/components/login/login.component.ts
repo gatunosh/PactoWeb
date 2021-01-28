@@ -24,13 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Recordarme
-    
+    // Recordarme 
     if(localStorage.getItem('email')) {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
-
   }
 
   enviar(values){
@@ -69,5 +67,4 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-
 }
