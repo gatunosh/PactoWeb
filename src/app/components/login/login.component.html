@@ -1,3 +1,29 @@
+<div id="olvidastecontra" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<h4 class="modal-title">Recuperar contraseña</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Ingresa tu correo electrónico:</b></label>
+						<input type="email" class="form-control" placeholder="Ingresa tu correo electrónico"     required>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-info" value="Enviar">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
 <div class="body animated fadeIn ">
   <div class="container rounded">
     <br>
@@ -32,7 +58,7 @@
               <button class="btn btn-lg btn-outline-dark btn-block text-uppercase" type="submit" [disabled]="signupForm.invalid">Ingresar</button>
             </div>
             <hr class="my-4">
-            <a href="#">Olvidaste tú contraseña?</a>
+            <a href="#olvidastecontra" data-toggle="modal">Olvidaste tú contraseña?</a>
             <br>
           </form>
         </div>
