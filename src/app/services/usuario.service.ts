@@ -8,13 +8,11 @@ import { Usuario } from '../models/usuario.models';
 })
 export class UsuarioService {
 
-
     private url: string = 'https://restserver-pacto.herokuapp.com';
 
     userToken: string;
 
     constructor(private _http: HttpClient) { }
-
 
     leerToken() {
         if (localStorage.getItem('token')) {
@@ -81,7 +79,4 @@ export class UsuarioService {
         });  
         return this._http.delete(`${this.url}/usuario/${usuario._id}`,{headers});
     }
-
-
-
 }
