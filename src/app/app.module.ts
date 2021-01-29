@@ -29,6 +29,7 @@ import { DataTablesModule } from 'angular-datatables';
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     MaquinariaasoComponent,
     MantenimientoasoComponent,
     HojacampoComponent,
+    DethojacampoComponent
   ],
   imports: [
     BrowserModule,

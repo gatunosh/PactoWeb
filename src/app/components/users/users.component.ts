@@ -22,7 +22,10 @@ export class UsersComponent implements OnDestroy, OnInit{
   usuario: UsuarioModel = new UsuarioModel();
   usuarioUpdate: UsuarioModel = new UsuarioModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _userService: UsuarioService,private _builder: FormBuilder) {
+  constructor(
+    private _userService: UsuarioService,
+    private _builder: FormBuilder
+    ){
     this.usersForm = this._builder.group({
       email: ['',],
       password: ['',],
