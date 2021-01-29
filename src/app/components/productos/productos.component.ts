@@ -59,6 +59,7 @@ export class ProductosComponent implements OnDestroy,OnInit {
 
 
   enviar(values){
+    this.producto1.id_cat = values['id_cat'];
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
@@ -68,6 +69,7 @@ export class ProductosComponent implements OnDestroy,OnInit {
     this.producto1.fecha_cad_pro = values['fecha_cad_pro'];
     this._productosService.addProductos(this.producto1).subscribe((resp:any) => {
       this.productos = resp.producto1;
+      console.log(resp.productos);
       window.location.reload()
       
     }, (err) => {

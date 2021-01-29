@@ -11,12 +11,16 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
+						<label><b>ID Categoría:</b></label>
+						<input type="text" class="form-control" required formControlName="id_cat">	
+					  </div>
+					<div class="form-group">
 						<label><b>Nombre:</b></label>
 						<input type="text" class="form-control" required formControlName="nom_pro">
 					</div>
 					<div class="form-group">
-            <label><b>Detalle:</b></label>
-            <input type="text" class="form-control" required formControlName="desc_pro">
+            			<label><b>Detalle:</b></label>
+            			<input type="text" class="form-control" required formControlName="desc_pro">
 					</div>
 					<div class="form-row">
 					<div class="form-group col-md-4">
@@ -31,14 +35,11 @@
 						<label><b>Precio:</b></label>
 						<input type="text" class="form-control" required formControlName="pvp_pro">				
 					</div>
-					</div>
-					<div class="form-group">
+				</div>
+				<div class="form-group">
 
           </div>
-          <div class="form-group">
-			<label><b>ID Categoría:</b></label>
-			<input type="text" class="form-control" required formControlName="id_cat">	
-		  </div>
+          
 		  
           <div class="form-row">
 			<div class="form-group col-md-6">
@@ -120,11 +121,11 @@
           <div class="form-row">
 			<div class="form-group col-md-6">
 						<label><b>Fecha elaboración:</b></label>
-						<input [(ngModel)]="productoUpdate.fecha_ela_pro" type="text" class="form-control" required name="fecha_ela_pro">
+						<input [(ngModel)]="productoUpdate.fecha_ela_pro" type="date" class="form-control" required name="fecha_ela_pro">
           </div>
           <div class="form-group col-md-6">
 						<label><b>Fecha caducidad:</b></label>
-						<input [(ngModel)]="productoUpdate.fecha_cad_pro" type="text" class="form-control" required name="fecha_cad_pro">
+						<input [(ngModel)]="productoUpdate.fecha_cad_pro" type="date" class="form-control" required name="fecha_cad_pro">
 		  </div>
 		  </div>
 				</div>
@@ -169,7 +170,7 @@
       <div class="card my-3">
 		  <br>
         <div class="container-fluid table-responsive" aria-label="Page navigation example">
-         <table datatable class="table table-hover">
+         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -185,8 +186,8 @@
 				<td>{{producto.pvp_pro}}</td>				
                 <td>
 					<button type="button" class="btn btn-outline-primary" href="#detalleProductos" data-toggle="modal" (click)="onClick(producto)">Detalle</button>&nbsp;
-                  <button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" href="#deleteProductos" data-toggle="modal"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="fas fa-edit"></i></button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" href="#deleteProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>

@@ -7,6 +7,8 @@ import { ProductosModel, Producto} from '../models/productos.models';
 })
 export class ProductosService{
 
+    productos: Producto[] = [];
+
     private url:string = 'https://restserver-pacto.herokuapp.com';
 
     prodToken: string;
@@ -71,5 +73,4 @@ export class ProductosService{
         });  
         return this._http.delete(`${this.url}/producto/${producto1._id}`,{headers});
      }   
-
 }

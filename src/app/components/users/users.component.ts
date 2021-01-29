@@ -53,7 +53,6 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-      console.log(this.usuarios)
 
       this.dtTrigger.next();
     });
