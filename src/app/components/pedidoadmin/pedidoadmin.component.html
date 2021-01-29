@@ -108,7 +108,8 @@
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-            <h3 class="col-md-10">&nbsp;&nbsp;Detalle Pedido</h3><br><br>			 
+			<h3 class="col-md-10">&nbsp;&nbsp;Detalle Pedido</h3><br><br>
+				 
 			<div class="col">							
 			</div>
 		</div>
@@ -117,9 +118,10 @@
 		<div class="container-fluid">
 		  <div>
 			<div class="card my-3">
+				<br>
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
-					<table class="table table-hover">
+					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
                             <th scope="col">#</th>
@@ -134,8 +136,8 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr >
-							  <th scope="row" class="text-center">1</th>
+						  <tr *ngFor="let pedidoadmin of data">
+							  <th scope="row" class="text-center">{{pedidoadmin.id}}</th>
 							  <td></td>
 							  <td></td>
 							  <td></td>

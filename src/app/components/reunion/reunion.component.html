@@ -57,7 +57,7 @@
 			<div class="card my-3">
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
-					<table class="table table-hover">
+					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
                             <th scope="col">#</th>
@@ -70,15 +70,15 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr >
-							  <th scope="row" class="text-center">1</th>
+						  <tr *ngFor="let reunion of data">
+							  <th scope="row" class="text-center">{{reunion.id}}</th>
 							  <td></td>
 							  <td></td>
 							  <td></td>
 							  <td></td>
 							  <td></td>
 							  <td>
-                                  <button class="btn btn-outline-info">Asistencia</button>
+								  <button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
                               </td>							  							  
 							</tr>
 						</tbody>

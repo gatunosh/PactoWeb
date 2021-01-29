@@ -12,7 +12,9 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
   dtTrigger: Subject<any> = new Subject<any>();
   data: any; 
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient){
+  
+  }
 
      //SUBMIT DATA
         onSubmit(data)
@@ -25,10 +27,7 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
             console.warn(data);
         }
       //SUBMIT END
-          edit(obj,index)
-          {
-
-          }
+         
 
 
   ngOnInit(): void {
@@ -44,7 +43,7 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
           console.log(res);
           this.data = res.data;
           this.dtTrigger.next();
-    });          
+    });        
   }
 
   ngOnDestroy(): void {
