@@ -121,8 +121,10 @@
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-            <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3><br><br>			 
-			<div class="col">			
+			<h3 class="col-md-10">&nbsp;&nbsp;Bodega</h3><br><br>	
+						 
+			<div class="col">
+				<button [routerLink]="['/pedidoadmin']" class="edit btn btn-danger" data-toggle="modal">Regresar</button>	&nbsp;	
 				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
 			</div>
 		</div>
@@ -130,10 +132,10 @@
 	<div class="body animated fadeIn">
 		<div class="container-fluid">
 		  <div>
-			<div class="card my-3">
+			<div class="card my-3"><br>
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
-					<table class="table table-hover">
+					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
                             <th scope="col">#</th>
@@ -145,14 +147,14 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr >
-							  <th scope="row" class="text-center">1</th>
+						  <tr *ngFor="let bodega of data">
+							  <th scope="row" class="text-center">{{bodega.id}}</th>
 							  <td></td>
 							  <td></td>
 							  <td></td>
 							  <td></td>
 							  <td></td>
-							  <td></td>							  							  
+							  							  							  
 							</tr>
 						</tbody>
                       </table>

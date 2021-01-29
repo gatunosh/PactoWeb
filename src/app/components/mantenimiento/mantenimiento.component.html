@@ -82,10 +82,10 @@
 	<div class="body animated fadeIn">
 		<div class="container-fluid">
 		  <div>
-			<div class="card my-3">
+			<div class="card my-3"><br>
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
-					<table class="table table-hover">
+					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
                             <th scope="col">#</th>
@@ -101,8 +101,8 @@
 						  </tr>
 						</thead>
 						<tbody>
-						    <tr >
-                                <td scope="row" class="text-center">1</td>
+						    <tr *ngFor="let mantenimiento of data">
+                                <td scope="row" class="text-center">{{mantenimiento.id}}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -118,7 +118,7 @@
                      
                     </div>
 				  </div>
-				
+				<br>
               </div>
              
 		  </div>
