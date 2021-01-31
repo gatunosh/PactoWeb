@@ -25,13 +25,11 @@ export class UsuarioService {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        console.log(this.userToken);
         
         return this._http.get(`${this.url}/usuario`,{headers});
     }
 
     addUsers(usuario:Usuario){
-        console.log(usuario.email);
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });

@@ -28,8 +28,6 @@ export class LoginService {
       `${this.url}/login`,authData
     ).pipe(
       map( resp => {
-        console.log('ENTRO AL MAP');
-        
         this.guardarToken(resp['token']);
         return resp;
       })

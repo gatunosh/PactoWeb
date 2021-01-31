@@ -53,7 +53,6 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-
       this.dtTrigger.next();
     });
 
@@ -76,7 +75,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       window.location.reload()
       
     }, (err) => {
-      console.log(err);
     });
   }
 
