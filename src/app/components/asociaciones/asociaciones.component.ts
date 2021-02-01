@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,OnDestroy } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -13,8 +13,6 @@ import Swal from 'sweetalert2';
   templateUrl: './asociaciones.component.html'
 })
 export class AsociacionesComponent implements OnDestroy,OnInit {
-
-  @Input() asociacion: any =null;
 
   private url:string = 'https://restserver-pacto.herokuapp.com';
   
@@ -38,9 +36,6 @@ export class AsociacionesComponent implements OnDestroy,OnInit {
   }
 
   ngOnInit(): void {
-    let asociacionid = this.activerouter.snapshot.paramMap.get('id');
-    console.log(asociacionid);
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -114,12 +109,6 @@ export class AsociacionesComponent implements OnDestroy,OnInit {
 
     return asociacionActual;
 }
-
-
-  onClick(asociacion){
-    this.asociacion=asociacion;
-  }
-
   delete() {
     Swal.fire({
       title: 'Espere',
