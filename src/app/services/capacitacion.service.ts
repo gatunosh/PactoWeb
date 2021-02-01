@@ -29,7 +29,7 @@ export class CapacitacionService {
         return this._http.get(`${this.url}/capacitacion`,{headers});
     }
 
-    addCapacitaciones(capacitacion:Capacitacion){
+   /* addCapacitaciones(capacitacion:Capacitacion){
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
@@ -42,7 +42,7 @@ export class CapacitacionService {
             hora_fin_cap: capacitacion.hora_fin_cap,
         };
         return this._http.post(`${this.url}/capacitacion`,authData, {headers});
-    }
+    }*/
 
     updateCapacitacion(capacitacion:Capacitacion){
         const headers = new HttpHeaders({
