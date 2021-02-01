@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <!--MODAL-->
 <!-- ADD Modal HTML -->
-<div id="addPedidoCli" class="modal fade">
+<div id="addPedido" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -115,8 +115,12 @@
 			<div class="row">
 			  <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3>
 			  <div class="col">
-				<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
-			  </div>
+				<a href="#ddPedido" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+		
+				&nbsp;&nbsp;	<a href="" class="btn btn-info" >&nbsp;&nbsp;<span>Pedir</span></a>&nbsp;&nbsp;
+				
+			</div>
+			  
 			</div>
 			<div class="card my-3">
 			  <br>
@@ -129,26 +133,34 @@
 							<th scope="col">Producto</th>
 							<th scope="col">Descripción</th>
                             <th scope="col">Cantidad</th>
-                            <th scope="col">Precio Unitario</th>    
+							<th scope="col">Precio Unitario</th> 
+							<th></th>   
 				  </thead>
 				  <tbody>
 					<tr *ngFor="let pedido of data">
 						<td scope="row" class="text-center">{{pedido.id}}</td>
-						<td>asdsadsa</td>
-						<td>asdasdasdasdwq</td>
-						<td>wsadasdas</td>
-						<td>asdasdasdsa</td>						
+						<td>Lacteo</td>
+						<td>Leche</td>
+						<td>Es muy blanca</td>
+						<td>5</td>
+						<td>1.50</td>						
+						
 						<td>
 						  <div style="text-align: center">							
 								<a href="#editPedidoCli" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
 								<a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-						  </div>
+								&nbsp;&nbsp;	<a [routerLink]="['/detallepedido/:id']" class="btn btn-outline-info">Detalle</a>&nbsp;&nbsp;&nbsp;
+
+							</div>
 						</td>
 					  </tr>
 				  </tbody>
 				</table>
+				
+
 			  </div>
 			  <br>
+			 
 			</div>
 		  </div>
 		</div>
