@@ -12,10 +12,10 @@
                     <div class="form-group">
                         <label for="sel1"><b>Rol:</b></label>
                         <select class="custom-select" id="sel1" formControlName="role" required>
-                            <option value="">Escoja un Rol</option>
-                            <option value="1">ADMIN_ROLE</option>
-                            <option value="2">SOCIO_ROLE</option>
-                            <option value="3">CLIENTE_ROLE</option>
+                            <option>Escoja un Rol</option>
+                            <option>ADMIN_ROLE</option>
+                            <option>SOCIO_ROLE</option>
+                            <option>CLIENTE_ROLE</option>
                         </select>
                         <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
                             Campo requerido
