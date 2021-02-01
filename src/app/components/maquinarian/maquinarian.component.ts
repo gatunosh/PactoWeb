@@ -36,5 +36,3 @@ export class MaquinarianComponent implements OnInit, OnDestroy{
 
 }
 }
-
-
