@@ -9,38 +9,35 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-asociacion',
-  templateUrl: './asociacion.component.html',
+  selector: 'app-asociaciones',
+  templateUrl: './asociaciones.component.html',
   styles: [
   ]
 })
-export class AsociacionComponent implements OnDestroy,OnInit {
+export class AsociacionesComponent implements OnDestroy, OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  usuarios: Asociacion[] = [];
-  usersForm: FormGroup;
+  asociaciones: Asociacion[] = [];
+  asociacionesForm: FormGroup;
   asociacion: AsociacionModel = new AsociacionModel();
   asociacionUpdate: AsociacionModel = new AsociacionModel();
+
   constructor(
-    private _userService: AsociacionService,
+    private _asociacionService: AsociacionService,
     private _builder: FormBuilder
-  ) { 
-    this.usersForm = this._builder.group({
-      email: ['',],
-      password: ['',],
-      nombre: ['',],
-      apellido: ['',],
-      tlfc: ['',],
-      tlfm: ['',],
-      hectareas: ['',],
-      sector: ['',],
-      parroquia: ['',],
-      barrio: ['',],
-      role: ['',]
+    ){
+    this.asociacionesForm = this._builder.group({
+      nombre_aso: ['',],
+      certificado_aso: ['',],
+      sector_aso: ['',],
+      barrio_aso: ['',],
+      parroquia_aso: ['',]
+     
     });
   }
 
   ngOnInit(): void {
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -49,13 +46,12 @@ export class AsociacionComponent implements OnDestroy,OnInit {
       }
     };
 
-    this._userService.getUsers().subscribe((resp:any) => {
-      this.usuarios = resp.usuarios;
+    this._asociacionService.getAsociaciones().subscribe((resp:any) => {
+      this.asociaciones = resp.asociacion;
       this.dtTrigger.next();
     });
+
   }
-
-
 
   enviar(values){
     this.asociacion.nombre_aso = values['nombre_aso'];
@@ -63,9 +59,9 @@ export class AsociacionComponent implements OnDestroy,OnInit {
     this.asociacion.sector_aso = values['sector_aso'];
     this.asociacion.barrio_aso = values['barrio_aso'];
     this.asociacion.parroquia_aso = values['parroquia_aso'];
-  
-    this._userService.addUsers(this.asociacion).subscribe((resp:any) => {
-      this.asociacion = resp.asociacion;
+   
+    this._asociacionService.addAsociaciones(this.asociacion).subscribe((resp:any) => {
+      this.asociaciones = resp.asociaciones;
       window.location.reload()
       
     }, (err) => {
@@ -73,7 +69,7 @@ export class AsociacionComponent implements OnDestroy,OnInit {
   }
 
   openModalActualizar(id:string) {
-    this.asociacionUpdate = this.buscadorUserActual(id);
+    this.asociacionUpdate = this.buscadorAsociacionActual(id);
   }
 
   onEdit( form:NgForm ) {
@@ -89,7 +85,7 @@ export class AsociacionComponent implements OnDestroy,OnInit {
 
     Swal.showLoading();
 
-    this._userService.updateUser(this.asociacionUpdate).subscribe(resp => {
+    this._asociacionService.updateUser(this.asociacionUpdate).subscribe(resp => {
       Swal.close();
       window.location.reload();
     },(err) => {
@@ -101,17 +97,17 @@ export class AsociacionComponent implements OnDestroy,OnInit {
     });
   }
 
-  buscadorUserActual(id:string){
-      let userActual: Asociacion;
+  buscadorAsociacionActual(id:string){
+      let asociacionActual: Asociacion;
       
-      for (let i = 0; i < this.usuarios.length; i++) {
-        if(this.usuarios[i].id_soc == id){
-          userActual = this.usuarios[i];
+      for (let i = 0; i < this.asociaciones.length; i++) {
+        if(this.asociaciones[i]._id == id){
+          asociacionActual = this.asociaciones[i];
           break;
         }
       }
 
-      return userActual;
+      return asociacionActual;
   }
 
   delete() {
@@ -125,7 +121,7 @@ export class AsociacionComponent implements OnDestroy,OnInit {
 
     Swal.showLoading();
 
-    this._userService.deleteUser(this.asociacionUpdate).subscribe(resp => {
+    this._asociacionService.deleteUser(this.asociacionUpdate).subscribe(resp => {
       Swal.close();
       window.location.reload();
     },(err) => {
@@ -141,5 +137,4 @@ export class AsociacionComponent implements OnDestroy,OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-
 }

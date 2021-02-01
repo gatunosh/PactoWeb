@@ -30,7 +30,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component';
-import { AsociacionComponent } from './components/asociacion/asociacion.component';
+import { AsociacionesComponent } from './components/asociaciones/asociaciones.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { AsociacionComponent } from './components/asociacion/asociacion.componen
     MantenimientoasoComponent,
     HojacampoComponent,
     DethojacampoComponent,
-    AsociacionComponent
+    AsociacionesComponent
   ],
   imports: [
     BrowserModule,
