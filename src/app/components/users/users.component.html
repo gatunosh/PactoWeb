@@ -3,7 +3,7 @@
 <div id="addUser" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form [formGroup]="usersForm" (ngSubmit)="enviar(usersForm.value)">
+            <form class="was-validated" [formGroup]="usersForm" (ngSubmit)="enviar(usersForm.value)">
                 <div class="modal-header">
                     <h4 class="modal-title">Nuevo Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,30 +11,46 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="sel1"><b>Rol:</b></label>
-                        <select class="form-control" id="sel1" formControlName="role">
-                            <option>ADMIN_ROLE</option>
-                            <option>SOCIO_ROLE</option>
-                            <option>CLIENTE_ROLE</option>
+                        <select class="custom-select" id="sel1" formControlName="role" required>
+                            <option value="">Escoja un Rol</option>
+                            <option value="1">ADMIN_ROLE</option>
+                            <option value="2">SOCIO_ROLE</option>
+                            <option value="3">CLIENTE_ROLE</option>
                         </select>
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
+                            Campo requerido
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col">
                             <label><b>Nombre:</b></label>
                             <input type="text" class="form-control" required formControlName="nombre">
+                            <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
+                                Campo requerido
+                            </div>
                         </div>
                         <div class="col">
                             <label><b>Apellido:</b></label>
                             <input type="text" class="form-control" required formControlName="apellido">
+                            <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('apellido').touched">
+                                Campo requerido
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col">
                             <label><b>Teléfono:</b></label>
                             <input type="text" class="form-control" required formControlName="tlfc">
+                            <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('tlfc').touched">
+                                Campo requerido
+                            </div>
                         </div>
                         <div class="col">
                             <label><b>Celular:</b></label>
                             <input type="text" class="form-control" required formControlName="tlfm">
+                            <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('tlfm').touched">
+                                Campo requerido
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -59,11 +75,17 @@
                     </div>
                     <div class="form-group">
                         <label><b>E-mail:</b></label>
-                        <input type="email" class="form-control" required formControlName="email">
+                        <input type="email" class="form-control" required formControlName="email">        
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('email').hasError('email') && usersForm.get('email').touched">
+                            Campo requerido
+                        </div>
                     </div>
                     <div class="form-group">
                         <label><b>Contraseña:</b></label>
                         <input type="password" class="form-control" required formControlName="password">
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('password').invalid && usersForm.get('password').touched">
+                            Contraseña mínima de 6 caracteres
+                        </div>
                     </div>
 
                 </div>

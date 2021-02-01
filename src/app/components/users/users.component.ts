@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,17 +27,17 @@ export class UsersComponent implements OnDestroy, OnInit{
     private _builder: FormBuilder
     ){
     this.usersForm = this._builder.group({
-      email: ['',],
-      password: ['',],
-      nombre: ['',],
-      apellido: ['',],
-      tlfc: ['',],
-      tlfm: ['',],
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      password: ['', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      tlfc: ['', Validators.required],
+      tlfm: ['', Validators.required],
       hectareas: ['',],
       sector: ['',],
       parroquia: ['',],
       barrio: ['',],
-      role: ['',]
+      role: ['', Validators.required]
     });
   }
 
