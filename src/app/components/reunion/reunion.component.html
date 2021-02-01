@@ -55,6 +55,7 @@
 		<div class="container-fluid">
 		  <div>
 			<div class="card my-3">
+				<br>
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
 					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
@@ -72,11 +73,11 @@
 						<tbody>
 						  <tr *ngFor="let reunion of data">
 							  <th scope="row" class="text-center">{{reunion.id}}</th>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
+							  <td>123</td>
+							  <td>Cualquiera</td>
+							  <td>29/01/2021</td>
+							  <td>15:00</td>
+							  <td>$10</td>
 							  <td>
 								  <button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
                               </td>							  							  
@@ -90,9 +91,8 @@
               </div>
               <div class="row">
                        		 
-                <div class="col">			
-                    <a href="" class="btn btn-success" >&nbsp;&nbsp;<span>Convocar</span></a>&nbsp;&nbsp;
-                </div>
+                <a href="" class="btn btn-success" >&nbsp;&nbsp;<span>Convocar</span></a>
+			
 
 			</div>
 		  </div>
