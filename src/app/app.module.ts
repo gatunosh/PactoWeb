@@ -32,6 +32,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component';
 import { AsociacionesComponent } from './components/asociaciones/asociaciones.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,7 @@ import { AsociacionesComponent } from './components/asociaciones/asociaciones.co
     MantenimientoasoComponent,
     HojacampoComponent,
     DethojacampoComponent,
-    AsociacionesComponent
+    AsociacionesComponent,
   ],
   imports: [
     BrowserModule,

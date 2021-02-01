@@ -18,8 +18,8 @@ import { MantenimientoComponent } from './components/mantenimiento/mantenimiento
 import { MaquinariaasoComponent } from './components/maquinariaaso/maquinariaaso.component';
 import { MantenimientoasoComponent } from './components/mantenimientoaso/mantenimientoaso.component';
 import { HojacampoComponent } from './components/hojacampo/hojacampo.component';
-import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component'
 import { AsociacionesComponent } from './components/asociaciones/asociaciones.component';
+import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component'
 
 
 const APP_ROUTES: Routes = [
@@ -42,6 +42,7 @@ const APP_ROUTES: Routes = [
     { path: 'hojacampo',component: HojacampoComponent,canActivate: [AuthGuard] },
     { path: 'dethojacampo/:id',component: DethojacampoComponent,canActivate: [AuthGuard] },
     { path: 'asociacion', component: AsociacionesComponent, canActivate: [AuthGuard] },
+    
     { path: '', pathMatch:'full', redirectTo:'login' },
     { path: '**', pathMatch:'full', redirectTo:'login'},
 ];
