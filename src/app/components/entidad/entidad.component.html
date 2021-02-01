@@ -5,7 +5,8 @@
 <div id="addEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form  [formGroup]="entidadesForm" (ngSubmit)="enviar(entidadesForm.value)">
+
 				<div class="modal-header">						
 					<h4 class="modal-title">Nueva Entidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -13,30 +14,28 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<label><b>Nombre:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control"  required formControlName="nom_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Tipo:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control"  required formControlName="tipo_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Direccion:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control"  required formControlName="dir_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Telefono:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control"  required formControlName="tel_enti">
                     </div>
                     <div class="form-group">
 						<label><b>Pais:</b></label>
-						<input type="text" class="form-control" required>
+						<input type="text" class="form-control"  required formControlName="pais_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Ciudad:</b></label>
-						<input type="text" class="form-control" required>
-                    </div>
-                  
-										
+						<input type="text" class="form-control"  required formControlName="ciu_enti">
+                    </div>					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -51,7 +50,7 @@
 <div id="editEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form (ngSubmit)="onEdit( f )" #f="ngForm">
 				<div class="modal-header">						
 					<h4 class="modal-title">Editar Entidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -59,27 +58,27 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<label><b>Nombre:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.nom_enti" type="text" class="form-control" required name="nom_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Tipo:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.tipo_enti" type="text" class="form-control" required name="tipo_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Direccion:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.dir_enti" type="text" class="form-control" required name="dir_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Telefono:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.tel_enti" type="text" class="form-control" required name="tel_enti">
                     </div>
                     <div class="form-group">
 						<label><b>Pais:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.pais_enti" type="text" class="form-control" required name="pais_enti">
 					</div>
 					<div class="form-group">
 						<label><b>Ciudad:</b></label>
-						<input type="text" class="form-control" required>
+						<input [(ngModel)]="entidadUpdate.ciu_enti" type="text" class="form-control" required name="ciu_enti">
                     </div>
                   
 										
@@ -96,7 +95,7 @@
 <div id="deleteEntidad" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form  (ngSubmit)="delete()">
 				<div class="modal-header">						
 					<h4 class="modal-title">Eliminar Entidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -113,69 +112,6 @@
 	</div>
 </div>
 
-<!--TABLA-->
-<!--
-<div class="container main-container">
-	<div class="table-title">
-		<div class="row">
-			<div class="col"><h2><b>Capacitaciones</b></h2></div>
-			
-			<div class="col-sm-2">
-				<a href="#addEntidad" class="btn btn-info" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva Entidad</span></a><br><br>
-				<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva Capacitacion</span></a><br><br>
-				
-			</div>
-		</div>
-	</div>
-	<div class="table-responsive">
-		<table id="userList" class="table table-bordered table-hover table-striped">
-			<thead class="thead-dark">
-			<tr>
-				<th scope="col" class="text-center">#</th>
-				<th scope="col" class="text-center">Tema</th>
-				<th scope="col" class="text-center">Fecha</th>
-				<th scope="col" class="text-center">Hora Inicio</th>
-				<th scope="col" class="text-center">Hora Fin</th>
-				<th scope="col" class="text-center">Capacitador</th>
-				<th scope="col" class="text-center">Entidad</th>
-				<th scope="col" class="text-center">Acciones</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr >
-				  <th scope="row" class="text-center">1</th>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td></td>
-				  <td>
-					<div style="text-align: center">
-						  <a class="btn btn-info" [routerLink]="['/asiscapacitacion/:id']">Detalle</a>&nbsp;&nbsp;
-						  <a href="#editCapacitacion" class="edit btn btn-secondary" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-						  <a href="#deleteCapacitacion" class="delete btn btn-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-					</div>
-				  </td>
-				</tr>
-				
-			  </tbody>
-		</table>
-		<!--<pagination-controls 
-		(pageChange)="paginatecapacitacion = $event" 
-		previousLabel="Anterior"
-		nextLabel="Siguiente">
-	</pagination-controls>-->
-
-<!--
-*ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: paginatecapacitacion }"
-
--->
-
-
-
-  
-  
 <div class="body animated fadeIn">
 	<div class="container-fluid">
 	  <div>
@@ -183,7 +119,7 @@
 		<div class="row">
 		  <h3 class="col-md-10">&nbsp;&nbsp;Entidades Externas</h3>
 		  <div class="col">
-			<a href="#addUser" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+			<a href="#addEntidad" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
 		  </div>
 		</div>
 		<div class="card my-3">
@@ -192,7 +128,6 @@
 			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 			  <thead>
 				<tr>
-					<th scope="col" class="text-center">#</th>
 					<th scope="col" class="text-center">Nombre</th>
 					<th scope="col" class="text-center">Tipo</th>
 					<th scope="col" class="text-center">Direccion</th>
@@ -203,18 +138,17 @@
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr *ngFor="let e of data">
-					<th scope="row" class="text-center">{{e.id}}</th>
-					<td>{{e.employee_name}}</td>
-					<td>{{e.employee_salary}}</td>
-					<td>{{e.employee_age}}</td>
-					<td></td>
-					<td></td>
-					<td></td>
+				<tr *ngFor="let entidad of entidades">
+					<td>{{entidad.nom_enti}}</td>
+					<td>{{entidad.tipo_enti}}</td>
+					<td>{{entidad.dir_enti}}</td>
+					<td>{{entidad.tel_enti}}</td>
+					<td>{{entidad.pais_enti}}</td>
+					<td>{{entidad.ciu_enti}}</td>
 					<td>
 					  		<div style="text-align: center">									  
-						  		<a href="#editEntidad" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-						  		<a href="#deleteEntidad" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+						  		<a href="#editEntidad" class="btn btn-outline-warning" data-toggle="modal" (click)="openModalActualizar(entidad._id)"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+						  		<a href="#deleteEntidad" class="btn btn-outline-danger" data-toggle="modal" (click)="openModalActualizar(entidad._id)"><i class="far fa-trash-alt"></i></a>
 					 		</div>
 					</td>
 				  </tr>

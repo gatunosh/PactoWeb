@@ -106,51 +106,66 @@
 </div>
 
 <!--TABLA-->
-
-  
+<div class="container-fluid main-container">
+	<div class="table-title">
+		<div class="row">
+            <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3><br><br>			 
+			<div class="col">			
+				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+			</div>
+		</div>
+	</div>
 	<div class="body animated fadeIn">
 		<div class="container-fluid">
 		  <div>
-			<br>
-			<div class="row">
-			  <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3>
-			  <div class="col">
-				<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
-			  </div>
-			</div>
 			<div class="card my-3">
-			  <br>
-			  <div class="container-fluid table-responsive" aria-label="Page navigation example">
-				<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
-				  <thead>
-					<tr>
-						<th scope="col">#</th>
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Categoría</th>
 							<th scope="col">Producto</th>
 							<th scope="col">Descripción</th>
                             <th scope="col">Cantidad</th>
-                            <th scope="col">Precio Unitario</th>    
-				  </thead>
-				  <tbody>
-					<tr *ngFor="let pedido of data">
-						<td scope="row" class="text-center">{{pedido.id}}</td>
-						<td>asdsadsa</td>
-						<td>asdasdasdasdwq</td>
-						<td>wsadasdas</td>
-						<td>asdasdasdsa</td>						
-						<td>
-						  <div style="text-align: center">							
-								<a href="#editPedidoCli" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-								<a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-						  </div>
-						</td>
-					  </tr>
-				  </tbody>
-				</table>
-			  </div>
-			  <br>
+                            <th scope="col">Precio Unitario</th>                                                     
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr >
+							  <td scope="row" class="text-center">1</td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
+							  <td>
+								<div style="text-align: center">
+									  
+									  <a href="#editPedidoCli" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+									  <a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
+								</div>
+							  </td>
+							</tr>
+						</tbody>
+                      </table>
+                     
+                    </div>
+				  </div>
+				
+              </div>
+              <div class="row">
+                       		 
+                <div class="col">			
+                    <a href="" class="btn btn-success" >&nbsp;&nbsp;<span> Confirmar Pedido</span></a>&nbsp;&nbsp;
+                    <a href="#" [routerLink]="['/detallepedido/:id']" class="btn btn-info" >&nbsp;&nbsp;<span> Detalle</span></a>
+                </div>
+
 			</div>
 		  </div>
 		</div>
 	  </div>
-	  
+</div>
+
+

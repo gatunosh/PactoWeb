@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Entidad } from '../models/usuario.models';
+import { Entidad } from '../models/entidad.models';
+
 
 @Injectable({
     providedIn: 'root'
 })
-export class UsuarioService {
+export class EntidadService {
 
+    entidades: Entidad[] = [];
 
     private url: string = 'https://restserver-pacto.herokuapp.com';
 
     userToken: string;
 
     constructor(private _http: HttpClient) { }
-
 
     leerToken() {
         if (localStorage.getItem('token')) {
@@ -22,28 +23,26 @@ export class UsuarioService {
         return this.userToken;
     }
 
-    getUsers() {
+    getEntidades() {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        console.log(this.userToken);
         
         return this._http.get(`${this.url}/entidad`,{headers});
     }
 
-    addEntidad(entidad:Entidad){
+    addEntidades(entidad:Entidad){
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
         const authData = {
             nom_enti: entidad.nom_enti,
-            tipo_enti:entidad.tipo_enti,
-            dir_enti:entidad.dir_enti,
-            tel_enti:entidad.tel_enti,
-            pais_enti:entidad.pais_enti
-
+            tipo_enti: entidad.tipo_enti,
+            dir_enti: entidad.dir_enti,
+            tel_enti: entidad.tel_enti,
+            pais_enti: entidad.pais_enti,
+            ciu_enti: entidad.ciu_enti
         };
-
         return this._http.post(`${this.url}/entidad`,authData, {headers});
     }
 
@@ -51,22 +50,22 @@ export class UsuarioService {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-
         const authData = {
             nom_enti: entidad.nom_enti,
             tipo_enti:entidad.tipo_enti,
             dir_enti:entidad.dir_enti,
             tel_enti:entidad.tel_enti,
-            pais_enti:entidad.pais_enti
+            pais_enti:entidad.pais_enti,
+            ciu_enti:entidad.ciu_enti
         };
-
+        return this._http.put(`${this.url}/entidad/${entidad._id}`,authData,{headers});
     }
 
     deleteEntidad(entidad:Entidad){
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });  
-        return this._http.delete(`${this.url}/usuario/${entidad._id}`,{headers});
+        return this._http.delete(`${this.url}/entidad/${entidad._id}`,{headers});
     }
 
 

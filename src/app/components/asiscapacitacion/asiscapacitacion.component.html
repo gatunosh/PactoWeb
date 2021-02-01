@@ -14,9 +14,9 @@
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Fecha:</b></label>
-						<input type="date" class="form-control" required>
-                    </div>
+						<label><b>Apellido:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
 					<div class="form-group">
 						<label><b>Asistencia:</b></label>
 						<select class="form-control" id="exampleFormControlSelect1">                            
@@ -49,7 +49,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Editar Asistencia</h4>
+					<h4 class="modal-title">Nueva Asistencia</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
@@ -58,22 +58,30 @@
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Fecha:</b></label>
-						<input type="date" class="form-control" required>
-                    </div>
+						<label><b>Apellido:</b></label>
+						<input type="text" class="form-control" required>
+					</div>
 					<div class="form-group">
 						<label><b>Asistencia:</b></label>
-						<select class="form-control" id="exampleFormControlSelect1">
-                            
+						<select class="form-control" id="exampleFormControlSelect1">                            
                             <option value="0">Asiste</option>
                             <option value="1">Atraso</option>
                             <option value="2">Falta</option>
                           </select>
+					</div>
+					<div class="form-group">
+						<label><b>Certificado:</b></label>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="validatedCustomFile" lang="es">
+    						<label class="custom-file-label" for="validatedCustomFile">Escoger Archivo</label>
+						</div>
+						
+    					<!--<label class="form-control" for="validatedCustomFile">Archivo</label>-->
                     </div>			
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-success" value="Actualizar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
 			</form>
 		</div>
@@ -120,24 +128,18 @@
 			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 			  <thead>
 				<tr>
-					<th scope="col" class="text-center">#</th>
 					<th scope="col" class="text-center">Nombre</th>
 					<th scope="col" class="text-center">Apellido</th>
-					<th scope="col" class="text-center">Dia 1</th>
-					<th scope="col" class="text-center">Dia 2</th>
-					<th scope="col" class="text-center">Dia 3</th>
-					<th scope="col" class="text-center">Acciones</th>
+					<th scope="col" class="text-center">Asistencia</th>
+					<th scope="col" class="text-center"></th>
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr *ngFor="let asiscapa of data">
-					<td scope="row" class="text-center">{{asiscapa.id}}</td>
-					<td>{{asiscapa.employee_name}}</td>
-					<td>{{asiscapa.employee_salary}}</td>
-					<td>{{asiscapa.employee_age}}</td>
+				<tr>
+					<td scope="row" class="text-center"></td>
 					<td></td>
 					<td></td>
-					
+								
 					<td>
 						<div style="text-align: center">
 						  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal">Certificado</a>&nbsp;&nbsp;&nbsp;

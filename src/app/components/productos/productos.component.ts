@@ -52,7 +52,6 @@ export class ProductosComponent implements OnDestroy,OnInit {
 
     this._productosService.getProductos().subscribe((res:any) =>{
       this.productos= res.producto;
-
       this.dtTrigger.next();
     });
   }

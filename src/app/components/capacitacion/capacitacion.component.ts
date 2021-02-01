@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { CapacitacionService } from '../../services/capacitacion.service';
+import { Capacitacion, CapacitacionModel } from '../../models/capacitacion.models';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-capacitacion',
@@ -10,67 +14,35 @@ import { Subject } from 'rxjs';
 export class CapacitacionComponent implements OnDestroy, OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  data: any; 
+  capacitaciones: Capacitacion[] = [];
+  capacitacionesForm: FormGroup;
+  capacitacion: CapacitacionModel = new CapacitacionModel();
+  capacitacionUpdate: CapacitacionModel = new CapacitacionModel();
 
-  constructor(private http: HttpClient){
-  
-  }
-
-     //SUBMIT DATA
-        onSubmit(data)
-        {
-        this.http.post('URL',data)
-        .subscribe((result)=>
-            {
-              console.warn("result",result)
-            })
-            console.warn(data);
-        }
-      //SUBMIT END
-         
-
+  constructor(
+    private _capacitacionService: CapacitacionService,
+    private _builder: FormBuilder,
+    private _router: Router,
+    private activerouter:ActivatedRoute,
+    ){}
 
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      language: {
+      "language": {
         url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
       }
     };
-    this.http.get('http://dummy.restapiexample.com/api/v1/employees')
-    .subscribe((res:any) => {
-          console.log(res);
-          this.data = res.data;
-          this.dtTrigger.next();
-    });        
-  }
-
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-
+//GET DATA
+    this._capacitacionService.getCapacitaciones().subscribe((resp:any) => {
+      this.capacitaciones = resp.capacitacion;
+      this.dtTrigger.next();
+    });
 
   }
 
-  
-/*PUT DATA OK 
-onSubmit(data){
-  console.warn(data);
-}*/
-
-
-
-/*PUT DATA 2
-  onSubmit(data){
-    if(this.activeindex==-1){
-      console.log(this.CapacitacionModel);
-
-    }else{
-      this.homerray.splice(this.activeindex,1,this.CapacitacionModel);
+    ngOnDestroy(): void {
+      this.dtTrigger.unsubscribe();
     }
-    
-  }
-  this.CapacitacionModel=new CapacitacionModel();
-    this.title='Submit';
-    this.activeindex=-1;*/
 }
