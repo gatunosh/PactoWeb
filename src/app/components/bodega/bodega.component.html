@@ -124,8 +124,8 @@
 			<h3 class="col-md-10">&nbsp;&nbsp;Bodega</h3><br><br>	
 						 
 			<div class="col">
-				<button [routerLink]="['/pedidoadmin']" class="edit btn btn-danger" data-toggle="modal">Regresar</button>	&nbsp;	
 				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+				<button [routerLink]="['/pedidoadmin']" class="edit btn btn-danger" data-toggle="modal">Regresar</button>&nbsp;&nbsp;
 			</div>
 		</div>
 	</div>
@@ -149,11 +149,11 @@
 						<tbody>
 						  <tr *ngFor="let bodega of data">
 							  <th scope="row" class="text-center">{{bodega.id}}</th>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td></td>
+							  <td>Lacteo</td>
+							  <td>Leche</td>
+							  <td>100</td>
+							  <td>30/01/2021</td>
+							  <td>Progreso</td>
 							  							  							  
 							</tr>
 						</tbody>
