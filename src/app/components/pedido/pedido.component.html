@@ -13,7 +13,7 @@
 				<div class="modal-body">
 					<div class="form-group">
                         <label for="sel1">Categoría:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" >
                           <option>Categoría A</option>
                           <option>Categoría B</option>
                           <option>Categoría C</option>
@@ -22,7 +22,7 @@
                       </div> 
                       <div class="form-group">
                         <label for="sel1">Prodcuto:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" >
                           <option>Prodcuto A</option>
                           <option>Prodcuto B</option>
                           <option>Prodcuto C</option>
@@ -55,7 +55,7 @@
 				<div class="modal-body">
 					<div class="form-group">
                         <label for="sel1">Categoría:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control">
                           <option>Categoría A</option>
                           <option>Categoría B</option>
                           <option>Categoría C</option>
@@ -64,7 +64,7 @@
                       </div> 
                       <div class="form-group">
                         <label for="sel1">Prodcuto:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" >
                           <option>Prodcuto A</option>
                           <option>Prodcuto B</option>
                           <option>Prodcuto C</option>
@@ -124,7 +124,7 @@
 					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
-                            <th scope="col">#</th>
+                            <!--<th scope="col">#</th>-->
                             <th scope="col">Categoría</th>
 							<th scope="col">Producto</th>
 							<th scope="col">Descripción</th>
@@ -133,13 +133,13 @@
 							<th></th>   
 				  </thead>
 				  <tbody>
-					<tr *ngFor="let pedido of data">
-						<td scope="row" class="text-center">{{pedido.id}}</td>
-						<td>Lacteo</td>
-						<td>Leche</td>
-						<td>Es muy blanca</td>
-						<td>5</td>
-						<td>1.50</td>						
+					<tr *ngFor="let pedido of pedidos">
+					
+						<td>{{pedido.id_cat}}</td>
+						<td>{{pedido.nom_pro}}</td>
+						<td>{{pedido.desc_pro}}</td>
+						<td>{{pedido.uni_pro}}</td>
+						<td>{{pedido.pvp_pro}}</td>						
 						
 						<td>
 						  <div style="text-align: center">							
