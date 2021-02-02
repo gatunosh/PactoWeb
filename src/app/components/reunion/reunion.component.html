@@ -5,7 +5,7 @@
 <div id="addPedidoCli" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form  [formGroup]="reunionesForm" (ngSubmit)="enviar(reunionesForm.value)">
 				<div class="modal-header">
 					<h4 class="modal-title">Nueva Reunión</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -13,23 +13,23 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label><b>Código:</b></label>
-						<input type="text" min="1" class="form-control" required>
+						<input type="text" min="1" class="form-control" required formControlName="id_asoc_reu">
                     </div>
                     <div class="form-group">
 						<label><b>Tema:</b></label>
-						<input type="text" min="1" class="form-control" required>
+						<input type="text" min="1" class="form-control" required disabled>
                     </div>
 					<div class="form-group">
 						<label><b>Fecha:</b></label>
-						<input type="date" min="1" class="form-control" required>
+						<input type="date" min="1" class="form-control" required formControlName="fec_reu">
                     </div>
                     <div class="form-group">
 						<label><b>Hora:</b></label>
-						<input type="time" min="1" class="form-control" required>
+						<input type="time" min="1" class="form-control" required formControlName="hor_reu">
                     </div>
                     <div class="form-group">
 						<label><b>Multa:</b></label>
-						<input type="number" min="1" class="form-control" required>
+						<input type="number" min="1" class="form-control" required formControlName="mul_reu">
                     </div>
 				</div>
 				<div class="modal-footer">
@@ -61,7 +61,7 @@
 					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
-                            <th scope="col">#</th>
+                           
                             <th scope="col">Código</th>
 							<th scope="col">Tema</th>
 							<th scope="col">Fecha</th>
@@ -71,13 +71,13 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr *ngFor="let reunion of data">
-							  <th scope="row" class="text-center">{{reunion.id}}</th>
-							  <td>123</td>
-							  <td>Cualquiera</td>
-							  <td>29/01/2021</td>
-							  <td>15:00</td>
-							  <td>$10</td>
+						  <tr *ngFor="let reunion of reuniones">
+							  <th scope="row" class="text-center">{{reunion.id_asoc_reu}}</th>
+							  <td>{{reunion.id}}</td>
+							  <td>{{reunion.fec_reu}}</td>
+							  <td>{{reunion.hor_reu}}</td>
+							  <td>{{reunion.mul_reu}}</td>
+							  
 							  <td>
 								  <button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
                               </td>							  							  
@@ -99,6 +99,9 @@
 		</div>
 	  </div>
 </div>
+
+  
+
 
   
 
