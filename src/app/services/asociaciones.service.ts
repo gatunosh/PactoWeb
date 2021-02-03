@@ -37,7 +37,6 @@ export class AsociacionesService{
             'token': this.leerToken()
         });
         const authData={
-            id_soc:asociacion1.id_soc,
             nombre_aso: asociacion1.nombre_aso,
             certificado_aso: asociacion1.certificado_aso,
             sector_aso: asociacion1.sector_aso,
@@ -53,7 +52,6 @@ export class AsociacionesService{
         });
 
         const authData = {
-          id_soc:asociacion1.id_soc,
           nombre_aso: asociacion1.nombre_aso,
           certificado_aso: asociacion1.certificado_aso,
           sector_aso: asociacion1.sector_aso,
