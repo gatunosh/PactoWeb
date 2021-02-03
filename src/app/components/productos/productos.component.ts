@@ -25,7 +25,13 @@ export class ProductosComponent implements OnDestroy,OnInit {
   producto1: ProductosModel = new ProductosModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _productosService:ProductosService,private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
+  constructor(
+    private _auth: LoginService, 
+    private _router: Router, 
+    private _http: HttpClient, 
+    private _productosService:ProductosService,
+    private activerouter:ActivatedRoute,
+    private _builder: FormBuilder) { 
     this.productosForm = this._builder.group({
       id_cat:[''],
       nom_pro: ['',],

@@ -27,7 +27,6 @@ export class ProductosService{
             'token': this.leerToken()
         });
         console.log(this.prodToken);
-        
         return this._http.get(`${this.url}/producto`,{headers});
     }
 
