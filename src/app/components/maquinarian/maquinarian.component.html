@@ -6,37 +6,39 @@
 <div id="addMaquinaria" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form class="was-validated" [formGroup]="maquinariasForm" (ngSubmit)="enviar(maquinariasForm.value)">
 				<div class="modal-header">
-					<h4 class="modal-title">Nuevo Maquinaria</h4>
+					<h4 class="modal-title">Nueva Maquinaria</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<!--<div class="form-group">
-						<label><b>Código:</b></label>
-						<input type="number"  class="form-control" disabled>
-					</div>-->
-					<div class="form-group">
 						<label><b>Nombre:</b></label>
 						<input type="text"  class="form-control" required>
-					</div>
+					</div>-->
 					<div class="form-group">
                         <label for="sel1">Tipo:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" id="sel1" formControlName="tipo_maq" required>
                           <option>Tipo A</option>
                           <option>Tipo B</option>
                           <option>Tipo C</option>
                           <option>Tipo D</option>
-                        </select>
+						</select>
+						<div class="invalid-feedback" role="alert">
+                            Campo requerido
+                        </div>
                       </div> 
                       <div class="form-group">
                         <label for="sel1">Estado:</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" id="sel1" formControlName="est_maq" required>
                           <option>Estado A</option>
                           <option>Estado B</option>
                           <option>Estado C</option>
                           <option>Estado D</option>
-                        </select>
+						</select>
+						<div class="invalid-feedback" role="alert">
+                            Campo requerido
+                        </div>
                       </div> 
 				</div>
 				<div class="modal-footer">

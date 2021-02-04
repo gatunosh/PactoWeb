@@ -1,6 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit,Input, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Mantenimiento, MantenimientoModel } from '../../models/mantenimiento.models';
+import { MantenimientoService } from '../../services/mantenimiento.service';
 import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mantenimiento',
@@ -11,8 +16,28 @@ import { Subject } from 'rxjs';
 export class MantenimientoComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  data: any;
-  constructor(private http: HttpClient) { }
+  mantenimiento: Mantenimiento[] = [];
+  mantenimientosForm: FormGroup;
+  mantenimiento1: MantenimientoModel = new MantenimientoModel();
+  //usuarioUpdate: UsuarioModel = new UsuarioModel();
+
+  constructor(
+    private _maquinarianService: MantenimientoService,
+    private _builder: FormBuilder
+
+  ) { this.mantenimientosForm = this._builder.group({
+    fech_man_maq:[''],
+    tipo_maq: ['',],
+    des_man_maq: ['',],
+    check_man_maq: ['',],
+    costo_man_maq: ['',],
+    marca_man_maq: ['',],
+    km_man_maq: ['',],
+    placa_man_maq: ['',],
+    origen_man_maq: ['',],
+  });
+
+   }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -22,17 +47,34 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
         url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
       }
     };
-    this.http.get('http://dummy.restapiexample.com/api/v1/employees')
-    .subscribe((res:any) => {
-          console.log(res);
-          this.data = res.data;
-          this.dtTrigger.next();
-    });          
+    this._mantenimientoService.getMantenimiento().subscribe((resp:any) => {
+      this.mantenimiento = resp.mantenimiento;
+      console.log(resp,'hola desde api');
+      this.dtTrigger.next();
+    });         
   }
   
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
 
 }
+enviar(values){
+  //this.maquinarias.nom_maq= values['nom_maq'];
+  this.mantenimiento1.fech_man_maq = values['fech_man_maq'];
+  this.mantenimiento1.tipo_maq = values['tipo_maq'];
+  this.mantenimiento1.des_man_maq = values['des_man_maq'];
+  this.mantenimiento1.check_man_maq = values['check_man_maq'];
+  this.mantenimiento1.costo_man_maq = values['costo_man_maq'];
+  this.mantenimiento1.marca_man_maq = values['marca_man_maq'];
+  this.mantenimiento1.km_man_maq = values['km_man_maq'];
+  this.mantenimiento1.placa_man_maq = values['placa_man_maq'];
+  this.mantenimiento1.origen_man_maq = values['origen_man_maq'];
 
+  this._mantenimientoService.addMaquinaria(this.mantenimiento1).subscribe((resp:any) => {
+  this.mantenimiento = resp.mantenimiento;
+    window.location.reload()
+    
+  }, (err) => {
+  });
+}
 }

@@ -57,16 +57,15 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
 
 }
-/*enviar(values){
-  this.reunion.id_asoc_reu = values['id_asoc_reu'];
-  this.reunion.fec_reu = values['fec_reu'];
-  this.reunion.hor_reu = values['hor_reu'];
-  this.reunion.mul_reu = values['mul_reu'];
-  this._reunionService.addReunion(this.reunion1).subscribe((resp:any) => {
-    this.reuniones = resp.reuniones;
+enviar(values){
+  //this.maquinarias.nom_maq= values['nom_maq'];
+  this.maquinaria1.tipo_maq = values['tipo_maq'];
+  this.maquinaria1.est_maq = values['est_maq'];
+  this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
+  this.maquinarias = resp.maquinarias;
     window.location.reload()
     
   }, (err) => {
   });
-}*/
+}
 }
