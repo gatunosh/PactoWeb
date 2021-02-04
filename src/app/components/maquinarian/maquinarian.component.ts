@@ -48,7 +48,7 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
 
     this._maquinarianService.getMaquinarian().subscribe((resp:any) => {
       this.maquinarias = resp.maquinariasocio;
-      console.log(this.maquinarian,'hola desde api');
+      console.log(resp,'hola desde api');
       this.dtTrigger.next();
     });
 

@@ -70,17 +70,18 @@
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>                            
-                            <th scope="col">Estado</th> 
+							<th scope="col">Estado</th> 
+							<th scope="col">Opciones</th> 
+
                                                                                
 						  </tr>
 						</thead>
 						<tbody>
 						    <tr *ngFor="let maquinarian of maquinarias">
-                                <td scope="row" class="text-center">{{maquinarian.id_mant}}</td>
+                                <td scope="row" class="text-center"></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>                                
+                                <td>{{maquinarian.tipo_maq}}</td>
+                                <td>{{maquinarian.est_maq}}</td>                                
                                 <td><!-- Default checkbox -->
                                     <div align="center">
                                         <a [routerLink]="['/mantenimiento/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
