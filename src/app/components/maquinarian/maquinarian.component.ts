@@ -16,7 +16,7 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
   @Input() maquinarian: any =null;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  maquinaria: Maquinarian[] = [];
+  maquinarias: Maquinarian[] = [];
   maquinariasForm: FormGroup;
   maquinaria1: MaquinarianModel = new MaquinarianModel();
   //usuarioUpdate: UsuarioModel = new UsuarioModel();
@@ -47,7 +47,8 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
     };
 
     this._maquinarianService.getMaquinarian().subscribe((resp:any) => {
-      this.maquinaria = resp.maquinaria;
+      this.maquinarias = resp.maquinariasocio;
+      console.log(this.maquinarian,'hola desde api');
       this.dtTrigger.next();
     });
 

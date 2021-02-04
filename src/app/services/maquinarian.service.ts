@@ -8,26 +8,23 @@ import { Maquinarian } from '../models/maquinarian.models';
 })
 export class MaquinarianService {
 
-    
+    maquinarias: Maquinarian []= [];
 
     private url: string = 'https://restserver-pacto.herokuapp.com';
-
-    userToken: string;
-
+    maqToken: string;
     constructor(private _http: HttpClient) { }
-
     leerToken() {
         if (localStorage.getItem('token')) {
-            this.userToken = localStorage.getItem('token')
+            this.maqToken = localStorage.getItem('token')
         }
-        return this.userToken;
+        return this.maqToken;
     }
 
     getMaquinarian() {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        
+        console.log(this.maqToken);
         return this._http.get(`${this.url}/maquinariasocio`,{headers});
     }
 
