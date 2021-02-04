@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductosModel, Producto} from '../models/productos.models';
 import { categoriaProductoModel, categoriaProducto} from '../models/categoria.models';
-import { AsociacionesModel, Asociacion } from '../models/asociaciones.models';
 
 @Injectable({
     providedIn: 'root'

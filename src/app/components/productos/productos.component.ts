@@ -3,7 +3,6 @@ import { LoginService } from '../../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductosService } from 'src/app/services/productos.service';
-import { AsociacionesService } from 'src/app/services/asociaciones.service';
 import { ProductosModel, Producto} from '../../models/productos.models';
 import { categoriaProducto, categoriaProductoModel} from '../../models/categoria.models';
 import { AsociacionesModel, Asociacion } from '../../models/asociaciones.models';
@@ -25,13 +24,10 @@ export class ProductosComponent implements OnDestroy,OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   productos: Producto[] = [];
   categorias: categoriaProducto[] = [];
-  asociaciones: Asociacion[] = [];
   productosForm: FormGroup;
   categoriaForm: FormGroup;
-  asociacionForm: FormGroup;
   producto1: ProductosModel = new ProductosModel();
   categoria: categoriaProductoModel = new categoriaProductoModel();
-  asociacion: AsociacionesModel = new AsociacionesModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
   constructor(
@@ -39,7 +35,6 @@ export class ProductosComponent implements OnDestroy,OnInit {
     private _router: Router, 
     private _http: HttpClient, 
     private _productosService:ProductosService, 
-    private _asociacionesService:AsociacionesService, 
     private activerouter:ActivatedRoute,
     private _builder: FormBuilder) { 
 
@@ -80,12 +75,6 @@ export class ProductosComponent implements OnDestroy,OnInit {
     this._productosService.getProductos().subscribe((res:any) =>{
       this.productos= res.producto;
       console.log(this.productos);
-      this.dtTrigger.next();
-    });
-
-    this._asociacionesService.getAsociaciones().subscribe((res:any) =>{
-      this.asociaciones= res.asociacion;
-      console.log(this.asociaciones);
       this.dtTrigger.next();
     });
   }
