@@ -3,9 +3,12 @@ import { LoginService } from '../../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductosService } from 'src/app/services/productos.service';
+import { AsociacionesService } from 'src/app/services/asociaciones.service';
 import { ProductosModel, Producto} from '../../models/productos.models';
-import { Subject } from 'rxjs';
-import { FormBuilder, FormGroup, NgForm} from '@angular/forms';
+import { categoriaProducto, categoriaProductoModel} from '../../models/categoria.models';
+import { AsociacionesModel, Asociacion } from '../../models/asociaciones.models';
+import { from, Subject } from 'rxjs';
+import { FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,26 +24,37 @@ export class ProductosComponent implements OnDestroy,OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   productos: Producto[] = [];
+  categorias: categoriaProducto[] = [];
+  asociaciones: Asociacion[] = [];
   productosForm: FormGroup;
+  categoriaForm: FormGroup;
+  asociacionForm: FormGroup;
   producto1: ProductosModel = new ProductosModel();
+  categoria: categoriaProductoModel = new categoriaProductoModel();
+  asociacion: AsociacionesModel = new AsociacionesModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _productosService:ProductosService,private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
+  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _productosService:ProductosService, private _asociacionesService:AsociacionesService, private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
     this.productosForm = this._builder.group({
-      id_cat:[''],
-      nom_pro: ['',],
+      id_cat:['', Validators.required],
+      aso_ps:['',Validators.required],
+      nom_pro: ['',Validators.required],
       desc_pro: ['',],
-      uni_pro: ['',],
+      uni_pro: ['',Validators.required],
       sto_pro: ['',],
-      pvp_pro: ['',],
-      fecha_ela_pro: ['',],
-      fecha_cad_pro: ['',],
+      pvp_pro: ['',Validators.required],
+    });
+    this.categoriaForm = this._builder.group({
+      nombre: ['',Validators.required],
+      descripcion: ['',],
     });
   }
 
   ngOnInit(): void {
     let productoid = this.activerouter.snapshot.paramMap.get('id');
     console.log(productoid);
+    let categoriaid = this.activerouter.snapshot.paramMap.get('id');
+    console.log(categoriaid);
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -50,22 +64,49 @@ export class ProductosComponent implements OnDestroy,OnInit {
       }
     };
 
+    this._productosService.getCategoria().subscribe((res:any) =>{
+      this.categorias= res.categoria;
+      console.log(this.categorias);
+    });
+
     this._productosService.getProductos().subscribe((res:any) =>{
       this.productos= res.producto;
+      console.log(this.productos);
+      this.dtTrigger.next();
+    });
+
+    this._asociacionesService.getAsociaciones().subscribe((res:any) =>{
+      this.asociaciones= res.asociacion;
+      console.log(this.asociaciones);
       this.dtTrigger.next();
     });
   }
 
 
+  enviarCategoria(values){
+    this.categoria.nombre = values['nombre'];
+    this.categoria.descripcion = values['descripcion'];
+    this._productosService.addCategoria(this.categoria).subscribe((resp:any) => {
+      this.categorias = resp.categoria;
+      console.log(resp.categorias);
+      window.location.reload()
+      
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   enviar(values){
+    if(values['nombre']=this.categoria.nombre){
+        console.log(this.categoria._id);
+    }
     this.producto1.id_cat = values['id_cat'];
+    this.producto1.aso_ps = values['aso_ps'];
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
     this.producto1.sto_pro = values['sto_pro'];
     this.producto1.pvp_pro = values['pvp_pro'];
-    this.producto1.fecha_ela_pro = values['fecha_ela_pro'];
-    this.producto1.fecha_cad_pro = values['fecha_cad_pro'];
     this._productosService.addProductos(this.producto1).subscribe((resp:any) => {
       this.productos = resp.producto1;
       console.log(resp.productos);
@@ -80,7 +121,7 @@ export class ProductosComponent implements OnDestroy,OnInit {
     this.productoUpdate = this.buscadorProductoActual(id);
   }
 
-  onEdit( form:NgForm ) {
+  /*onEdit( form:NgForm ) {
     if (form.invalid) {return;}
 
     Swal.fire({
@@ -103,7 +144,7 @@ export class ProductosComponent implements OnDestroy,OnInit {
         icon: 'error',
       });
     });
-  }
+  }*/
 
   buscadorProductoActual(id:string){
     let productoActual: Producto;
@@ -117,8 +158,6 @@ export class ProductosComponent implements OnDestroy,OnInit {
 
     return productoActual;
 }
-
-
 
   onClick(producto){
     this.producto=producto;

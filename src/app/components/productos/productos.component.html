@@ -3,54 +3,104 @@
 <div id="addProductos" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form [formGroup]="productosForm" (ngSubmit)="enviar(productosForm.value)">  
+			<form class="was-validated" [formGroup]="productosForm" (ngSubmit)="enviar(productosForm.value)">  
 				
 				<div class="modal-header">
 					<h4 class="modal-title">Nuevo Producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label><b>ID Categoría:</b></label>
-						<input type="text" class="form-control" required formControlName="id_cat">	
-					  </div>
+						<div class="form-row">
+							<div class="form-group col-md-9">
+								<div class="form-group">
+									<label for="sel1"><b>Categoría:</b></label>
+									<select class="custom-select" id="sel1" formControlName="nombre" required>
+										<option>Escoja una categoria</option>
+										<option *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+									</select>
+									<div class="invalid-feedback" role="alert" *ngIf="categoriaForm.get('nombre').touched">
+										Campo requerido
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md-3"><br>
+								<a class="btn btn-success" data-toggle="modal" href="#addCategoria"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+							</div>
+						</div>
+							<!--<div class="form-group">
+								<label for="sel1"><b>Asociación:</b></label>
+								<select class="custom-select" id="sel1" formControlName="nombre_aso" required>
+									<option>Escoja una asociación</option>
+									<option *ngFor="let asociacion of asociaciones">{{asociacion.nombre_aso}}</option>
+								</select>
+								<div class="invalid-feedback" role="alert" *ngIf="asociacionForm.get('nombre_aso').touched">
+									Campo requerido
+								</div>
+							</div>-->
+					
 					<div class="form-group">
 						<label><b>Nombre:</b></label>
 						<input type="text" class="form-control" required formControlName="nom_pro">
+						<div class="invalid-feedback" role="alert" *ngIf="productosForm.get('nom_pro').touched">
+							Campo requerido
+						</div>
 					</div>
 					<div class="form-group">
             			<label><b>Detalle:</b></label>
-            			<input type="text" class="form-control" required formControlName="desc_pro">
+            			<input type="text" class="form-control" formControlName="desc_pro">
 					</div>
 					<div class="form-row">
-					<div class="form-group col-md-4">
-						<label><b>Unidades:</b></label>
-						<input type="text" class="form-control" required formControlName="uni_pro">
+						<div class="form-group col-md-4">
+							<label><b>Unidades:</b></label>
+							<input type="text" class="form-control" required formControlName="uni_pro">
+								<div class="invalid-feedback" role="alert" *ngIf="productosForm.get('uni_pro').touched">
+									Campo requerido
+								</div>
+						</div>
+						<div class="form-group col-md-4">	
+							<label><b>Stock:</b></label>
+							<input type="text" class="form-control" formControlName="sto_pro">					
+						</div>
+						<div class="form-group col-md-4">	
+							<label><b>Precio:</b></label>
+							<input type="text" class="form-control" required formControlName="pvp_pro">	
+							<div class="invalid-feedback" role="alert" *ngIf="productosForm.get('pvp_pro').touched">
+								Campo requerido
+							</div>			
+						</div>
 					</div>
-					<div class="form-group col-md-4">	
-						<label><b>Stock:</b></label>
-						<input type="text" class="form-control" required formControlName="sto_pro">					
-					</div>
-					<div class="form-group col-md-4">	
-						<label><b>Precio:</b></label>
-						<input type="text" class="form-control" required formControlName="pvp_pro">				
-					</div>
+         		 </div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default"  data-dismiss="modal" value="Cancelar">
+					<input type="submit" class="btn btn-success" value="Agregar">
 				</div>
-				<div class="form-group">
+			</form>
+		</div>
+	</div>
+</div>
 
-          </div>
-          
-		  
-          <div class="form-row">
-			<div class="form-group col-md-6">
-						<label><b>Fecha elaboración:</b></label>
-						<input type="date" class="form-control" required formControlName="fecha_ela_pro">
-          </div>
-          <div class="form-group col-md-6">
-						<label><b>Fecha caducidad:</b></label>
-						<input type="date" class="form-control" required formControlName="fecha_ela_pro">
-		  </div>
-		  </div>
+
+<div id="addCategoria" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form class="was-validated" [formGroup]="categoriaForm" (ngSubmit)="enviarCategoria(categoriaForm.value)">  
+				
+				<div class="modal-header">
+					<h4 class="modal-title">Nueva Categoría</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label><b>Nombre:</b></label>
+						<input type="text" class="form-control" required formControlName="nombre">
+						<div class="invalid-feedback" role="alert" *ngIf="categoriaForm.get('nombre').touched">
+							Campo requerido
+						</div>
+					</div>
+					<div class="form-group">
+            			<label><b>Descripción:</b></label>
+            			<input type="text" class="form-control" formControlName="descripcion">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default"  data-dismiss="modal" value="Cancelar">
@@ -61,24 +111,24 @@
 	</div>
 </div>
 
+
 <div id="detalleProductos" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="card">
 				<div class="card-body">
-			<form *ngIf="producto"> 
-				<div class="modal-header">
+					<div class="modal-header">
 					<h4 class="modal-title">Detalle Producto</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div><br>
-			ID Categoría: {{producto.id_cat}}<br>
+			<form *ngIf="producto"> 
+			Categoría: {{producto.id_cat}}<br>				
 			Nombre: {{producto.nom_pro}}<br>
+			Asociacion: {{producto.aso_ps}}<br>
 			Descripición: {{producto.desc_pro}}<br>
 			Unidades: {{producto.uni_pro}}<br>
 			Stock: {{producto.sto_pro}}<br>
 			Precio: {{producto.pvp_pro}}<br>
-			Fecha de elaboración: {{producto.fecha_ela_pro}}<br>
-			Fecha de caducidad: {{producto.fecha_cad_pro}}<br>
 			</form>
 		</div>
 			</div>
@@ -87,7 +137,7 @@
 </div>
 
 
-<div id="editProductos" class="modal fade">
+<!--<div id="editProductos" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form (ngSubmit)="onEdit( f )" #f="ngForm">
@@ -102,7 +152,7 @@
 					</div>
 					<div class="form-group">
             <label><b>Detalle:</b></label>
-            <input [(ngModel)]="productoUpdate.desc_pro" type="text" class="form-control" required name="desc_pro">
+            <input [(ngModel)]="productoUpdate.desc_pro" type="text" class="form-control" name="desc_pro">
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -111,7 +161,7 @@
 					</div>
 					<div class="form-group col-md-4">
 						<label><b>Stock:</b></label>
-						<input [(ngModel)]="productoUpdate.sto_pro" type="text" class="form-control" required name="sto_pro">
+						<input [(ngModel)]="productoUpdate.sto_pro" type="text" class="form-control" name="sto_pro">
           </div>
           <div class="form-group col-md-4">
 						<label><b>Precio:</b></label>
@@ -136,7 +186,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <div id="deleteProductos" class="modal fade">
 	<div class="modal-dialog">
@@ -173,7 +223,8 @@
          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Asociacion</th>
                 <th scope="col">Detalle</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Opciones</th>
@@ -181,12 +232,13 @@
             </thead>
             <tbody >
               <tr *ngFor="let producto of productos">               
-                <td>{{producto.nom_pro}}</td>
+				<td>{{producto.nom_pro}}</td>
+				<td>{{producto.aso_ps}}</td>
 				<td>{{producto.desc_pro}}</td>
 				<td>{{producto.pvp_pro}}</td>				
                 <td>
 					<button type="button" class="btn btn-outline-primary" href="#detalleProductos" data-toggle="modal" (click)="onClick(producto)">Detalle</button>&nbsp;
-                  <button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="fas fa-edit"></i></button>&nbsp;
+                  <!--<button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="fas fa-edit"></i></button>&nbsp;-->
                   <button type="button" class="btn btn-outline-danger" href="#deleteProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
