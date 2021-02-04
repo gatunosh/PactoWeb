@@ -1,5 +1,7 @@
 export class ReunionesModel{
     _id:string;  
+    tema_reun:String;
+    tipo_reun:String;
     fec_reu: string;
     hor_reu: string;
     mul_reu: number;
@@ -19,6 +21,8 @@ export class ReunionesModel{
 }
 export interface Reuniones{
     _id:string;
+    tema_reun:String;
+    tipo_reun:String;
     fec_reu: string;
     hor_reu: string;
     mul_reu: number;
