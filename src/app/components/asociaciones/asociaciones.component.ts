@@ -25,7 +25,6 @@ export class AsociacionesComponent implements OnDestroy,OnInit {
 
   constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _asociacionesService:AsociacionesService,private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
     this.asociacionesForm = this._builder.group({
-      id_soc:[''],
       nombre_aso: ['',],
       certificado_aso: ['',],
       sector_aso: ['',],
@@ -51,7 +50,6 @@ export class AsociacionesComponent implements OnDestroy,OnInit {
   }
 
   enviar(values){
-    this.asociacion1.id_soc = values['id_soc'];
     this.asociacion1.nombre_aso = values['nombre_aso'];
     this.asociacion1.certificado_aso = values['certificado_aso'];
     this.asociacion1.sector_aso = values['sector_aso'];

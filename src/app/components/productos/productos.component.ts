@@ -34,7 +34,15 @@ export class ProductosComponent implements OnDestroy,OnInit {
   asociacion: AsociacionesModel = new AsociacionesModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _productosService:ProductosService, private _asociacionesService:AsociacionesService, private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
+  constructor(
+    private _auth: LoginService, 
+    private _router: Router, 
+    private _http: HttpClient, 
+    private _productosService:ProductosService, 
+    private _asociacionesService:AsociacionesService, 
+    private activerouter:ActivatedRoute,
+    private _builder: FormBuilder) { 
+
     this.productosForm = this._builder.group({
       id_cat:['', Validators.required],
       aso_ps:['',Validators.required],

@@ -30,11 +30,11 @@
 						<input type="Time" class="form-control" required>
                     </div>
                     <div class="form-group">
-						<label><b>Capacitador:</b></label>
+						<label><b>Entidad:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label><b>Entidad:</b></label>
+						<label><b>Capacitador:</b></label>
 						<input type="text" class="form-control" required>
 					</div>
 				</div>
@@ -126,9 +126,9 @@
 	  <div>
 		<br>
 		<div class="row">
-		  <h3 class="col-md-10">&nbsp;&nbsp;Capacitacion</h3>
+		  <h3 class="col-md-9">&nbsp;&nbsp;Capacitacion</h3><br><a [routerLink]="['/entidad']" class="btn btn-info" ><span>Entidades</span></a>
 		  <div class="col">
-			<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
+			<a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Nueva Capacitacion</span></a>
 		  </div>
 		</div>
 		<div class="card my-3">
@@ -148,17 +148,17 @@
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr *ngFor="let capacitacion of capacitaciones">
+				<tr *ngFor="let capacitacion of capacitaciones; let i=index">
 					<td scope="row" class="text-center">{{capacitacion.tem_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.fech_ini_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.fech_fin_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.hora_ini_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.hora_fin_cap}}</td>					
-					<td scope="col" class="text-center"></td>					
-					<td> </td>
+					<td scope="col" class="text-center">{{capacitacion.asis_cap[0].id_soc}}</td>					
+					<td scope="col" class="text-center">{{capacitacion.prof_cap[0].id_enti}}</td>
 					<td>
 						<div style="text-align: center">
-							  <a class="btn btn-outline-info" [routerLink]="['/asiscapacitacion/:id']">Detalle</a>&nbsp;&nbsp;
+							  <a class="btn btn-outline-info" [routerLink]="['/asiscapacitacion',i]">Asistencia</a>&nbsp;&nbsp;
 							  <a href="#editCapacitacion" class="btn btn-outline-warning" data-toggle="modal" (click)="openModalActualizar(capacitacion._id)"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
 							  <a href="#deleteCapacitacion" class="btn btn-outline-danger" data-toggle="modal" (click)="openModalActualizar(capacitacion._id)"><i class="far fa-trash-alt"></i></a>
 						</div>

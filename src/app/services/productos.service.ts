@@ -29,7 +29,7 @@ export class ProductosService{
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        
+        console.log(this.prodToken);
         return this._http.get(`${this.url}/producto`,{headers});
     }
     getCategoria(){

@@ -23,12 +23,21 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     private _builder: FormBuilder
     ){
       this.capacitacionesForm = this._builder.group({
+        prof_cap:[{
+          _id:['',],
+          id_enti:['',],
+      }],
         tema: ['',],
         fech_ini_cap: ['',],
         fech_fin_cap: ['',],
         hora_ini_cap: ['',],
         hora_fin_cap: ['',],
-        
+        asis_cap: [{
+          _id:['',],
+          id_soc:['',],
+          cert_asis: ['',],
+          cert_part: ['',],
+      }],
       });
     }
 
