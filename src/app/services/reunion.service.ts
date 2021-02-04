@@ -10,15 +10,15 @@ export class ReunionService {
 
     private url: string = 'https://restserver-pacto.herokuapp.com';
 
-    userToken: string;
+    reuToken: string;
 
     constructor(private _http: HttpClient) { }
 
     leerToken() {
         if (localStorage.getItem('token')) {
-            this.userToken = localStorage.getItem('token')
+            this.reuToken = localStorage.getItem('token')
         }
-        return this.userToken;
+        return this.reuToken;
     }
 
     getReunion() {
@@ -35,7 +35,9 @@ export class ReunionService {
         });
       ;
         const authData = {
-            id_asoc_reu: reunion.id_asoc_reu,
+           // id_asoc_reu:reunion.id_asoc_reu,
+            tema_reun:reunion.tema_reun,
+            tipo_reun:reunion.tipo_reun,
             fec_reu: reunion.fec_reu,
             hor_reu:reunion.hor_reu,
             mul_reu:reunion.mul_reu,
