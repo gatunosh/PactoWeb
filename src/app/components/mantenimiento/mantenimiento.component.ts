@@ -22,7 +22,7 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
   //usuarioUpdate: UsuarioModel = new UsuarioModel();
 
   constructor(
-    private _maquinarianService: MantenimientoService,
+    private _mantenimientoService: MantenimientoService,
     private _builder: FormBuilder
 
   ) { this.mantenimientosForm = this._builder.group({
@@ -70,7 +70,7 @@ enviar(values){
   this.mantenimiento1.placa_man_maq = values['placa_man_maq'];
   this.mantenimiento1.origen_man_maq = values['origen_man_maq'];
 
-  this._mantenimientoService.addMaquinaria(this.mantenimiento1).subscribe((resp:any) => {
+  this._mantenimientoService.addMantenimiento(this.mantenimiento1).subscribe((resp:any) => {
   this.mantenimiento = resp.mantenimiento;
     window.location.reload()
     
