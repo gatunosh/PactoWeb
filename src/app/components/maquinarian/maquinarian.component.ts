@@ -19,25 +19,21 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
   maquinarias: Maquinarian[] = [];
   maquinariasForm: FormGroup;
   maquinaria1: MaquinarianModel = new MaquinarianModel();
-  //usuarioUpdate: UsuarioModel = new UsuarioModel();
 
   constructor(
     private _maquinarianService: MaquinarianService,
     private _builder: FormBuilder
+    )
+  {    
+    this.maquinariasForm = this._builder.group({
+      id_mant:[''],
+      id_soc: ['',],
+      tipo_maq: ['',],
+      est_maq: ['',],
+    });
+  }
 
-  ) { this.maquinariasForm = this._builder.group({
-    id_mant:[''],
-    id_soc: ['',],
-    tipo_maq: ['',],
-    est_maq: ['',],
-    
-
-  });
-
-   }
-
-   ngOnInit(): void {
-
+  ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -47,27 +43,24 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
     };
 
     this._maquinarianService.getMaquinarian().subscribe((resp:any) => {
-      this.maquinarias = resp.maquinariasocio;
-      console.log(resp,'hola desde api');
+      this.maquinarias = resp.maquinarias;
       this.dtTrigger.next();
     });
-
   }
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+  }
 
-}
-enviar(values){
-  //this.maquinarias.nom_maq= values['nom_maq'];
-  this.maquinaria1.tipo_maq = values['tipo_maq'];
-  this.maquinaria1.est_maq = values['est_maq'];
-  this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
-  this.maquinarias = resp.maquinaria1;
-    window.location.reload()
-    
-  }, (err) => {
-    console.log(err);
-  });
-}
-
+  enviar(values){
+    //this.maquinarias.nom_maq= values['nom_maq'];
+    this.maquinaria1.tipo_maq = values['tipo_maq'];
+    this.maquinaria1.est_maq = values['est_maq'];
+    this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
+      this.maquinarias = resp.maquinarias;
+      window.location.reload()
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }
