@@ -5,10 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { ProductosService } from 'src/app/services/productos.service';
 import { ProductosModel, Producto} from '../../models/productos.models';
 import { categoriaProducto, categoriaProductoModel} from '../../models/categoria.models';
-import { AsociacionesModel, Asociacion } from '../../models/asociaciones.models';
-import { from, Subject } from 'rxjs';
+import { AsociacionesService } from '../../services/asociaciones.service';
+import { from, Subject, Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Asociacion, AsociacionesModel } from 'src/app/models/asociaciones.models';
 
 @Component({
   selector: 'app-productos',
@@ -17,6 +18,7 @@ import Swal from 'sweetalert2';
 export class ProductosComponent implements OnDestroy,OnInit {
 
   @Input() producto: any =null;
+  
 
   private url:string = 'https://restserver-pacto.herokuapp.com';
   
@@ -24,10 +26,12 @@ export class ProductosComponent implements OnDestroy,OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   productos: Producto[] = [];
   categorias: categoriaProducto[] = [];
+  asociaciones: Asociacion[] = [];
   productosForm: FormGroup;
   categoriaForm: FormGroup;
   producto1: ProductosModel = new ProductosModel();
   categoria: categoriaProductoModel = new categoriaProductoModel();
+  asociacion: AsociacionesModel = new AsociacionesModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
   constructor(
@@ -36,6 +40,7 @@ export class ProductosComponent implements OnDestroy,OnInit {
     private _http: HttpClient, 
     private _productosService:ProductosService, 
     private activerouter:ActivatedRoute,
+    private asociacionesService:AsociacionesService,
     private _builder: FormBuilder) { 
 
     this.productosForm = this._builder.group({
@@ -59,6 +64,8 @@ export class ProductosComponent implements OnDestroy,OnInit {
     let categoriaid = this.activerouter.snapshot.paramMap.get('id');
     console.log(categoriaid);
 
+    
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -77,6 +84,14 @@ export class ProductosComponent implements OnDestroy,OnInit {
       console.log(this.productos);
       this.dtTrigger.next();
     });
+
+    this.asociacionesService.getAsociaciones().subscribe((res:any) =>{
+      this.asociaciones= res.asociacion;
+      console.log(this.asociacion);
+      this.dtTrigger.next();
+    });
+
+    
   }
 
 
@@ -94,9 +109,6 @@ export class ProductosComponent implements OnDestroy,OnInit {
   }
 
   enviar(values){
-    if(values['nombre']=this.categoria.nombre){
-        console.log(this.categoria._id);
-    }
     this.producto1.id_cat = values['id_cat'];
     this.producto1.aso_ps = values['aso_ps'];
     this.producto1.nom_pro = values['nom_pro'];
