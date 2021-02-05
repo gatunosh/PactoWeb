@@ -51,7 +51,7 @@ export class PedidoComponent implements OnInit, OnDestroy{
     };
 
     this._pedidoService.getPedidos().subscribe((resp:any) => {
-      this.pedidos = resp.pedidos;
+      this.pedidos = resp.factura;
       console.log(this.pedidos);
       this.dtTrigger.next();
     });
@@ -63,7 +63,7 @@ export class PedidoComponent implements OnInit, OnDestroy{
     this.dtTrigger.unsubscribe();
   }
 
-  enviar(values){
+  /*enviar(values){
     this.pedido.id_cli = values['id_cli'];
     this.pedido.fec_fac = values['fec_fac'];
     this.pedido.tot_fac = values['tot_fac'];
@@ -76,6 +76,6 @@ export class PedidoComponent implements OnInit, OnDestroy{
     }, (err) => {
 
     });
-  }
+  }*/
 }
 

@@ -127,19 +127,22 @@
                             <!--<th scope="col">#</th>-->
                             <th scope="col">Cliente</th>
 							<th scope="col">Fecha</th>
-							<th scope="col">Total</th>
-                            <th scope="col">Estado</th>
+							
+                            <th scope="col">Total</th>
+							<th scope="col">Estado</th>
 							<th scope="col">Detalle</th> 
 							<th></th>   
 				  </thead>
 				  <tbody>
 					<tr *ngFor="let pedido of pedidos">
 					
-						<td>{{pedido.id_cli}}</td>
-						<td>{{pedido.fec_fac}}</td>
+						<td>{{pedido.id_cli['nombre']}} {{pedido.id_cli['apellido']}}</td>
+						<td>{{pedido.fec_fac |date}}</td>
+						
 						<td>{{pedido.tot_fac}}</td>
 						<td>{{pedido.estado}}</td>
-						<td>{{pedido.detalle}}</td>						
+						<td>{{pedido.detalle}}</td>										
+											
 						
 						<td>
 						  <div style="text-align: center">							

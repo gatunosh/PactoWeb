@@ -23,11 +23,13 @@ export class PedidoService {
 
     getPedidos() {
         const headers = new HttpHeaders({
-            'token': this.leerToken()
+            'token': localStorage.getItem('token')
         });
-        console.log(this.pedToken);
+        //console.log(this.pedToken);
         return this._http.get(`${this.url}/factura`,{headers});
     }
+
+    
 
     addPedido(pedido1:Pedido){
         
