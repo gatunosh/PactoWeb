@@ -62,41 +62,47 @@
 	</div>
 	<div class="body animated fadeIn">
 		<div class="container-fluid">
-		  	<div>
-				<div class="card my-3">
-					<br>
-				  	<div class="container-fluid" aria-label="Page navigation example">
-					  	<div class="table-responsive">
-							<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
-								<thead >
-						  			<tr>
-										<th scope="col">#</th>
-										<th scope="col">Nombre</th>
-										<th scope="col">Tipo</th>
-										<th scope="col">Estado</th> 
-										<th scope="col">Opciones</th>                                                   
-									</tr>
-								</thead>
-								<tbody>
-									<tr *ngFor="let maquinaria1 of maquinarias">
-										<td scope="row" class="text-center"></td>
-										<td></td>
-										<td>{{maquinaria1.tipo_maq}}</td>
-										<td>{{maquinaria1.est_maq}}</td>                                
-										<td><!-- Default checkbox -->
-											<div align="center">
-												<a [routerLink]="['/mantenimiento/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
-											</div>
-										</td>					  							  
-									</tr>
-								</tbody>
-							</table>
-                    	</div>
-					</div>
-            	</div>
+		  <div>
+			<div class="card my-3">
+				<br>
+			  <div class="container-fluid" aria-label="Page navigation example">
+				  <div class="table-responsive">
+					<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+						<thead >
+						  <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tipo</th>                            
+							<th scope="col">Estado</th> 
+							<th scope="col">Opciones</th> 
+
+                                                                               
+						  </tr>
+						</thead>
+						<tbody>
+						    <tr *ngFor="let maquinarian of maquinarias">
+                                <td scope="row" class="text-center"></td>
+                                <td></td>
+                                <td>{{maquinarian.tipo_maq}}</td>
+                                <td>{{maquinarian.est_maq}}</td>                                
+                                <td><!-- Default checkbox -->
+                                    <div align="center">
+                                        <a [routerLink]="['/mantenimiento/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
+                                    </div>
+                                </td>					  							  
+							</tr>
+						</tbody>
+                      </table>
+                     
+                    </div>
+				  </div>
+				
+              </div>
+              <div class="row">
 			</div>
+		  </div>
 		</div>
-	</div>
+	  </div>
 </div>
 
   

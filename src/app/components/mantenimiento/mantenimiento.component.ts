@@ -19,6 +19,7 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
   mantenimientos: Mantenimiento[] = [];
   mantenimientosForm: FormGroup;
   mantenimiento1: MantenimientoModel = new MantenimientoModel();
+  //usuarioUpdate: UsuarioModel = new UsuarioModel();
 
   constructor(
     private _mantenimientoService: MantenimientoService,
@@ -31,7 +32,6 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
     des_man_maq: ['',],
     check_man_maq: ['',],
     costo_man_maq: ['',],
-    proximo_man_maq: ['',],
     marca_man_maq: ['',],
     km_man_maq: ['',],
     placa_man_maq: ['',],
@@ -50,6 +50,7 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
     };
     this._mantenimientoService.getMantenimiento().subscribe((resp:any) => {
       this.mantenimientos = resp.mantenimientomaqsocio;
+      console.log(resp,'hola desde api');
       this.dtTrigger.next();
     });         
   }
@@ -65,15 +66,15 @@ enviar(values){
   this.mantenimiento1.des_man_maq = values['des_man_maq'];
   this.mantenimiento1.check_man_maq = values['check_man_maq'];
   this.mantenimiento1.costo_man_maq = values['costo_man_maq'];
-  this.mantenimiento1.proximo_man_maq = values['proximo_man_maq'];
+  //this.mantenimiento1.proximo_man_maq = values['proximo_man_maq']
   this.mantenimiento1.marca_man_maq = values['marca_man_maq'];
   this.mantenimiento1.km_man_maq = values['km_man_maq'];
   this.mantenimiento1.placa_man_maq = values['placa_man_maq'];
   this.mantenimiento1.origen_man_maq = values['origen_man_maq'];
 
   this._mantenimientoService.addMantenimiento(this.mantenimiento1).subscribe((resp:any) => {
-  this.mantenimientos = resp.mantenimientos;
-  console.log(resp.mantenimientos);
+  this.mantenimientos = resp.mantenimientomaqsocio;
+  console.log(resp.mantenimientomaqsocio);
     window.location.reload()
     
   }, (err) => {
