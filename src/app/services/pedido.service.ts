@@ -26,7 +26,7 @@ export class PedidoService {
             'token': this.leerToken()
         });
         console.log(this.pedToken);
-        return this._http.get(`${this.url}/producto`,{headers});
+        return this._http.get(`${this.url}/factura`,{headers});
     }
 
     addPedido(pedido1:Pedido){
@@ -36,10 +36,11 @@ export class PedidoService {
         });
         
         const authData = {
-            id_cat: pedido1.id_cat,
-            nom_pro: pedido1.nom_pro,
-            desc_pro: pedido1.desc_pro,
-            uni_pro: pedido1.uni_pro,
+            id_cli: pedido1.id_cli,
+            fec_fac: pedido1.fec_fac,
+            tot_fac: pedido1.tot_fac,
+            estado: pedido1.estado,
+            
             
         };
         return this._http.post(`${this.url}/producto`,authData, {headers});

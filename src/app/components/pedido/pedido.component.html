@@ -125,21 +125,21 @@
 						<thead >
 						  <tr>
                             <!--<th scope="col">#</th>-->
-                            <th scope="col">Categoría</th>
-							<th scope="col">Producto</th>
-							<th scope="col">Descripción</th>
-                            <th scope="col">Cantidad</th>
-							<th scope="col">Precio Unitario</th> 
+                            <th scope="col">Cliente</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Total</th>
+                            <th scope="col">Estado</th>
+							<th scope="col">Detalle</th> 
 							<th></th>   
 				  </thead>
 				  <tbody>
 					<tr *ngFor="let pedido of pedidos">
 					
-						<td>{{pedido.id_cat}}</td>
-						<td>{{pedido.nom_pro}}</td>
-						<td>{{pedido.desc_pro}}</td>
-						<td>{{pedido.uni_pro}}</td>
-						<td>{{pedido.pvp_pro}}</td>						
+						<td>{{pedido.id_cli}}</td>
+						<td>{{pedido.fec_fac}}</td>
+						<td>{{pedido.tot_fac}}</td>
+						<td>{{pedido.estado}}</td>
+						<td>{{pedido.detalle}}</td>						
 						
 						<td>
 						  <div style="text-align: center">							
