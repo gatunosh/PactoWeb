@@ -6,6 +6,7 @@ import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AsociacionesModel, Asociacion} from '../../models/asociaciones.models';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,10 @@ export class UsersComponent implements OnDestroy, OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   usuarios: Usuario[] = [];
+  asociaciones: Asociacion[] = [];
+  asociacionesForm: FormGroup;
+  asociacion: AsociacionesModel = new AsociacionesModel();
+  asociacionUpdate: AsociacionesModel = new AsociacionesModel();
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
   usuarioUpdate: UsuarioModel = new UsuarioModel();
@@ -37,12 +42,12 @@ export class UsersComponent implements OnDestroy, OnInit{
       sector: ['',],
       parroquia: ['',],
       barrio: ['',],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      id_asociacion:['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -56,6 +61,10 @@ export class UsersComponent implements OnDestroy, OnInit{
       this.dtTrigger.next();
     });
 
+    this._userService.getAso().subscribe((res:any) =>{
+      this.asociaciones= res.asociacion;
+      //this.dtTrigger.next();
+    });
   }
 
   enviar(values){
@@ -70,10 +79,10 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.barrio = values['barrio'];
     this.usuario.parroquia = values['parroquia'];
     this.usuario.role = values['role'];
+    this.usuario.id_asociacion = values['id_asociacion'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
-      
     }, (err) => {
     });
   }
@@ -108,16 +117,16 @@ export class UsersComponent implements OnDestroy, OnInit{
   }
 
   buscadorUserActual(id:string){
-      let userActual: Usuario;
+    let userActual: Usuario;
       
-      for (let i = 0; i < this.usuarios.length; i++) {
-        if(this.usuarios[i]._id == id){
-          userActual = this.usuarios[i];
-          break;
-        }
+    for (let i = 0; i < this.usuarios.length; i++) {
+      if(this.usuarios[i]._id == id){
+        userActual = this.usuarios[i];
+        break;
       }
+    }
 
-      return userActual;
+    return userActual;
   }
 
   delete() {
