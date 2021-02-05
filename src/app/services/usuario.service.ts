@@ -28,6 +28,13 @@ export class UsuarioService {
         
         return this._http.get(`${this.url}/usuario`,{headers});
     }
+    getAso(){
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });
+        
+        return this._http.get(`${this.url}/asociacion`,{headers});
+    }
 
     addUsers(usuario:Usuario){
         const headers = new HttpHeaders({
@@ -45,7 +52,9 @@ export class UsuarioService {
             barrio:usuario.barrio,
             parroquia:usuario.parroquia,
             estado:usuario.estado,
-            role:usuario.role
+            role:usuario.role,
+            id_asociacion:usuario.id_asociacion,
+            
         };
         return this._http.post(`${this.url}/usuario`,authData, {headers});
     }

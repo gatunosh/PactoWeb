@@ -10,7 +10,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group row">
+                        <div class="col">
                         <label for="sel1"><b>Rol:</b></label>
                         <select class="custom-select" id="sel1" formControlName="role" required>
                             <option>Escoja un Rol</option>
@@ -21,6 +22,16 @@
                         <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
                             Campo requerido
                         </div>
+                    </div>
+                    <div class="col">
+                        <label for="sel1"><b>Asoción:</b></label>
+                        <select class="custom-select" id="sel1" formControlName=" id_asociacion" required>
+                            <option *ngFor="let asociacion of asociaciones">{{asociacion.nombre_aso}}</option>
+                        </select>
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
+                            Campo requerido
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group row">
                         <div class="col">
@@ -210,17 +221,19 @@
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Móvil</th>
                                 <th scope="col">E-mail</th>
+                                <th scope="col">Asociación</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let usuario of usuarios">
+                            <tr *ngFor="let usuario of usuarios;let asociacion of asociaciones">
                                 <td>{{usuario.role}}</td>
                                 <td>{{usuario.nombre}}</td>
                                 <td>{{usuario.apellido}}</td>
                                 <td>{{usuario.tlfc}}</td>
                                 <td>{{usuario.tlfm}}</td>
                                 <td>{{usuario.email}}</td>
+                                <td>{{asociacion.nombre_aso}}</td>
                                 <td>
                                     <button type="button" class="btn btn-outline-warning" href="#editUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
                                     <button type="button" class="btn btn-outline-danger" href="#deleteUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="far fa-trash-alt"></i></button>

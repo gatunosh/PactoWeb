@@ -6,6 +6,7 @@ import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AsociacionesModel, Asociacion} from '../../models/asociaciones.models';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,10 @@ export class UsersComponent implements OnDestroy, OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   usuarios: Usuario[] = [];
+  asociaciones: Asociacion[] = [];
+  asociacionesForm: FormGroup;
+  asociacion1: AsociacionesModel = new AsociacionesModel();
+  asociacionUpdate: AsociacionesModel = new AsociacionesModel();
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
   usuarioUpdate: UsuarioModel = new UsuarioModel();
@@ -37,7 +42,8 @@ export class UsersComponent implements OnDestroy, OnInit{
       sector: ['',],
       parroquia: ['',],
       barrio: ['',],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      id_asociacion:['', Validators.required]
     });
   }
 
@@ -56,6 +62,12 @@ export class UsersComponent implements OnDestroy, OnInit{
       this.dtTrigger.next();
     });
 
+    this._userService.getAso().subscribe((res:any) =>{
+      this.asociaciones= res.asociacion;
+      console.log(this.asociaciones);
+      this.dtTrigger.next();
+    });
+
   }
 
   enviar(values){
@@ -70,6 +82,7 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.barrio = values['barrio'];
     this.usuario.parroquia = values['parroquia'];
     this.usuario.role = values['role'];
+    this.usuario.id_asociacion = values['id_asociacion'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
