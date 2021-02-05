@@ -62,10 +62,12 @@ enviar(values){
   this.maquinaria1.tipo_maq = values['tipo_maq'];
   this.maquinaria1.est_maq = values['est_maq'];
   this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
-  this.maquinarias = resp.maquinarias;
+  this.maquinarias = resp.maquinaria1;
     window.location.reload()
     
   }, (err) => {
+    console.log(err);
   });
 }
+
 }

@@ -4,10 +4,11 @@
 <!-- ADD Modal HTML -->
 <!-- ADD Modal HTML -->
 
-<div id="addCapacitacion" class="modal fade">
+<div id="addMantenimiento" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form class="was-validated" [formGroup]="mantenimientosForm" (ngSubmit)="enviar(mantenimientosForm.value)">
+				
 				<div class="modal-header">
 					<h4 class="modal-title">Nuevo Mantenimiento</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -56,23 +57,23 @@
 							Campo requerido
 						</div>
 					</div>
-					<div class="form-group">
+					<!--<div class="form-group">
 						<label><b>PróximoM:</b></label>
-						<input type="date" class="form-control" formControlName="pro_man_maq" required>
-						<div class="invalid-feedback" role="alert">
+						<input type="date" class="form-control"   >
+						<div class="invalid-feedback" formControlName="proximo_man_maq" role="alert">
 							Campo requerido
 						</div>
-					</div>
+					</div>-->
 					<div class="form-group">
 						<label><b>Marca:</b></label>
 						<input type="text" class="form-control" formControlName="marca_man_maq" required>
 						<div class="invalid-feedback" role="alert">
 							Campo requerido
 						</div>
-          </div>
+                    </div>
           <div class="form-group">
 						<label><b>Kilometraje:</b></label>
-						<input type="number" min="1" class="form-control" required>
+						<input type="number" min="1" class="form-control" formControlName="km_man_maq" required>
           </div>
           <div class="form-group">
 						<label><b>Placa:</b></label>
@@ -106,7 +107,7 @@
 		<div class="row">
             <h3 class="col-md-10">&nbsp;&nbsp;Mantenimiento</h3><br><br>
             <div class="col">			
-              <a href="#addCapacitacion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+              <a href="#addMantenimiento" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
             </div>			 			
 		</div>
 	</div>
@@ -125,7 +126,7 @@
                             <th scope="col">Descripción</th>                            
                             <th scope="col">Estado</th> 
 							<th scope="col">Costo</th> 
-							<th scope="col">PróximoM</th>  
+							<!--<th scope="col">PróximoM</th>-->
                             <th scope="col">Marca</th> 
                             <th scope="col">Kilometraje</th>
                             <th scope="col">Placa</th>
@@ -133,18 +134,18 @@
 						  </tr>
 						</thead>
 						<tbody>
-						    <tr *ngFor="let mantenimiento1 of mantenimiento">
-                                <td scope="row" class="text-center">{{mantenimiento.id}}</td>
-                                <td>29/01/2021</td>
-                                <td>Vehiculo</td>
-                                <td>Cambio de aceite</td>
-                                <td>Funcional</td>
-								<td>5</td> 
-								<td>03/02/2021</td>                               
-                                <td>Patito</td>
-                                <td>25000</td>	
-                                <td>ABC123</td>
-                                <td>Chino</td>					  							  
+						    <tr *ngFor="let mantenimiento1 of mantenimientos">
+                                <td scope="row" class="text-center">{{mantenimiento1.id_maq_soc}}</td>
+                                <td>{{mantenimiento1.fech_man_maq}}</td>
+                                <td>{{mantenimiento1.tipo_maq}}</td>
+                                <td>{{mantenimiento1.des_man_maq}}</td>
+                                <td>{{mantenimiento1.check_man_maq}}</td>
+								<td>{{mantenimiento1.costo_man_maq}}</td> 
+								<!--<td>{{mantenimiento1.proximo_man_maq}}</td>-->
+								<td>{{mantenimiento1.marca_man_maq}}</td>                               
+                                <td>{{mantenimiento1.km_man_maq}}</td>
+                                <td>{{mantenimiento1.placa_man_maq}}</td>	
+                                <td>{{mantenimiento1.origen_man_maq}}</td>				  							  
 							</tr>
 						</tbody>
                       </table>

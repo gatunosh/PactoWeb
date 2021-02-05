@@ -39,7 +39,7 @@ export class MaquinarianService {
             est_maq: maquinaria1.est_maq,
             
         };
-        return this._http.post(`${this.url}/maquinaria`,authData, {headers});
+        return this._http.post(`${this.url}/maquinariasocio`,authData, {headers});
     }
 
    /* updatePedido(pedido:Pedido){
