@@ -5,7 +5,7 @@ export class MantenimientoModel{
     des_man_maq:string;
     check_man_maq:string;
     costo_man_maq:string;
-    //proximo_man_maq: Date;
+    proximo_man_maq: Date;
     marca_man_maq:string;
     km_man_maq:string;
     placa_man_maq:string;
@@ -19,7 +19,7 @@ export interface Mantenimiento{
     des_man_maq:string;
     check_man_maq:string;
     costo_man_maq:string;
-    //proximo_man_maq: Date;
+    proximo_man_maq: Date;
     marca_man_maq:string;
     km_man_maq:string;
     placa_man_maq:string;
