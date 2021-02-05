@@ -21,7 +21,7 @@ export class UsersComponent implements OnDestroy, OnInit{
   usuarios: Usuario[] = [];
   asociaciones: Asociacion[] = [];
   asociacionesForm: FormGroup;
-  asociacion1: AsociacionesModel = new AsociacionesModel();
+  asociacion: AsociacionesModel = new AsociacionesModel();
   asociacionUpdate: AsociacionesModel = new AsociacionesModel();
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
@@ -48,7 +48,6 @@ export class UsersComponent implements OnDestroy, OnInit{
   }
 
   ngOnInit(): void {
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -64,10 +63,8 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getAso().subscribe((res:any) =>{
       this.asociaciones= res.asociacion;
-      console.log(this.asociaciones);
-      this.dtTrigger.next();
+      //this.dtTrigger.next();
     });
-
   }
 
   enviar(values){
@@ -86,7 +83,6 @@ export class UsersComponent implements OnDestroy, OnInit{
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
-      
     }, (err) => {
     });
   }
@@ -121,16 +117,16 @@ export class UsersComponent implements OnDestroy, OnInit{
   }
 
   buscadorUserActual(id:string){
-      let userActual: Usuario;
+    let userActual: Usuario;
       
-      for (let i = 0; i < this.usuarios.length; i++) {
-        if(this.usuarios[i]._id == id){
-          userActual = this.usuarios[i];
-          break;
-        }
+    for (let i = 0; i < this.usuarios.length; i++) {
+      if(this.usuarios[i]._id == id){
+        userActual = this.usuarios[i];
+        break;
       }
+    }
 
-      return userActual;
+    return userActual;
   }
 
   delete() {

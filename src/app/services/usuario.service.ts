@@ -25,14 +25,13 @@ export class UsuarioService {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        
         return this._http.get(`${this.url}/usuario`,{headers});
     }
+
     getAso(){
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        
         return this._http.get(`${this.url}/asociacion`,{headers});
     }
 
@@ -54,7 +53,6 @@ export class UsuarioService {
             estado:usuario.estado,
             role:usuario.role,
             id_asociacion:usuario.id_asociacion,
-            
         };
         return this._http.post(`${this.url}/usuario`,authData, {headers});
     }
@@ -63,7 +61,6 @@ export class UsuarioService {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-
         const authData = {
             nombre: usuario.nombre,
             apellido:usuario.apellido,
@@ -76,7 +73,6 @@ export class UsuarioService {
             estado:usuario.estado,
             role:usuario.role
         };
-        
         return this._http.put(`${this.url}/usuario/${usuario._id}`,authData,{headers});
     }
 
