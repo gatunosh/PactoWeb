@@ -8,6 +8,8 @@ import { Reuniones } from '../models/reunion.models';
 })
 export class ReunionService {
 
+    reuniones: Reuniones[] = [];
+    
     private url: string = 'https://restserver-pacto.herokuapp.com';
 
     reuToken: string;
@@ -41,6 +43,8 @@ export class ReunionService {
             fec_reu: reunion.fec_reu,
             hor_reu:reunion.hor_reu,
             mul_reu:reunion.mul_reu,
+         //   id_soc:reunion.id_soc,
+          //  asist_socio:reunion.asist_socio,
                     };
         return this._http.post(`${this.url}/reuniones`,authData, {headers});
     }
