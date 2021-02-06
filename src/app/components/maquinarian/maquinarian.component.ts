@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class MaquinarianComponent implements OnInit, OnDestroy {
   @Input() maquinarian: any =null;
+  private url:string = 'https://restserver-pacto.herokuapp.com';
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   maquinarias: Maquinarian[] = [];
@@ -26,12 +28,11 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
     private _builder: FormBuilder
 
   ) { this.maquinariasForm = this._builder.group({
-    id_mant:[''],
-    id_soc: ['',],
+    //id_mant:[''],
+    //id_soc: ['',],
+    nom_maq: ['',],
     tipo_maq: ['',],
     est_maq: ['',],
-    
-
   });
 
    }
@@ -58,11 +59,11 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
 
 }
 enviar(values){
-  //this.maquinarias.nom_maq= values['nom_maq'];
+  this.maquinaria1.nom_maq= values['nom_maq'];
   this.maquinaria1.tipo_maq = values['tipo_maq'];
   this.maquinaria1.est_maq = values['est_maq'];
   this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
-  this.maquinarias = resp.maquinaria1;
+  this.maquinarias = resp.maquinarias;
     window.location.reload()
     
   }, (err) => {

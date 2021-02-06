@@ -34,7 +34,7 @@ export class MaquinarianService {
         });
        
         const authData = {
-            //nom_pro: maquinarias.nom_pro,
+            nom_maq: maquinaria1.nom_maq,
             tipo_maq: maquinaria1.tipo_maq,
             est_maq: maquinaria1.est_maq,
             
