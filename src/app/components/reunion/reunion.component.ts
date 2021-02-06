@@ -6,6 +6,7 @@ import { ReunionService } from '../../services/reunion.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,16 +21,21 @@ export class ReunionComponent implements OnInit, OnDestroy {
   reunionesForm: FormGroup;
   reunion1: ReunionesModel = new ReunionesModel();
   //usuarioUpdate: UsuarioModel = new UsuarioModel();
-
+fileUrl;
   constructor(
     private _reunionService: ReunionService,
-    private _builder: FormBuilder
+    private _builder: FormBuilder, 
+    private sanitizer: DomSanitizer
 
   ) { this.reunionesForm = this._builder.group({
-    id_asoc_reu:[''],
+   // id_asoc_reu: ['',],
+    tema_reun: ['',],
+    tipo_reun: ['',],
     fec_reu: ['',],
     hor_reu: ['',],
     mul_reu: ['',],
+    id_soc: ['',],
+    asist_socio: ['',],
     
   });
 
@@ -49,6 +55,11 @@ export class ReunionComponent implements OnInit, OnDestroy {
       this.reuniones = resp.reuniones;
       this.dtTrigger.next();
     });
+    const data = 'acta';
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  
+
 
   }
   ngOnDestroy(): void {
@@ -56,12 +67,14 @@ export class ReunionComponent implements OnInit, OnDestroy {
 
 }
 enviar(values){
-  this.reunion.id_asoc_reu = values['id_asoc_reu'];
-  this.reunion.fec_reu = values['fec_reu'];
-  this.reunion.hor_reu = values['hor_reu'];
-  this.reunion.mul_reu = values['mul_reu'];
+//  this.reunion1.id_asoc_reu=values['id_asoc_reu'],
+  this.reunion1.tema_reun=values['tema_reun'],
+  this.reunion1.tipo_reun=values['tipo_reun'],
+  this.reunion1.fec_reu = values['fec_reu'];
+  this.reunion1.hor_reu = values['hor_reu'];
+  this.reunion1.mul_reu = values['mul_reu'];
   this._reunionService.addReunion(this.reunion1).subscribe((resp:any) => {
-    this.reuniones = resp.reuniones;
+    this.reuniones = resp.reunion1;
     window.location.reload()
     
   }, (err) => {
