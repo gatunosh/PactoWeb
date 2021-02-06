@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <!--MODAL-->
 <!-- ADD Modal HTML -->
-<div id="addPedidoCli" class="modal fade">
+<div id="addReunion" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form  [formGroup]="reunionesForm" (ngSubmit)="enviar(reunionesForm.value)">
@@ -11,30 +11,48 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-				<div class="form-group">
-						<label><b>Código:</b></label>
-						<input type="text" min="1" class="form-control" required  formControlName="id_asoc_reu">
-                    </div>
                     <div class="form-group">
 						<label><b>Tema:</b></label>
 						<input type="text" min="1" class="form-control" required formControlName="tema_reun">
 					</div>
 					<div class="form-group">
 						<label><b>Tipo:</b></label>
-						<input type="text" min="1" class="form-control" required formControlName="tipo_reun">
+						<select  class="form-control" required formControlName="tipo_reun">
+							<option>Ordinaria</option>
+							<option >Extraordinaria</option>
+						  </select>
                     </div>
 					<div class="form-group">
 						<label><b>Fecha:</b></label>
 						<input type="date" min="1" class="form-control" required formControlName="fec_reu">
                     </div>
-                    <div class="form-group">
+				<div class="form-row">
+                    <div class="form-group col-md-6">
 						<label><b>Hora:</b></label>
 						<input type="time" min="1" class="form-control" required formControlName="hor_reu">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
 						<label><b>Multa:</b></label>
 						<input type="number" min="1" class="form-control" required formControlName="mul_reu">
                     </div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label><b>Socio:</b></label>
+							<select  class="form-control">
+								<option>Listado</option>
+								<option ></option>
+								<option></option>
+							  </select>
+						</div>
+					</div>
+						<div class="form-group ">
+							<label><b>Asistencia:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label></label>
+							<label></label>
+							<input type="checkbox" class="form-check-input" >
+						</div>
+						
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -49,9 +67,13 @@
 <div class="container-fluid main-container">
 	<div class="table-title">
 		<div class="row">
-            <h3 class="col-md-10">&nbsp;&nbsp;Reunión</h3><br><br>			 
+            <h3 class="col-md-10">&nbsp;&nbsp;Reunión</h3><br><br>	
+			<div class="col">
+				
+			<a [href]="fileUrl" download="file.txt"  class="btn btn-info">Acta</a>
+		</div>	 
 			<div class="col">			
-				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+				<a href="#addReunion" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
 			</div>
 		</div>
 	</div>
@@ -66,27 +88,31 @@
 						<thead >
 						  <tr>
                            
-							<th scope="col">Codigo</th>
+							
 							<th scope="col">Tema</th>
 							<th scope="col">Tipo</th>
 							<th scope="col">Fecha</th>
                             <th scope="col">Hora</th>
-                            <th scope="col">Multa</th>  
-                            <th></th>                                                   
+                            <th scope="col">Multa</th>
+							<th scope="col">Socio</th>
+							<th scope="col">Asistencia</th>  
+                                                                           
 						  </tr>
 						</thead>
 						<tbody>
 						  <tr *ngFor="let reunion of reuniones">
-							  <th scope="row" class="text-center">{{reunion.id_asoc_reu}}</th>
+							 
 							  <td>{{reunion.tema_reun}}</td>
 							  <td>{{reunion.tipo_reun}}</td>
 							  <td>{{reunion.fec_reu}}</td>
 							  <td>{{reunion.hor_reu}}</td>
 							  <td>{{reunion.mul_reu}}</td>
+							  <td>{{reunion.id_soc}}</td>
+							  <td>{{reunion.asist_socio}}</td>
 							  
-							  <td>
+						<!---	  <td>
 								  <button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
-                              </td>							  							  
+                              </td>	-->						  							  
 							</tr>
 						</tbody>
                       </table>
@@ -96,10 +122,9 @@
 				
               </div>
               <div class="row">
-                       		 
-                <a href="" class="btn btn-success" >&nbsp;&nbsp;<span>Convocar</span></a>
-			
 
+
+				
 			</div>
 		  </div>
 		</div>
