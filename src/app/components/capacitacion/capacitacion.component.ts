@@ -1,9 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {CapacitacionModel, Capacitacion} from '../../models/capacitacion.models'
 import { CapacitacionService } from '../../services/capacitacion.service'
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Subject } from 'rxjs';
+
+
+import { EntidadService } from '../../services/entidad.service';
+import { Entidad } from '../../models/entidad.models';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-capacitacion',
@@ -18,28 +23,24 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
   capacitacion: CapacitacionModel = new CapacitacionModel();
   capacitacionUpdate: CapacitacionModel = new CapacitacionModel();
 
+  entidades: Entidad[]=[];
+  
+
   constructor(
     private _capacitacionService: CapacitacionService,
+    private _entidadService: EntidadService,
     private _builder: FormBuilder
     ){
       this.capacitacionesForm = this._builder.group({
-        prof_cap:[{
-          _id:['',],
-          id_enti:['',],
-      }],
-        tema: ['',],
-        fech_ini_cap: ['',],
-        fech_fin_cap: ['',],
-        hora_ini_cap: ['',],
-        hora_fin_cap: ['',],
-        asis_cap: [{
-          _id:['',],
-          id_soc:['',],
-          cert_asis: ['',],
-          cert_part: ['',],
-      }],
+
+    id_enti: ['',],
+    tem_cap: ['',],
+    fech_ini_cap: ['',],
+    fech_fin_cap: ['',],
+    hora_ini_cap: ['',],
+    hora_fin_cap: ['',],
       });
-    }
+}
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -51,8 +52,31 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     };
     this._capacitacionService.getCapacitaciones().subscribe((resp:any) => {
       this.capacitaciones = resp.capacitacion;
+      console.log(resp.capacitacion);
       this.dtTrigger.next();
-    });       
+    });  
+
+    this._entidadService.getEntidades().subscribe((resp:any) => {
+      this.entidades = resp.entidad;
+      this.dtTrigger.next();
+    });     
+  }
+
+  enviar(values){
+    this.capacitacion.tem_cap = values['tem_cap'];
+    this.capacitacion.fech_ini_cap = values['fech_ini_cap'];
+    this.capacitacion.fech_fin_cap = values['fech_fin_cap'];
+    this.capacitacion.hora_ini_cap = values['hora_ini_cap'];
+    this.capacitacion.hora_fin_cap = values['hora_fin_cap'];
+    this.capacitacion.prof_cap=[{id_enti:values['id_enti'],_id:""}];
+    //this.capacitacion.prof_cap[0].id_enti = values['id_enti'];
+    this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
+      this.capacitaciones = resp.capacitacion;
+      window.location.reload()
+      
+    }, (err) => {
+    });
+    console.log(this.capacitacion);
   }
 
 
@@ -60,32 +84,6 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     this.capacitacionUpdate = this.buscadorCapacitacionActual(id);
   }
  
-  onEdit( form:NgForm ) {
-    if (form.invalid) {return;}
-
-    Swal.fire({
-      title: 'Espere',
-      text: 'Guardando Información',
-      icon: 'info',
-      allowOutsideClick: false,
-      showConfirmButton: false
-    });
-
-    Swal.showLoading();
-
-    this._capacitacionService.updateCapacitacion(this.capacitacionUpdate).subscribe(resp => {
-      Swal.close();
-      window.location.reload();
-    },(err) => {
-      Swal.fire({
-        title: 'Error',
-        text: err.error.err.message,
-        icon: 'error',
-      });
-    });
-  }
-
-
   buscadorCapacitacionActual(id:string){
     let capacitacionActual: Capacitacion;
     

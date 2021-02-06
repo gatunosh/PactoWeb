@@ -4,6 +4,12 @@ import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+import { Usuario, UsuarioModel } from '../../models/usuario.models';
+import { UsuarioService } from '../../services/usuario.service';
+
+import { CapacitacionModel, Capacitacion } from '../../models/capacitacion.models'
+import { CapacitacionService } from '../../services/capacitacion.service'
+
 @Component({
   selector: 'app-asiscapacitacion',
   templateUrl: './asiscapacitacion.component.html'
@@ -11,10 +17,17 @@ import Swal from 'sweetalert2';
 export class AsiscapacitacionComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
+  usuarios: Usuario[] = [];
+
+  capacitaciones: Capacitacion[]=[];
+
+  
+
+ 
  
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private _userService: UsuarioService,) { }
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -23,12 +36,11 @@ export class AsiscapacitacionComponent implements OnInit, OnDestroy {
         url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
       }
     };
-    this.http.get('http://dummy.restapiexample.com/api/v1/employees')
-    .subscribe((res:any) => {
-          console.log(res);
-          //this.data = res.data;
-          this.dtTrigger.next();
-    });          
+    this._userService.getUsers().subscribe((resp:any) => {
+      this.usuarios = resp.usuarios;
+      this.dtTrigger.next();
+    });
+         
   }
   /*enviar(values){
     this.asiscapacitacion.nom_soc = values['tem_cap'];
@@ -41,13 +53,13 @@ export class AsiscapacitacionComponent implements OnInit, OnDestroy {
       
     }, (err) => {
     });
-  }
+  }*/
 
-  openModalActualizar(id:string) {
-    this.asiscapacitacionUpdate = this.buscadorCapacitacionActual(id);
-  }
+  /*openModalActualizar(id:string) {
+    this.capacitacionUpdate = this.buscadorCapacitacionActual(id);
+  }*/
 
-  onEdit( form:NgForm ) {
+  /*onEdit( form:NgForm ) {
     if (form.invalid) {return;}
 
     Swal.fire({
@@ -70,22 +82,23 @@ export class AsiscapacitacionComponent implements OnInit, OnDestroy {
         icon: 'error',
       });
     });
-  }
+  }*/
   
-  buscadorCapacitacionActual(id:string){
-    let asiscapacitacionActual: AsisCapacitacion;
+  buscadorsocios(id:string){
+    let socio: Capacitacion;
     
-    for (let i = 0; i < this.asiscapacitaciones.length; i++) {
-      if(this.asiscapacitaciones[i]._id == id){
-        asiscapacitacionActual = this.asiscapacitaciones[i];
+    for (let i = 0; i < this.capacitaciones.length; i++) {
+      if(this.capacitaciones[i].asis_cap[0].role == "SOCIO_ROLE"){
+        socio = this.capacitaciones[i];
         break;
       }
     }
 
-    return asiscapacitacionActual;
+    return socio;
+    console.log
 }
 
-    delete() {
+    /*delete() {
       Swal.fire({
         title: 'Espere',
         text: 'Borrando Información',

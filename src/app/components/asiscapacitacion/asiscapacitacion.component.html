@@ -135,19 +135,20 @@
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr>
-					<td scope="row" class="text-center"></td>
+				<tr  *ngFor="let usuario of usuarios"> 
+					<td scope="row" class="text-center">{{usuario.nombre}}</td>
+					<td scope="row" class="text-center">{{usuario.apellido}}</td>
 					<td></td>
 					<td></td>
 								
-					<td>
+					<!--<td>
 						<div style="text-align: center">
 						  <a href="#editEmployeeModal" class="edit btn btn-secondary" data-toggle="modal">Certificado</a>&nbsp;&nbsp;&nbsp;
 						  <a href="#editEmployeeModal" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
 						  <a href="#deleteEmployeeModal" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
 						</div>
 		
-					  </td>
+					  </td>-->
 					
 			  </tbody>
 			</table>

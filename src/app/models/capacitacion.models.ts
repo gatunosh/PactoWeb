@@ -1,8 +1,9 @@
 export class CapacitacionModel{
+   
     _id:string;
     prof_cap:[{
-        _id:string;
-        id_enti:string; 
+                _id: string;
+                id_enti: string;
     }];
     tem_cap: string;
     fech_ini_cap: string;
@@ -12,6 +13,7 @@ export class CapacitacionModel{
     asis_cap: [{
         _id:string;
         id_soc:string;
+        role: string;
         cert_asis: boolean;
         cert_part: boolean;
     }];
@@ -21,8 +23,8 @@ export class CapacitacionModel{
 export interface Capacitacion{
     _id:string;
     prof_cap:[{
-        _id:string;
-        id_enti:string; 
+        _id: string;
+                id_enti: string;
     }];
     tem_cap: string;
     fech_ini_cap: string;
@@ -32,6 +34,7 @@ export interface Capacitacion{
     asis_cap: [{
         _id:string;
         id_soc:string;
+        role: string;
         cert_asis: boolean;
         cert_part: boolean;
     }];
