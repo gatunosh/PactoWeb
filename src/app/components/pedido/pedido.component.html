@@ -11,32 +11,48 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-                        <label for="sel1">Categoría:</label>
-                        <select class="form-control" >
-                          <option>Categoría A</option>
-                          <option>Categoría B</option>
-                          <option>Categoría C</option>
-                          <option>Categoría D</option>
-                        </select>
-                      </div> 
-                      <div class="form-group">
-                        <label for="sel1">Prodcuto:</label>
-                        <select class="form-control" >
-                          <option>Prodcuto A</option>
-                          <option>Prodcuto B</option>
-                          <option>Prodcuto C</option>
-                          <option>Prodcuto D</option>
-                        </select>
-                      </div> 
-					<div class="form-group">
-						<label><b>Cantidad:</b></label>
-						<input type="number" min="1" class="form-control" required>
-					</div>
+					Cliente <input type="text" class="form-control"name="nombre" [(ngModel)]="persona.nombre"/><br/>
+					<br>
+					Fecha <input type="text" class="form-control"name="fecha"[(ngModel)]="persona.fecha"/><br>
+					<br>
+					Producto <input type="text" class="form-control"name="producto"[(ngModel)]="persona.producto"/><br>
+					<br>
+					Precio <input type="text" class="form-control"name="precio"[(ngModel)]="persona.precio"/><br>
+					<br>
+					Cantidad <input type="text" class="form-control"name="cantidad"[(ngModel)]="persona.cantidad"/><br>
+					<br>
+					Total <input type="text" class="form-control"name="total" [(ngModel)]="persona.total"/><br/>
+					<br>
+					Estado <select name="estado" class="form-control" [(ngModel)]="persona.estado">
+						<option>En camino</option>
+						<option>Pendiente</option>
+						<option>Entregado</option>
+					</select><br>
+					<br>
+					Detalle <input type="text" class="form-control" name="detalle"[(ngModel)]="persona.detalle"/><br>
+					<br>
+					<input type="button" value="Registrar Pedido" (click)="guardar()"/>
+					<br>
+					<h4>pedidos ingresados</h4>
+
+					<table border="1">
+						<tr *ngFor="let persona of personas">
+							<td>{{persona.nombre}}</td>
+							<td>{{persona.fecha}}</td>
+							<td>{{persona.producto}}</td>
+							<td>{{persona.precio}}</td>
+							<td>{{persona.cantidad}}</td>
+							<td>{{persona.total}}</td>
+							<td>{{persona.estado}}</td>
+							<td>{{persona.detalle}}</td>
+							
+						</tr>
+					</table>
+					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-success" value="Agregar">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Confirmar Pedido" (click)="guardar()"/>
 				</div>
 			</form>
 		</div>
@@ -44,46 +60,41 @@
 </div>
 
 <!-- Edit Modal HTML-->
-<div id="editPedidoCli" class="modal fade">
-    <div class="modal-dialog">
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="text-align: center;">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<form>
-				<div class="modal-header">
-					<h4 class="modal-title">Editar Pedido</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-                        <label for="sel1">Categoría:</label>
-                        <select class="form-control">
-                          <option>Categoría A</option>
-                          <option>Categoría B</option>
-                          <option>Categoría C</option>
-                          <option>Categoría D</option>
-                        </select>
-                      </div> 
-                      <div class="form-group">
-                        <label for="sel1">Prodcuto:</label>
-                        <select class="form-control" >
-                          <option>Prodcuto A</option>
-                          <option>Prodcuto B</option>
-                          <option>Prodcuto C</option>
-                          <option>Prodcuto D</option>
-                        </select>
-                      </div> 
-					<div class="form-group">
-						<label><b>Cantidad:</b></label>
-						<input type="number" min="1" class="form-control" required>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-success" value="Agregar">
-				</div>
+				<h1>Detalle de la factura del pedido</h1>
+				<br>
+				<br>
+				<table border="1">
+					<th scope="col">Cliente</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Producto</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Total</th>
+					<th scope="col">Estado</th>
+					<th scope="col">Detalle</th> 
+					<th></th>
+
+					<tr *ngFor="let persona of personas">
+						<td>{{persona.nombre}}</td>
+						<td>{{persona.fecha}}</td>
+						<td>{{persona.producto}}</td>
+						<td>{{persona.precio}}</td>
+						<td>{{persona.cantidad}}</td>
+						<td>{{persona.total}}</td>
+						<td>{{persona.estado}}</td>
+						<td>{{persona.detalle}}</td>
+						
+					</tr>
+				</table>
 			</form>
 		</div>
 	</div>
 </div>
+
 <!-- Delete Modal HTML -->
 <div id="deletePedidoCli" class="modal fade">
 	<div class="modal-dialog">
@@ -125,31 +136,57 @@
 						<thead >
 						  <tr>
                             <!--<th scope="col">#</th>-->
-                            <th scope="col">Categoría</th>
-							<th scope="col">Producto</th>
-							<th scope="col">Descripción</th>
-                            <th scope="col">Cantidad</th>
-							<th scope="col">Precio Unitario</th> 
+                            <th scope="col">Cliente</th>
+							<th scope="col">Fecha</th>
+							
+                            <th scope="col">Total</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Detalle</th> 
 							<th></th>   
 				  </thead>
+
 				  <tbody>
 					<tr *ngFor="let pedido of pedidos">
 					
-						<td>{{pedido.id_cat}}</td>
-						<td>{{pedido.nom_pro}}</td>
-						<td>{{pedido.desc_pro}}</td>
-						<td>{{pedido.uni_pro}}</td>
-						<td>{{pedido.pvp_pro}}</td>						
+						<td>{{pedido.id_cli['nombre']}} {{pedido.id_cli['apellido']}}</td>
+						<td>{{pedido.fec_fac |date}}</td>
+						
+						<td>{{pedido.tot_fac}}</td>
+						<td>{{pedido.estado}}</td>
+						<td>{{pedido.detalle}}</td>										
+											
 						
 						<td>
-						  <div style="text-align: center">							
-								<a href="#editPedidoCli" class="btn btn-outline-warning" data-toggle="modal"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-								<a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal"><i class="far fa-trash-alt"></i></a>
-								&nbsp;&nbsp;	<a [routerLink]="['/detallepedido/:id']" class="btn btn-outline-info">Detalle</a>&nbsp;&nbsp;&nbsp;
+						  <div style="text-align: center;">							
+							<a href="#myModal" data-toggle="modal" class="btn btn-primary btn-lg">Detalle Pedido</a>&nbsp;&nbsp;&nbsp;
+							<a href="#deletePedidoCli" data-toggle="modal"  class="btn btn-primary btn-lg">Eliminar Pedido</a>
 
 							</div>
 						</td>
-					  </tr>
+					</tr>
+					
+					
+						<tr *ngFor="let persona of personas">
+							
+                            <td>{{persona.nombre}}</td>
+							<td>{{persona.fecha}}</td>
+							<td>{{persona.total}}</td>
+							<td>{{persona.estado}}</td>
+							<td>{{persona.detalle}}</td>
+
+                            <td>
+                                <div style="text-align: center">                            
+                            <a href="#myModal" data-toggle="modal" class="btn btn-primary btn-lg" (click)="guardar()">Detalle Pedido</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#deletePedidoCli" data-toggle="modal"  class="btn btn-primary btn-lg">Eliminar Pedido</a>
+      
+                                  </div>
+						    </td>
+						</tr>
+
+					
+					
+					
+					
 				  </tbody>
 				</table>
 				
