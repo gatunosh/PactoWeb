@@ -31,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component';
 import { AsociacionesComponent } from './components/asociaciones/asociaciones.component';
+import { ProductosocioComponent } from './components/productosocio/productosocio.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AsociacionesComponent } from './components/asociaciones/asociaciones.co
     HojacampoComponent,
     DethojacampoComponent,
     AsociacionesComponent,
+    ProductosocioComponent,
   ],
   imports: [
     BrowserModule,

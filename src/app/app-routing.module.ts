@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { ProductosocioComponent } from './components/productosocio/productosocio.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CapacitacionComponent } from './components/capacitacion/capacitacion.component';
@@ -26,6 +27,7 @@ const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
     { path: 'productos',component: ProductosComponent, canActivate: [AuthGuard] },
+    { path: 'productosocio',component: ProductosocioComponent, canActivate: [AuthGuard] },
     { path: 'capacitacion',component:CapacitacionComponent },
     { path: 'asiscapacitacion/:id',component:AsiscapacitacionComponent,canActivate: [AuthGuard] },
     { path: 'entidad',component:EntidadComponent,canActivate: [AuthGuard] },
