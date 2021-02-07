@@ -10,7 +10,7 @@ export class ProductoSocioModel{
     fecha_cad_pro: Date;
 }
 
-export class ProductoSocio{
+export interface ProductoSocio{
     _id: string;
     id_pro: string;
     id_soc: string;

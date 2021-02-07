@@ -28,7 +28,6 @@ export class ProductosService{
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
-        console.log(this.prodToken);
         return this._http.get(`${this.url}/producto`,{headers});
     }
     getCategoria(){
@@ -92,5 +91,12 @@ export class ProductosService{
             'token': this.leerToken()
         });  
         return this._http.delete(`${this.url}/producto/${producto1._id}`,{headers});
-     }   
+     }
+
+     deleteCategoria(categoria:categoriaProducto){
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });  
+        return this._http.delete(`${this.url}/producto/${categoria._id}`,{headers});
+     }  
 }

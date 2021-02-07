@@ -195,6 +195,29 @@ export class ProductosComponent implements OnDestroy, OnInit {
     });
   }
 
+  deleteCategoria() {
+    Swal.fire({
+      title: 'Espere',
+      text: 'Borrando Información',
+      icon: 'info',
+      allowOutsideClick: false,
+      showConfirmButton: false
+    });
+
+    Swal.showLoading();
+
+    this._productosService.deleteProductos(this.productoUpdate).subscribe(resp => {
+      Swal.close();
+      window.location.reload();
+    }, (err) => {
+      Swal.fire({
+        title: 'Error',
+        text: err.error.err.message,
+        icon: 'error',
+      });
+    });
+  }
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();

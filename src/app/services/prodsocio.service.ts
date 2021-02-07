@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductoSocioModel, ProductoSocio} from '../models/productosocio.models';
+import { ProductoSocioModel, ProductoSocio} from '../models/prodsocio.models';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProductosService{
+export class ProdsocioService{
 
-    productosSocio: ProductoSocio[] = [];
+    prodSocio: ProductoSocio[] = [];
 
     private url:string = 'https://restserver-pacto.herokuapp.com';
 
@@ -22,15 +23,15 @@ export class ProductosService{
         return this.prodToken;
     }
 
-    getProductosSocio() {
+    getProdSocio() {
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });
         console.log(this.prodToken);
-        return this._http.get(`${this.url}/producto`,{headers});
+        return this._http.get(`${this.url}/prodSocio`,{headers});
     }    
 
-    addProductosSocio(productoSocio1:ProductoSocio){
+    addProdSocio(productoSocio1:ProductoSocio){
         console.log(productoSocio1.id_pro);
         const headers = new HttpHeaders({
             'token': this.leerToken()
@@ -45,7 +46,7 @@ export class ProductosService{
             fecha_ela_pro: productoSocio1.fecha_ela_pro,
             fecha_cad_pro:productoSocio1.fecha_cad_pro,
         };
-        return this._http.post(`${this.url}/producto`,authData, {headers});
+        return this._http.post(`${this.url}/prodSocio`,authData, {headers});
     }
 
 
@@ -71,6 +72,6 @@ export class ProductosService{
         const headers = new HttpHeaders({
             'token': this.leerToken()
         });  
-        return this._http.delete(`${this.url}/productoSocio/${productoSocio1._id}`,{headers});
+        return this._http.delete(`${this.url}/prodSocio/${productoSocio1._id}`,{headers});
      }   
 }
