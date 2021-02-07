@@ -76,7 +76,6 @@ export class ProductosComponent implements OnDestroy, OnInit {
     };
 
     this._productosService.getCategoria().subscribe((res: any) => {
-      debugger;
       this.categorias = res.categoria;
       console.log(this.categorias);
     });

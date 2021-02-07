@@ -15,7 +15,6 @@
 							<div class="form-group">
 								<label for="sel1"><b>Categoría:</b></label>
 								<select class="custom-select" id="sel1" formControlName="id_cat" required>
-									<option>Escoja una categoria</option>
 									<option *ngFor="let categoria of categorias" [value]="categoria._id">
 										{{categoria.nombre}}</option>
 								</select>

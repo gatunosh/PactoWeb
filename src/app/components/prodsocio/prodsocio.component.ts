@@ -3,7 +3,6 @@ import { LoginService } from '../../services/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductosComponent } from '../productos/productos.component';
-
 import { ProductosModel, Producto } from '../../models/productos.models';
 import { ProdsocioService } from 'src/app/services/prodsocio.service';
 import { ProductoSocioModel, ProductoSocio } from '../../models/prodsocio.models';
@@ -17,7 +16,10 @@ import Swal from 'sweetalert2';
 })
 export class ProdsocioComponent implements OnInit,OnDestroy {
 
+  myDate = new Date();
+
   //@Input() productoSocio: any = null;
+  
 
   private url: string = 'https://restserver-pacto.herokuapp.com';
 
@@ -41,17 +43,17 @@ export class ProdsocioComponent implements OnInit,OnDestroy {
     /*get errorCtrProducto() {
       return this.productosSocioForm.controls;
     }*/
-  
     ngOnInit(): void {
-      /*this.productosSocioForm = this._builder.group({
-        id_cat: ['', Validators.required],
+      this.productosSocioForm = this._builder.group({
+        id_pro: ['', Validators.required],
+        id_soc: ['', Validators.required],
         aso_ps: ['', Validators.required],
-        nom_pro: ['', Validators.required],
-        desc_pro: ['',],
-        uni_pro: ['', Validators.required],
-        sto_pro: ['',],
-        pvp_pro: ['', Validators.required],
-      });  */
+        can_ps: ['',],
+        pre_ps: ['',],
+        fech_ps: ['',],
+        fecha_ela_pro: ['',],
+        fecha_cad_pro: ['',],
+      });  
   
       this.dtOptions = {
         pagingType: 'full_numbers',
