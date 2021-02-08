@@ -62,8 +62,10 @@ export class ProdsocioComponent implements OnInit,OnDestroy {
           url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         }
       };
-  
+     // let productoid = this.activerouter.snapshot.paramMap.get('id');
+     // console.log(productoid);
       this._prodsocioService.getProdSocio().subscribe((res: any) => {
+        debugger;
         this.prodSocios = res.prodSocio;
         console.log('prod',this.prodSocios);
         this.dtTrigger.next();
@@ -74,12 +76,11 @@ export class ProdsocioComponent implements OnInit,OnDestroy {
     }
   
     enviar(values) {
-      // debugger;
-      // if(values['nom_pro']=this.categoria.nombre){
-      //     console.log(this.categoria._id);
-      // }
+      debugger
+      this.productoSocio1.aso_ps = this.prodSocios[0].aso_ps;
+      this.productoSocio1.id_soc = this.prodSocios[0].id_soc;
+
       this.productoSocio1.id_pro = values['id_pro'];
-      this.productoSocio1.id_soc = values['id_soc'];
       this.productoSocio1.can_ps = values['can_ps'];
       this.productoSocio1.pre_ps = values['pre_ps'];
       this.productoSocio1.fech_ps = values['fech_ps'];

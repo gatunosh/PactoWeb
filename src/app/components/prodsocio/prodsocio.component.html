@@ -14,7 +14,7 @@
 								<label for="sel1"><b>Producto</b></label>
 								<select class="custom-select" id="sel1" formControlName="id_pro" required>
 									<option>Escoja una categoria</option>
-									<option *ngFor="let prodSocio of prodSocios" [value]="id_pro">
+									<option *ngFor="let prodSocio of prodSocios" [value]="prodSocio._id">
 										{{prodSocio.id_pro.nom_pro.toString()}}</option>
 								</select>
 								<div class="invalid-feedback" role="alert" *ngIf="productosSocioForm.get('id_pro').touched">
@@ -206,9 +206,9 @@
 						</thead>
 						<tbody>
 							<tr *ngFor="let prodSocio of prodSocios">
-								<td>{{prodSocio.id_pro.nom_pro.toString()}}</td>
-                                <td>{{prodSocio.id_soc.nombre.toString()}}</td>
-								<td>{{prodSocio.aso_ps.nombre_aso.toString()}}</td>
+								<td>{{prodSocio.id_pro.nom_pro}}</td>
+                                <td>{{prodSocio.id_soc.nombre}}</td>
+								<td>{{prodSocio.aso_ps.nombre_aso}}</td>
 								<td>{{prodSocio.can_ps}}</td>
 								<td>{{prodSocio.pre_ps}}</td>
 								<td>
