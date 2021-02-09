@@ -12,7 +12,6 @@ export class UsuarioModel {
     parroquia: string;
     estado: boolean;
     role: string;
-    id_soc: string;
 }
 
 
@@ -30,5 +29,4 @@ export interface Usuario {
     parroquia:string;
     estado:boolean;
     role:string;
-    id_soc: string;
 }

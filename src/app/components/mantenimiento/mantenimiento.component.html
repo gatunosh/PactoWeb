@@ -20,7 +20,7 @@
 					</div>
 					<div class="form-group">
 						<label><b>Tipo:</b></label>
-						<select class="form-control" id="exampleFormControlSelect1" formControlName="tipo_man_maq" required>                            
+						<select class="form-control" id="exampleFormControlSelect1" formControlName="tipo_maq" required>                            
                             <option>Vehículo</option>
                           	<option>Cortadora</option>
                           	<option>Moledora</option>
@@ -130,7 +130,7 @@
 								<tbody>
 									<tr *ngFor="let mantenimiento1 of mantenimientos">
 										<td>{{mantenimiento1.fech_man_maq}}</td>
-										<td>{{mantenimiento1.tipo_man_maq}}</td>
+										<td>{{mantenimiento1.tipo_maq}}</td>
 										<td>{{mantenimiento1.des_man_maq}}</td>
 										<td>{{mantenimiento1.check_man_maq}}</td>
 										<td>{{mantenimiento1.costo_man_maq}}</td> 

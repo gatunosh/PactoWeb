@@ -8,7 +8,7 @@ import { Mantenimiento } from '../models/mantenimiento.models';
 })
 export class MantenimientoService {
 
-    mantenimientos: Mantenimiento []= [];
+    //mantenimientos: Mantenimiento []= [];
 
     private url: string = 'https://restserver-pacto.herokuapp.com';
 
@@ -41,11 +41,11 @@ export class MantenimientoService {
 
             //nom_pro: maquinarias.nom_pro,
             fech_man_maq: mantenimiento1.fech_man_maq,
-            tipo_man_maq: mantenimiento1.tipo_man_maq,
+            tipo_man_maq: mantenimiento1.tipo_maq,
             des_man_maq: mantenimiento1.des_man_maq,
             check_man_maq: mantenimiento1.check_man_maq,
             costo_man_maq: mantenimiento1.costo_man_maq,
-            proximo_man_maq: mantenimiento1.proximo_man_maq,
+            //proximo_man_maq: mantenimiento1.proximo_man_maq,
             marca_man_maq: mantenimiento1.marca_man_maq,
             km_man_maq: mantenimiento1.km_man_maq,
             placa_man_maq: mantenimiento1.placa_man_maq,

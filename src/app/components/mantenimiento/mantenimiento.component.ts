@@ -28,11 +28,10 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
 
   ) { this.mantenimientosForm = this._builder.group({
     fech_man_maq:[''],
-    tipo_man_maq: ['',],
+    tipo_maq: ['',],
     des_man_maq: ['',],
     check_man_maq: ['',],
     costo_man_maq: ['',],
-    proximo_man_maq: ['',],
     marca_man_maq: ['',],
     km_man_maq: ['',],
     placa_man_maq: ['',],
@@ -63,11 +62,11 @@ export class MantenimientoComponent implements OnInit, OnDestroy {
 enviar(values){
   //this.maquinarias.nom_maq= values['nom_maq'];
   this.mantenimiento1.fech_man_maq = values['fech_man_maq'];
-  this.mantenimiento1.tipo_man_maq = values['tipo_man_maq'];
+  this.mantenimiento1.tipo_maq = values['tipo_maq'];
   this.mantenimiento1.des_man_maq = values['des_man_maq'];
   this.mantenimiento1.check_man_maq = values['check_man_maq'];
   this.mantenimiento1.costo_man_maq = values['costo_man_maq'];
-  this.mantenimiento1.proximo_man_maq = values['proximo_man_maq'];
+  //this.mantenimiento1.proximo_man_maq = values['proximo_man_maq']
   this.mantenimiento1.marca_man_maq = values['marca_man_maq'];
   this.mantenimiento1.km_man_maq = values['km_man_maq'];
   this.mantenimiento1.placa_man_maq = values['placa_man_maq'];

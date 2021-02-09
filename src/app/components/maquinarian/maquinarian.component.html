@@ -72,6 +72,7 @@
 					<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>                            
 							<th scope="col">Estado</th> 
@@ -80,6 +81,7 @@
 						</thead>
 						<tbody>
 						    <tr *ngFor="let maquinaria1 of maquinarias">
+								<td scope="row" class="text-center"></td>
 								<td>{{maquinaria1.nom_maq}}</td>
                                 <td>{{maquinaria1.tipo_maq}}</td>
                                 <td>{{maquinaria1.est_maq}}</td>                                

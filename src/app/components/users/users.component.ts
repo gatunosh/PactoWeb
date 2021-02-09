@@ -6,7 +6,6 @@ import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { AsociacionesModel, Asociacion} from '../../models/asociaciones.models';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,10 +21,6 @@ export class UsersComponent implements OnDestroy, OnInit{
   usersForm: FormGroup;
   usuario: UsuarioModel = new UsuarioModel();
   usuarioUpdate: UsuarioModel = new UsuarioModel();
-  asociaciones: Asociacion[] = [];
-  asociacionesForm: FormGroup;
-  asociacion1: AsociacionesModel = new AsociacionesModel();
-  asociacionUpdate: AsociacionesModel = new AsociacionesModel();
 
   constructor(
     private _userService: UsuarioService,
@@ -42,8 +37,7 @@ export class UsersComponent implements OnDestroy, OnInit{
       sector: ['',],
       parroquia: ['',],
       barrio: ['',],
-      role: ['', Validators.required],
-      id_soc:['', Validators.required]
+      role: ['', Validators.required]
     });
   }
 
@@ -62,12 +56,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       this.dtTrigger.next();
     });
 
-    this._userService.getAso().subscribe((res:any) =>{
-      this.asociaciones= res.asociacion;
-      console.log(this.asociaciones);
-      //this.dtTrigger.next();
-    });
-
   }
 
   enviar(values){
@@ -82,7 +70,6 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.barrio = values['barrio'];
     this.usuario.parroquia = values['parroquia'];
     this.usuario.role = values['role'];
-    this.usuario.id_soc = values['id_soc'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
