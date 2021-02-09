@@ -12,6 +12,9 @@ export class UsuarioModel {
     parroquia: string;
     estado: boolean;
     role: string;
+    id_asociacion: [{
+        id_asociacion: string;
+    }]
 }
 
 
@@ -29,4 +32,7 @@ export interface Usuario {
     parroquia:string;
     estado:boolean;
     role:string;
+    id_asociacion: [{
+        id_asociacion: string;
+    }]
 }
