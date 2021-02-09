@@ -54,7 +54,7 @@ export class UsuarioService {
             parroquia:usuario.parroquia,
             estado:usuario.estado,
             role:usuario.role,
-            id_asociacion:usuario.id_asociacion,
+            id_soc:usuario.id_soc,
         };
         return this._http.post(`${this.url}/usuario`,authData, {headers});
     }

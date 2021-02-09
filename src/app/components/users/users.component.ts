@@ -43,7 +43,7 @@ export class UsersComponent implements OnDestroy, OnInit{
       parroquia: ['',],
       barrio: ['',],
       role: ['', Validators.required],
-      id_asociacion:['', Validators.required]
+      id_soc:['', Validators.required]
     });
   }
 
@@ -82,7 +82,7 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.barrio = values['barrio'];
     this.usuario.parroquia = values['parroquia'];
     this.usuario.role = values['role'];
-    this.usuario.id_asociacion = values['id_asociacion'];
+    this.usuario.id_soc = values['id_soc'];
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()

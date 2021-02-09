@@ -25,11 +25,11 @@
                     </div>
                     <div class="col">
                         <label for="sel1"><b>Asoción:</b></label>
-                        <select class="custom-select" id="sel1" formControlName="id_asociacion" required>
+                        <select class="custom-select" id="sel1" formControlName="id_soc" required>
                             
-                            <option *ngFor="let asociacion of asociaciones">{{asociacion.nombre_aso}}</option>
+                            <option *ngFor="let asociacion of asociaciones " [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
                         </select>
-                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('nombre').touched">
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('id_soc').touched">
                             Campo requerido
                         </div>
                       </div>
