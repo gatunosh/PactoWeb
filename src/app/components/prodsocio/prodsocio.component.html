@@ -14,8 +14,8 @@
 								<label for="sel1"><b>Producto</b></label>
 								<select class="custom-select" id="sel1" formControlName="id_pro" required>
 									<option>Escoja una categoria</option>
-									<option *ngFor="let prodSocio of prodSocios" [value]="prodSocio._id">
-										{{prodSocio.id_pro.nom_pro.toString()}}</option>
+									<option *ngFor="let producto of productos" [value]="producto._id">
+										{{producto.nom_pro.toString()}}</option>
 								</select>
 								<div class="invalid-feedback" role="alert" *ngIf="productosSocioForm.get('id_pro').touched">
 									Campo requerido.
@@ -196,8 +196,8 @@
 					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col">Nombre producto</th>
-                                <th scope="col">Socio</th>
+								<th scope="col">Nombre producto1</th>
+                                <th scope="col">Socio1</th>
 								<th scope="col">Asociacion</th>
 								<th scope="col">Cantidad</th>
 								<th scope="col">Precio</th>
