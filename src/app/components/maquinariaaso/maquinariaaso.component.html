@@ -2,41 +2,46 @@
 <app-navbar></app-navbar>
 <!--MODAL-->
 <!-- ADD Modal HTML -->
-
-<div id="addMaquinariaaso" class="modal fade">
+<!-- ADD Modal HTML -->
+<div id="addMaquinaria" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form class="was-validated" [formGroup]="maquinariasForm" (ngSubmit)="enviar(maquinariasForm.value)">
 				<div class="modal-header">
-					<h4 class="modal-title">Nuevo Maquinaria</h4>
+					<h4 class="modal-title">Nueva Maquinaria</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label><b>Código:</b></label>
-						<input type="number"  class="form-control" disabled>
-					</div>
-					<div class="form-group">
 						<label><b>Nombre:</b></label>
-						<input type="text"  class="form-control" required>
+						<input type="text"  class="form-control" formControlName="nom_maq" required>
+						<div class="invalid-feedback" role="alert">
+                            Campo requerido
+                        </div>
 					</div>
 					<div class="form-group">
                         <label for="sel1">Tipo:</label>
-                        <select class="form-control" id="sel1">
-                          <option>Tipo A</option>
-                          <option>Tipo B</option>
-                          <option>Tipo C</option>
-                          <option>Tipo D</option>
-                        </select>
+                        <select class="form-control" id="sel1" formControlName="tipo_maq" required>
+                          <option>Vehículo</option>
+                          <option>Cortadora</option>
+                          <option>Moledora</option>
+                          <option>Empacadora</option>
+						</select>
+						<div class="invalid-feedback" role="alert">
+                            Campo requerido
+                        </div>
                       </div> 
                       <div class="form-group">
                         <label for="sel1">Estado:</label>
-                        <select class="form-control" id="sel1">
-                          <option>Estado A</option>
-                          <option>Estado B</option>
-                          <option>Estado C</option>
-                          <option>Estado D</option>
-                        </select>
+                        <select class="form-control" id="sel1" formControlName="est_maq" required>
+                          <option>Funcional</option>
+                          <option>Averiado</option>
+                          <option>Nuevo</option>
+                          <option>Usado</option>
+						</select>
+						<div class="invalid-feedback" role="alert">
+                            Campo requerido
+                        </div>
                       </div> 
 				</div>
 				<div class="modal-footer">
@@ -53,46 +58,50 @@
 		<div class="row">
 			<h3 class="col-md-10">&nbsp;&nbsp;Maquinaria</h3><br><br>	
 			<div class="col">			
-				<a href="#addMaquinariaaso" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+				<a href="#addMaquinaria" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
 			</div>		 			
 		</div>
 	</div>
 	<div class="body animated fadeIn">
 		<div class="container-fluid">
 		  <div>
-			<div class="card my-3"><br>
+			<div class="card my-3">
+				<br>
 			  <div class="container-fluid" aria-label="Page navigation example">
 				  <div class="table-responsive">
-					<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-hover">
+					<table  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
 						<thead >
 						  <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Codigo</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>                            
-                            <th scope="col">Estado</th> 
-                            <th scope="col"></th>                                                   
+							<th scope="col">Estado</th> 
+							<th scope="col">Opciones</th>                                                    
 						  </tr>
 						</thead>
 						<tbody>
-						    <tr *ngFor="let maquinariaaso of data">
-                                <td scope="row" class="text-center">{{maquinariaaso.id}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>                                
+						    <tr *ngFor="let maquinaria1 of maquinarias">
+								<td>{{maquinaria1.nom_maq}}</td>
+                                <td>{{maquinaria1.tipo_maq}}</td>
+                                <td>{{maquinaria1.est_maq}}</td>                                
                                 <td><!-- Default checkbox -->
                                     <div align="center">
-                                        <a [routerLink]="['/mantenimientoaso/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
+                                        <a [routerLink]="['/mantenimiento/:id']" class="btn btn-outline-success" data-toggle="modal">Mantenimiento</a>
                                     </div>
                                 </td>					  							  
 							</tr>
 						</tbody>
-                      </table>                     
+                      </table>
+                     
                     </div>
-				  </div>			
-              </div>        
+				  </div>
+				
+              </div>
+              <div class="row">
+			</div>
 		  </div>
 		</div>
 	  </div>
 </div>
+
+  
+
