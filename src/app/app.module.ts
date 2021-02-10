@@ -32,6 +32,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { DethojacampoComponent } from './components/dethojacampo/dethojacampo.component';
 import { AsociacionesComponent } from './components/asociaciones/asociaciones.component';
 import { ProdsocioComponent } from './components/prodsocio/prodsocio.component';
+import { DirectivasComponent } from './components/directivas/directivas.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ProdsocioComponent } from './components/prodsocio/prodsocio.component';
     DethojacampoComponent,
     AsociacionesComponent,
     ProdsocioComponent,
+    DirectivasComponent,
   ],
   imports: [
     BrowserModule,
