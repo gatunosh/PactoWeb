@@ -8,6 +8,7 @@ import { AsociacionesModel, Asociacion} from '../../models/asociaciones.models';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AsociacionesService } from '../../services/asociaciones.service';
 
 @Component({
   selector: 'app-directivas',
@@ -25,7 +26,13 @@ export class DirectivasComponent implements OnDestroy,OnInit {
   directiva1: DirectivasModel = new DirectivasModel();
   directivaUpdate: DirectivasModel = new DirectivasModel();
 
-  constructor(private _auth: LoginService, private _router: Router, private _http: HttpClient, private _directivasService:DirectivasService,private activerouter:ActivatedRoute,private _builder: FormBuilder) { 
+  constructor(private _auth: LoginService,
+     private _router: Router,
+      private _http: HttpClient,
+       private _directivasService:DirectivasService,
+       private _asociacionService:AsociacionesService,
+       private activerouter:ActivatedRoute,
+       private _builder: FormBuilder) { 
     this.directivasForm = this._builder.group({
       
       cargo_dir: ['',],
@@ -51,7 +58,7 @@ export class DirectivasComponent implements OnDestroy,OnInit {
       this.dtTrigger.next();
     });
 
-    this._directivasService.getAso().subscribe((res:any) =>{
+    this._asociacionService.getAsociaciones().subscribe((res:any) =>{
       
       this.asociaciones= res.asociacion;
       console.log(this.asociaciones);
@@ -64,7 +71,7 @@ export class DirectivasComponent implements OnDestroy,OnInit {
     this.directiva1.nom_dir = values['nom_dir'];
     this.directiva1.ape_dir = values['ape_dir'];
     this.directiva1.periodo_dir = values['periodo_dir'];
-    this.directiva1.id_asociacion = values['_id'];
+    this.directiva1.id_asociacion=[{id_soc:values['id_soc'],_id:""}];
     
    
     this._directivasService.addDirectivas(this.directiva1).subscribe((resp:any) => {

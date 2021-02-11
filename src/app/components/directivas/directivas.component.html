@@ -26,9 +26,27 @@
                         <label><b>Periodo:</b></label>
                         <input type="text" class="form-control" required formControlName="periodo_dir">
                     </div>
-                    <div class="form-group">
 
-                    </div>
+
+                    <div class="form-group">
+                        <label><b>Asociacion:</b></label
+                        ><br />
+                        <select
+                          type="option"
+                          class="form-control"
+                          required
+                          formControlName="id_soc"
+                        >
+                          <option>Ninguna</option>
+                          <option
+                            *ngFor="let asociacion of asociaciones"
+                            value="{{ asociacion._id }}"
+                          >
+                            {{ asociacion.nombre_aso }}
+                          </option>
+                        </select>
+                      </div>
+
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -64,6 +82,14 @@
                         <label><b>Periodo:</b></label>
                         <input [(ngModel)]="directivaUpdate.periodo_dir" type="text" class="form-control" required name="periodo_dir">
                     </div>
+
+                    <div class="form-group">
+                        <label><b>Asociacion:</b></label>
+                        <td scope="col" class="text-center" *ngFor="let asociacion of directiva1.id_asociacion">
+                            <span>{{ asociacion.id_soc.nombre_aso }}</span>
+                        </td>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -113,6 +139,7 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Periodo</th>
+                                <th scope="col">Asociacion</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -122,6 +149,9 @@
                                 <td>{{directiva.nom_dir}}</td>
                                 <td>{{directiva.ape_dir}}</td>
                                 <td>{{directiva.periodo_dir}}</td>
+                                <td scope="col" class="text-center" *ngFor="let asociacion of directiva1.id_asociacion">
+                                    <span>{{ asociacion.id_soc.nombre_aso }}</span>
+                                </td>
 
 
                                 <td>

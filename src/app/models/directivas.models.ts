@@ -4,7 +4,11 @@ export class DirectivasModel{
     nom_dir:string;
     ape_dir:string;
     periodo_dir:string;
-    id_asociacion:string;
+    
+    id_asociacion:[{
+        _id: string;
+        id_soc: string;
+    }];
    
 }
 
@@ -14,7 +18,10 @@ export interface Directiva{
     nom_dir:string;
     ape_dir:string;
     periodo_dir:string;
-    id_asociacion:string;
+    id_asociacion:[{
+        _id: string;
+        id_soc: string;
+    }];
    
 }
 
