@@ -73,12 +73,12 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
       id_enti: split[1]    
     }];
     //this.capacitacion.prof_cap[0].id_enti = values['id_enti'];
-    /*this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
+    this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
       this.capacitaciones = resp.capacitacion;
       window.location.reload()
       
     }, (err) => {
-    });*/
+    });
     console.log(this.capacitacion);
     console.log(split +  values['id_enti']);
   }
