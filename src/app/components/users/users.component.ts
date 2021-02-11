@@ -6,6 +6,7 @@ import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AsociacionesService } from 'src/app/services/asociaciones.service';
 import { AsociacionesModel, Asociacion} from '../../models/asociaciones.models';
 import Swal from 'sweetalert2';
 
@@ -26,10 +27,12 @@ export class UsersComponent implements OnDestroy, OnInit{
   asociacionesForm: FormGroup;
   asociacion1: AsociacionesModel = new AsociacionesModel();
   asociacionUpdate: AsociacionesModel = new AsociacionesModel();
+  idAsoc: string;
 
   constructor(
     private _userService: UsuarioService,
-    private _builder: FormBuilder
+    private _builder: FormBuilder,
+    private _asociacionesService:AsociacionesService
     ){
     this.usersForm = this._builder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
@@ -59,6 +62,7 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
+      console.log(this.usuarios);
       this.dtTrigger.next();
     });
 
@@ -68,6 +72,18 @@ export class UsersComponent implements OnDestroy, OnInit{
       //this.dtTrigger.next();
     });
 
+  }
+
+  enviarAso(values) {
+    this.asociacion1.nombre_aso = values['nombre_aso'];
+    this._asociacionesService.addAsociaciones(this.asociacion1).subscribe((resp:any) => {
+      this.asociaciones = resp.asociacion1;
+      console.log(resp.asociaciones);
+      window.location.reload()
+      
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   enviar(values){
@@ -82,13 +98,19 @@ export class UsersComponent implements OnDestroy, OnInit{
     this.usuario.barrio = values['barrio'];
     this.usuario.parroquia = values['parroquia'];
     this.usuario.role = values['role'];
-    this.usuario.id_soc = values['id_soc'];
+    this.usuario.id_asociacion= [{
+      _id: this.usuarios[0]._id, 
+      id_asociacion: values['id_soc']
+    }
+  ];
+    console.log( JSON.stringify(this.usuario, null, 4));
+    
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
-      
     }, (err) => {
     });
+    
   }
 
   openModalActualizar(id:string) {
@@ -107,7 +129,14 @@ export class UsersComponent implements OnDestroy, OnInit{
     });
 
     Swal.showLoading();
-
+    
+    this.idAsoc = this.usuarioUpdate.id_asociacion;
+    this.usuarioUpdate.id_asociacion = [{
+      _id: this.usuarioUpdate._id, 
+      id_asociacion: this.idAsoc
+    }];
+    console.log( JSON.stringify(this.usuarioUpdate, null, 4));
+    
     this._userService.updateUser(this.usuarioUpdate).subscribe(resp => {
       Swal.close();
       window.location.reload();
@@ -118,6 +147,7 @@ export class UsersComponent implements OnDestroy, OnInit{
         icon: 'error',
       });
     });
+  
   }
 
   buscadorUserActual(id:string){
