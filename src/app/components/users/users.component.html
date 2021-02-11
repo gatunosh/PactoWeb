@@ -1,10 +1,9 @@
 <app-navbar></app-navbar>
-
+<!-- ADD Modal HTML -->
 <div id="addUser" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <form class="was-validated" [formGroup]="usersForm" (ngSubmit)="enviar(usersForm.value)">
-                
                 <div class="modal-header">
                     <h4 class="modal-title">Nuevo Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -24,10 +23,9 @@
                         </div>
                     </div>
                     <div class="col">
-                        <label for="sel1"><b>Asoción:</b></label>
+                        <label for="sel1"><b>Asociación:</b></label>
                         <select class="custom-select" id="sel1" formControlName="id_soc" required>
-                            
-                            <option *ngFor="let asociacion of asociaciones " [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
+                            <option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
                         </select>
                         <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('id_soc').touched">
                             Campo requerido
@@ -120,13 +118,21 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group row">
+                        <div class="col">
                         <label for="sel1"><b>Rol:</b></label>
                         <select [(ngModel)]="usuarioUpdate.role"  class="form-control" id="sel1" name="role">
                             <option>ADMIN_ROLE</option>
                             <option>SOCIO_ROLE</option>
                             <option>CLIENTE_ROLE</option>
                         </select>
+                    </div >
+                    <div class="col">
+                        <label for="sel1"><b>Asociación:</b></label>
+                        <select  [(ngModel)]="usuarioUpdate.id_asociacion" class="form-control" id="sel1"  name="id_soc">
+                            <option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
+                        </select>
+                    </div>
                     </div>
                     <div class="form-group row">
                         <div class="col">
@@ -222,7 +228,7 @@
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Móvil</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Asociación</th>
+                                <th scope="col">Ang servesociación</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -234,8 +240,9 @@
                                 <td>{{usuario.tlfc}}</td>
                                 <td>{{usuario.tlfm}}</td>
                                 <td>{{usuario.email}}</td>
-                                <td>{{usuario.id_asociacion["nombre_aso"]}}</td>
-
+                                <td *ngFor="let asociacion of usuario.id_asociacion">{{asociacion.id_asociacion["nombre_aso"]}}</td>
+                                
+ 
                                 <td>
                                     <button type="button" class="btn btn-outline-warning" href="#editUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="fas fa-edit"></i></button>&nbsp;
                                     <button type="button" class="btn btn-outline-danger" href="#deleteUser" (click)="openModalActualizar(usuario._id)" data-toggle="modal"><i class="far fa-trash-alt"></i></button>

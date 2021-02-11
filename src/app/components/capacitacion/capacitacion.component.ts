@@ -53,7 +53,7 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     this._capacitacionService.getCapacitaciones().subscribe((resp:any) => {
       this.capacitaciones = resp.capacitacion;
       console.log(resp.capacitacion);
-      this.dtTrigger.next();
+      //this.dtTrigger.next();
     });  
 
     this._entidadService.getEntidades().subscribe((resp:any) => {
