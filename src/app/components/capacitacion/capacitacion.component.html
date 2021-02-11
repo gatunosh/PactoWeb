@@ -37,10 +37,10 @@
 						<label><b>Entidad:</b></label><br>
 						<select type="option" class="form-control" required formControlName="id_enti">
 							<option>Ninguna</option>
-							<option *ngFor="let entidad of entidades" value="{{entidad._id}}">{{entidad.nom_enti}}</option>
+							<option *ngFor="let entidad of entidades" value={{entidad._id}}-{{entidad.nom_enti}}>{{entidad.nom_enti}}</option>
 						</select>
 						
-					</div>					
+					</div>			
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -171,8 +171,7 @@
 					<th scope="col" class="text-center">Fecha Fin</th>
 					<th scope="col" class="text-center">Hora Inicio</th>
 					<th scope="col" class="text-center">Hora Fin</th>
-					<th scope="col" class="text-center">Entidad</th>
-					<!--<th scope="col" class="text-center">Entidad</th>-->
+					<th scope="col" class="text-center">Entidad</th>				
 					<th scope="col" class="text-center">Acciones</th>
 				</tr>
 			  </thead>
@@ -182,11 +181,10 @@
 					<td scope="col" class="text-center">{{capacitacion.fech_ini_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.fech_fin_cap}}</td>
 					<td scope="col" class="text-center">{{capacitacion.hora_ini_cap}}</td>
-					<td scope="col" class="text-center">{{capacitacion.hora_fin_cap}}</td>					
-					
-					<td></td>
-
-					<!--<td scope="col" class="text-center">{{capacitacion.prof_cap[0].id_enti.nom_enti}}</td>					-->
+					<td scope="col" class="text-center">{{capacitacion.hora_fin_cap}}</td>	
+					<td scope="col" class="text-center" *ngFor="let entidad of capacitacion.prof_cap">{{entidad.id_enti["nom_enti"]}}</td>										
+					<!--<td scope="col" class="text-center">{{capacitacion.prof_cap[0]._id}}</td>	-->
+														  			
 					<!--<td scope="col" class="text-center">{{capacitacion.prof_cap[0]}}</td>-->
 					<td>
 						<div style="text-align: center">

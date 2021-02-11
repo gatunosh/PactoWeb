@@ -31,8 +31,7 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     private _entidadService: EntidadService,
     private _builder: FormBuilder
     ){
-      this.capacitacionesForm = this._builder.group({
-
+    this.capacitacionesForm = this._builder.group({
     id_enti: ['',],
     tem_cap: ['',],
     fech_ini_cap: ['',],
@@ -58,25 +57,30 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
 
     this._entidadService.getEntidades().subscribe((resp:any) => {
       this.entidades = resp.entidad;
-      this.dtTrigger.next();
+     
     });     
   }
 
   enviar(values){
+    let split = values['id_enti'].split("-", 2);
     this.capacitacion.tem_cap = values['tem_cap'];
     this.capacitacion.fech_ini_cap = values['fech_ini_cap'];
     this.capacitacion.fech_fin_cap = values['fech_fin_cap'];
     this.capacitacion.hora_ini_cap = values['hora_ini_cap'];
     this.capacitacion.hora_fin_cap = values['hora_fin_cap'];
-    this.capacitacion.prof_cap=[{id_enti:values['id_enti'],_id:""}];
+    this.capacitacion.prof_cap=[{
+      _id: split[0],
+      id_enti: split[1]    
+    }];
     //this.capacitacion.prof_cap[0].id_enti = values['id_enti'];
-    this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
+    /*this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
       this.capacitaciones = resp.capacitacion;
       window.location.reload()
       
     }, (err) => {
-    });
+    });*/
     console.log(this.capacitacion);
+    console.log(split +  values['id_enti']);
   }
 
 
