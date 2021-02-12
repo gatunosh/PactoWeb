@@ -14,6 +14,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Usuario } from 'src/app/models/usuario.models';
 import { Asociacion } from 'src/app/models/asociaciones.models';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-prodsocio',
@@ -21,8 +22,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ProdsocioComponent implements OnInit, OnDestroy {
 
+  myDate = new Date();
 
- @Input() prodSocio: any = null;
+  //@Input() productoSocio: any = null;
 
 
   private url: string = 'https://restserver-pacto.herokuapp.com';
@@ -46,9 +48,13 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     private activerouter: ActivatedRoute,
     private _productosService: ProductosService,
     private _userService: UsuarioService,
+
     private _builder: FormBuilder) {
   }
 
+  /*get errorCtrProducto() {
+    return this.productosSocioForm.controls;
+  }*/
   ngOnInit(): void {
     this.productosSocioForm = this._builder.group({
       id_pro: ['', Validators.required],
@@ -71,27 +77,36 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
 
     this._userService.getUsers().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
+      this.dtTrigger.next();
     });
 
     this._userService.getAso().subscribe((res: any) => {
       this.asociaciones = res.asociacion;
+      console.log(this.asociaciones);
+      //this.dtTrigger.next();
     });
 
+    // let productoid = this.activerouter.snapshot.paramMap.get('id');
+    // console.log(productoid);
+    //let idasociacion =this.activerouter.snapshot.paramMap.get('id');
+    //console.log(idasociacion);
     this._prodsocioService.getProdSocio().subscribe((res: any) => {
       this.prodSocios = res.prodSocio;
-      console.log('prod', this.prodSocios);      
+      console.log('prod', this.prodSocios);
+      this.dtTrigger.next();
     });
 
     this._productosService.getProductos().subscribe((res: any) => {
+      debugger;
       this.productos = res.producto;
-      this.dtTrigger.next();
+      console.log(this.productos);
     });
 
   }
   get errorCtr() {
     return this.productosSocioForm.controls;
   }
-/*
+
   enviar(values) {
     debugger;
     this.productoSocio1.aso_ps = this.asociaciones[0]._id;
@@ -115,7 +130,7 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     }, (err) => {
       console.log(err);
     });
-  }*/
+  }
 
   openModalActualizar(id: string) {
     this.productoSocioUpdate = this.buscadorProductoActual(id);
@@ -159,9 +174,16 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     return productoActual;
   }
 
-  onClick(prodSocio) {
-    this.prodSocio = prodSocio;
-   }
+  onClick(productoSocio1) {
+    debugger;
+    this.productoSocio1 = productoSocio1;
+
+  }
+  /*onClick(producto) {
+    debugger;
+    this.producto = producto;
+
+  }*/
 
   delete() {
     Swal.fire({

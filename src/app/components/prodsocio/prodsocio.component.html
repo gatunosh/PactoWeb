@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<!--<div id="addProductosSocio" class="modal fade">
+<div id="addProductosSocio" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form class="was-validated" [formGroup]="productosSocioForm" (ngSubmit)="enviar(productosSocioForm.value)">
@@ -21,7 +21,7 @@
 									Campo requerido.
 								</div>
 							</div>
-					<div class="form-group">
+					<!--<div class="form-group">
 								<label for="sel1"><b>Asociación:</b></label>
 								<select class="custom-select" id="sel1" formControlName="nombre_aso" required>
 									<option>Escoja una asociación</option>
@@ -42,7 +42,7 @@
 					<div class="form-group">
 						<label><b>Detalle:</b></label>
 						<input type="text" class="form-control" formControlName="desc_pro">
-					</div>
+					</div>-->
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label><b>Cantidad:</b></label>
@@ -80,11 +80,11 @@
 			</form>
 		</div>
 	</div>
-</div>-->
+</div>
 
 
 
-<div id="detalleProductosSocio" class="modal fade">
+<!--<div id="detalleProductosSocio" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="card">
@@ -93,14 +93,14 @@
 						<h4 class="modal-title">Detalle Producto</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div><br>
-					<form *ngIf="prodSocio">
-						Nombre del Producto: {{prodSocio.id_pro.nom_pro.toString()}}<br>
-						Nombre del Socio: {{prodSocio.id_soc.nombre.toString()}}<br>
-						Asociacion: {{prodSocio.aso_ps.nombre_aso.toString()}}<br>
-						Cantidad: {{prodSocio.can_ps}}<br>
+					<form *ngIf="prodSocios">
+						Producto: {{prodSocio.id_pro.nom_pro.toString()}}<br>
+						Usuario: {{prodSocio.id_soc.nombre.toString()}}<br>
+						Asociacion: {{prodSocio.aso_ps.mobre_aso.toString()}}<br>
+						Cantidad: {{prodSocio.desc_pro}}<br>
 						Precio: {{prodSocio.pre_ps}}<br>
-						Fecha: {{prodSocio.fech_ps}}<br>
-						Fecha de elaboración: {{prodSocio.fecha_ela_pro}}<br>
+						Fecha: {{prodSocio.fecha_ps}}<br>
+						Fecha elaboración: {{prodSocio.fecha_ela_pro}}<br>
 						Fecha de caducidad: {{prodSocio.fecha_cad_pro}}<br>
 					</form>
 				</div>
@@ -206,14 +206,14 @@
 						</thead>
 						<tbody>
 							<tr *ngFor="let prodSocio of prodSocios">
-								<td>{{prodSocio.id_pro.nom_pro.toString()}}</td>
-                                <td>{{prodSocio.id_soc.nombre.toString()}}</td>
-								<td>{{prodSocio.aso_ps.nombre_aso.toString()}}</td>
+								<td>{{prodSocio.id_pro.nom_pro}}</td>
+                                <td>{{prodSocio.id_soc.nombre}}</td>
+								<td>{{prodSocio.aso_ps.nombre_aso}}</td>
 								<td>{{prodSocio.can_ps}}</td>
 								<td>{{prodSocio.pre_ps}}</td>
 								<td>
 									<button type="button" class="btn btn-outline-primary" href="#detalleProductosSocio"
-										data-toggle="modal" (click)="onClick(prodSocio)">Detalle</button>&nbsp;
+										data-toggle="modal" (click)="onClick(productoSocio)">Detalle</button>&nbsp;
 									<!--<button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="fas fa-edit"></i></button>&nbsp;-->
 									<button type="button" class="btn btn-outline-danger" href="#deleteProdSocio"
 										data-toggle="modal" (click)="openModalActualizar(prodSocio._id)"><i
