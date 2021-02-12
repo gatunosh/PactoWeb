@@ -14,6 +14,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Usuario } from 'src/app/models/usuario.models';
 import { Asociacion } from 'src/app/models/asociaciones.models';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-prodsocio',
@@ -115,13 +116,16 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     this.productoSocio1.id_pro = values['id_pro'];
     this.productoSocio1.can_ps = values['can_ps'];
     this.productoSocio1.pre_ps = values['pre_ps'];
-    this.productoSocio1.fech_ps = values['fech_ps'];
+    this.productoSocio1.fech_ps =values['fech_ps'];
+    
     this.productoSocio1.fecha_ela_pro = values['fecha_ela_pro'];
-    this.productoSocio1.fecha_cad_pro = values['fecha-cad_pro'];
+    this.productoSocio1.fecha_cad_pro = values['fecha_cad_pro'];
     this._prodsocioService.addProdSocio(this.productoSocio1).subscribe((resp: any) => {
-      this.prodSocios = resp.productoSocio1;
+      this.prodSocios = resp.productoSocio;
       console.log(resp.prodSocios);
-      window.location.reload()
+      console.log(this.productoSocio1.fech_ps);
+      //debugger;
+  window.location.reload()
 
     }, (err) => {
       console.log(err);
@@ -171,8 +175,15 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   }
 
   onClick(productoSocio1) {
+    debugger;
     this.productoSocio1 = productoSocio1;
+
   }
+  /*onClick(producto) {
+    debugger;
+    this.producto = producto;
+
+  }*/
 
   delete() {
     Swal.fire({

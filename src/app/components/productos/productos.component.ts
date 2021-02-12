@@ -168,7 +168,9 @@ export class ProductosComponent implements OnDestroy, OnInit {
   }
 
   onClick(producto) {
+    
     this.producto = producto;
+
   }
 
   delete() {
