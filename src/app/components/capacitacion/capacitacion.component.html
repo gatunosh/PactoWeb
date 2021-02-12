@@ -4,53 +4,6 @@
 <!-- ADD Modal HTML -->
 
 <div id="addCapacitacion" class="modal fade">
-<<<<<<< HEAD
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!--<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">-->
-				<form class="was-validated" [formGroup]="capacitacionesForm" (ngSubmit)="enviar(capacitacionesForm.value)">
-				<div class="modal-header">
-					<h4 class="modal-title">Nueva Capacitacion</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label><b>Tema:</b></label>
-						<input type="text" class="form-control"  required formControlName="tem_cap">
-					</div>
-					<div class="form-group">
-						<label><b>Fecha Inicio:</b></label>
-						<input type="date" class="form-control" required formControlName="fech_ini_cap">						
-					</div>
-					<div class="form-group">
-						<label><b>Fecha Fin:</b></label>
-						<input type="date" class="form-control" required formControlName="fech_fin_cap">
-					</div>
-					<div class="form-group">
-						<label><b>Hora Inicio:</b></label>
-						<input type="Time" class="form-control" required formControlName="hora_ini_cap">
-					</div>
-					<div class="form-group">
-						<label><b>Hora Fin:</b></label>
-						<input type="Time" class="form-control" required formControlName="hora_fin_cap">
-                    </div>
-                    <div class="form-group">
-						<label><b>Entidad:</b></label><br>
-						<select type="option" class="form-control" required formControlName="id_enti">
-							<option>Ninguna</option>
-							<option *ngFor="let entidad of entidades" value={{entidad._id}}-{{entidad.nom_enti}}>{{entidad.nom_enti}}</option>
-						</select>
-						
-					</div>			
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-success" value="Agregar">
-				</div>
-			</form>
-		</div>
-	</div>
-=======
   <div class="modal-dialog">
     <div class="modal-content">
       <!--<form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">-->
@@ -147,7 +100,6 @@
       </form>
     </div>
   </div>
->>>>>>> f06cc4dd4eb55545a319cd31d7347ea16c09765a
 </div>
 
 <!-- id="addCapacitacion" class="modal fade">

@@ -8,6 +8,8 @@ import { PedidoModel, Pedido} from '../../models/pedido.models';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Usuario, UsuarioModel } from '../../models/usuario.models';
+import { UsuarioService } from '../../services/usuario.service';
 
 
 //import { Person } from '../person';
@@ -45,6 +47,8 @@ export class PedidoComponent implements OnInit, OnDestroy{
   pedidosForm: FormGroup;
   producto1: ProductosModel = new ProductosModel();
   pedido1: PedidoModel = new PedidoModel();
+  usuarios: Usuario[] = [];
+  usuario: UsuarioModel = new UsuarioModel();
   //pedidoUpdate: PedidoModel = new PedidoModel();
 
   constructor(
@@ -53,6 +57,7 @@ export class PedidoComponent implements OnInit, OnDestroy{
     private _http: HttpClient,
     private _pedidoService:PedidoService,
     private activerouter:ActivatedRoute,
+    private _userService: UsuarioService,
     private _builder: FormBuilder){
     this.pedidosForm = this._builder.group ({
       id_cli: ['',],
@@ -79,15 +84,19 @@ export class PedidoComponent implements OnInit, OnDestroy{
 
     this._pedidoService.getPedidos().subscribe((resp:any) => {
       this.pedidos = resp.factura;
-      console.log(this.pedidos);
+      //console.log(this.pedidos);
       this.dtTrigger.next();
     });
     this._pedidoService.getProductos().subscribe((res:any) =>{
       this.productos= res.producto;
-      console.log(this.productos);
+      //console.log(this.productos);
       this.dtTrigger.next();
     });
-       
+    this._userService.getUsers().subscribe((resp:any) => {
+      this.usuarios = resp.usuarios;
+      //console.log(this.usuarios);
+      this.dtTrigger.next();
+    });
   }
   
   ngOnDestroy(): void {
@@ -95,20 +104,26 @@ export class PedidoComponent implements OnInit, OnDestroy{
     this.dtTrigger.unsubscribe();
   }
 
-  /*enviar(values){
-    this.pedido.id_cli = values['id_cli'];
-    this.pedido.fec_fac = values['fec_fac'];
-    this.pedido.tot_fac = values['tot_fac'];
-    this.pedido.estado = values['estado'];
-    this.pedido.detalle = values['detalle'];
+  enviar(values){
+    this.pedido1.id_cli = values['id_cli'];
+    this.pedido1.fec_fac = values['fec_fac'];
+    this.pedido1.tot_fac = values['tot_fac'];
+    this.pedido1.estado = values['estado'];
+    this.pedido1.detalle= [{
+      _id: this.pedido1[0]._id, 
+      cantidad: this.pedido1[0].cantidad = values['cantidad'], 
+      subtotal: this.pedido1[0].subtotal = values['subtotal'],
+      id_pro: values['id_pro']
+    }]
     this._pedidoService.addPedido(this.pedido1).subscribe((resp:any) => {
       this.pedidos = resp.pedidos;
+      console.log(resp.pedidos);
       window.location.reload();
 
     }, (err) => {
 
     });
-  }*/
+  }
 }
 
 

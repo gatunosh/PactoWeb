@@ -1,7 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
 import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
@@ -103,8 +100,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       id_asociacion: values['id_soc']
     }
   ];
-   
-    
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
