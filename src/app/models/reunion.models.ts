@@ -5,7 +5,6 @@ export class ReunionesModel{
     fec_reu: string;
     hor_reu: string;
     mul_reu: number;
-    id_asoc_reu: string;
     asistencia: [
             {
               _id: string;
@@ -26,7 +25,6 @@ export interface Reuniones{
     fec_reu: string;
     hor_reu: string;
     mul_reu: number;
-    id_asoc_reu: string;
     asistencia: [
             {
               _id: string;

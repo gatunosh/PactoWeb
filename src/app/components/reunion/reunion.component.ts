@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Reuniones, ReunionesModel } from '../../models/reunion.models';
@@ -9,19 +9,23 @@ import Swal from 'sweetalert2';
 import { DomSanitizer } from '@angular/platform-browser';
 
 
+
+
 @Component({
   selector: 'app-reunion',
   templateUrl: './reunion.component.html'
 })
 export class ReunionComponent implements OnInit, OnDestroy {
-  @Input() reunion: any =null;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   reuniones: Reuniones[] = [];
   reunionesForm: FormGroup;
+  reunion: ReunionesModel = new ReunionesModel();
   reunion1: ReunionesModel = new ReunionesModel();
   //usuarioUpdate: UsuarioModel = new UsuarioModel();
-fileUrl;
+asistencia : Reuniones[]=[];
+  idusu: string;
+  fileUrl;
   constructor(
     private _reunionService: ReunionService,
     private _builder: FormBuilder, 
@@ -55,6 +59,7 @@ fileUrl;
       this.reuniones = resp.reuniones;
       this.dtTrigger.next();
     });
+  
     const data = 'acta';
     const blob = new Blob([data], { type: 'application/octet-stream' });
     this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
