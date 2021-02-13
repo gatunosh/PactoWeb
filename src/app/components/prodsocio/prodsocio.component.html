@@ -84,7 +84,7 @@
 
 
 
-<!--<div id="detalleProductosSocio" class="modal fade">
+<div id="detalleProductosSocio" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="card">
@@ -93,13 +93,13 @@
 						<h4 class="modal-title">Detalle Producto</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div><br>
-					<form *ngIf="prodSocios">
+					<form *ngIf="prodSocio">
 						Producto: {{prodSocio.id_pro.nom_pro.toString()}}<br>
 						Usuario: {{prodSocio.id_soc.nombre.toString()}}<br>
-						Asociacion: {{prodSocio.aso_ps.mobre_aso.toString()}}<br>
-						Cantidad: {{prodSocio.desc_pro}}<br>
+						Asociacion: {{prodSocio.aso_ps.nombre_aso.toString()}}<br>
+						Cantidad: {{prodSocio.can_ps}}<br>
 						Precio: {{prodSocio.pre_ps}}<br>
-						Fecha: {{prodSocio.fecha_ps}}<br>
+						Fecha: {{prodSocio.fech_ps}}<br>
 						Fecha elaboración: {{prodSocio.fecha_ela_pro}}<br>
 						Fecha de caducidad: {{prodSocio.fecha_cad_pro}}<br>
 					</form>
@@ -213,7 +213,7 @@
 								<td>{{prodSocio.pre_ps}}</td>
 								<td>
 									<button type="button" class="btn btn-outline-primary" href="#detalleProductosSocio"
-										data-toggle="modal" (click)="onClick(productoSocio)">Detalle</button>&nbsp;
+										data-toggle="modal" (click)="onClick(prodSocio)">Detalle</button>&nbsp;
 									<!--<button type="button" class="btn btn-outline-warning" href="#editProductos" data-toggle="modal" (click)="openModalActualizar(producto._id)"><i class="fas fa-edit"></i></button>&nbsp;-->
 									<button type="button" class="btn btn-outline-danger" href="#deleteProdSocio"
 										data-toggle="modal" (click)="openModalActualizar(prodSocio._id)"><i

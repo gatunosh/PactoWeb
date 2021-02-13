@@ -14,7 +14,6 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Usuario } from 'src/app/models/usuario.models';
 import { Asociacion } from 'src/app/models/asociaciones.models';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { debug } from 'console';
 
 @Component({
   selector: 'app-prodsocio',
@@ -22,9 +21,7 @@ import { debug } from 'console';
 })
 export class ProdsocioComponent implements OnInit, OnDestroy {
 
-  myDate = new Date();
-
-  //@Input() productoSocio: any = null;
+  @Input() prodSocio: any = null;
 
 
   private url: string = 'https://restserver-pacto.herokuapp.com';
@@ -77,19 +74,12 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
 
     this._userService.getUsers().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
-      this.dtTrigger.next();
     });
 
     this._userService.getAso().subscribe((res: any) => {
       this.asociaciones = res.asociacion;
-      console.log(this.asociaciones);
-      //this.dtTrigger.next();
     });
 
-    // let productoid = this.activerouter.snapshot.paramMap.get('id');
-    // console.log(productoid);
-    //let idasociacion =this.activerouter.snapshot.paramMap.get('id');
-    //console.log(idasociacion);
     this._prodsocioService.getProdSocio().subscribe((res: any) => {
       this.prodSocios = res.prodSocio;
       console.log('prod', this.prodSocios);
@@ -97,9 +87,7 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     });
 
     this._productosService.getProductos().subscribe((res: any) => {
-      debugger;
       this.productos = res.producto;
-      console.log(this.productos);
     });
 
   }
@@ -108,7 +96,6 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   }
 
   enviar(values) {
-    debugger;
     this.productoSocio1.aso_ps = this.asociaciones[0]._id;
     //Revisar de donde sacar el id del usuario   
     this.productoSocio1.id_soc = this.usuarios[0]._id;
@@ -116,16 +103,13 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     this.productoSocio1.id_pro = values['id_pro'];
     this.productoSocio1.can_ps = values['can_ps'];
     this.productoSocio1.pre_ps = values['pre_ps'];
-    this.productoSocio1.fech_ps =values['fech_ps'];
-    
+    this.productoSocio1.fech_ps = values['fech_ps'];
     this.productoSocio1.fecha_ela_pro = values['fecha_ela_pro'];
     this.productoSocio1.fecha_cad_pro = values['fecha_cad_pro'];
     this._prodsocioService.addProdSocio(this.productoSocio1).subscribe((resp: any) => {
-      this.prodSocios = resp.productoSocio;
+      this.prodSocios = resp.productoSocio1;
       console.log(resp.prodSocios);
-      console.log(this.productoSocio1.fech_ps);
-      //debugger;
-  window.location.reload()
+      window.location.reload()
 
     }, (err) => {
       console.log(err);
@@ -174,16 +158,9 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     return productoActual;
   }
 
-  onClick(productoSocio1) {
-    debugger;
-    this.productoSocio1 = productoSocio1;
-
-  }
-  /*onClick(producto) {
-    debugger;
-    this.producto = producto;
-
-  }*/
+  onClick(prodSocio) {
+    this.prodSocio = prodSocio;
+   }
 
   delete() {
     Swal.fire({
