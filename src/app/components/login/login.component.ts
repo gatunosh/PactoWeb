@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.usuario).subscribe(resp => {
       this.usuario.role = resp['role'];
+
+      localStorage.setItem('roleUsuarioLogueado', this.usuario.role);
       
       Swal.close();
 

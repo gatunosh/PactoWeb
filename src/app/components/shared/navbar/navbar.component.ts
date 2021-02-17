@@ -10,14 +10,22 @@ import { Router } from '@angular/router';
   ]
 })
 export class NavbarComponent implements OnInit {
-
+  navegacionProductos: string;
   constructor(private _auth: LoginService, private _router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('roleUsuarioLogueado')) {
+      let role = localStorage.getItem('roleUsuarioLogueado');
+      if (role == "administrador")
+        this.navegacionProductos = "['/productos']";
+      else
+        this.navegacionProductos = "['/prodsocio']";
+
+    }
   }
 
-    salir() {
-      this._auth.logout();
-      this._router.navigateByUrl('/login');
-    }
+  salir() {
+    this._auth.logout();
+    this._router.navigateByUrl('/login');
+  }
 }
