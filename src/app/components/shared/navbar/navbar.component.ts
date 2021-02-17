@@ -16,11 +16,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('roleUsuarioLogueado')) {
       let role = localStorage.getItem('roleUsuarioLogueado');
-      if (role == "administrador")
-        this.navegacionProductos = "['/productos']";
+      if (role == "ADMIN_ROLE")
+        this.navegacionProductos = "/productos";
       else
-        this.navegacionProductos = "['/prodsocio']";
-
+        this.navegacionProductos = "/prodsocio";
     }
   }
 
