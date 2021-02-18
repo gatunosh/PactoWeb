@@ -28,6 +28,16 @@
 									class="fas fa-plus-square"></i>&nbsp;&nbsp;<span>Agregar</span></a>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="sel1"><b>Asociación:</b></label>
+						<select class="custom-select" id="sel1" formControlName="aso_ps" required>
+							<option>Escoja una asociación</option>
+							<option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
+						</select>
+						<div class="invalid-feedback" role="alert" *ngIf="productosForm.get('asociacion._id')">
+							Campo requerido
+						</div>
+					</div>
 					<!--<div class="form-group">
 								<label for="sel1"><b>Asociación:</b></label>
 								<select class="custom-select" id="sel1" formControlName="nombre_aso" required>

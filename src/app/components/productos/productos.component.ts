@@ -6,6 +6,7 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { ProductosModel, Producto } from '../../models/productos.models';
 import { categoriaProducto, categoriaProductoModel } from '../../models/categoria.models';
 import { Subject } from 'rxjs';
+import { Asociacion } from 'src/app/models/asociaciones.models';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -28,6 +29,8 @@ export class ProductosComponent implements OnDestroy, OnInit {
   producto1: ProductosModel = new ProductosModel();
   categoria: categoriaProductoModel = new categoriaProductoModel();
   productoUpdate: ProductosModel = new ProductosModel();
+
+  asociaciones: Asociacion[] = [];
 
   constructor(
     private _auth: LoginService,
@@ -109,7 +112,7 @@ export class ProductosComponent implements OnDestroy, OnInit {
     //     console.log(this.categoria._id);
     // }
     this.producto1.id_cat = values['id_cat'];
-    this.producto1.aso_ps = this.productos[0].aso_ps;
+    this.producto1.aso_ps = values['aso_ps'];
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
