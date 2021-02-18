@@ -48,10 +48,10 @@ export class LoginComponent implements OnInit {
     Swal.showLoading();
 
     this.auth.login(this.usuario).subscribe(resp => {
-      if(resp['usuario'].role)
-      {
-        this.usuario.role = resp['usuario'].role ;
-        localStorage.setItem('roleUsuarioLogueado', this.usuario.role);
+      if (resp['usuario'].role) {
+        this.usuario.role = resp['usuario'].role;
+        
+        localStorage.setItem('idUsuario', resp['usuario']._id);
       }
 
       Swal.close();

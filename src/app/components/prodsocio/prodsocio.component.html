@@ -21,16 +21,16 @@
 									Campo requerido.
 								</div>
 							</div>
-					<!--<div class="form-group">
+					<div class="form-group">
 								<label for="sel1"><b>Asociación:</b></label>
-								<select class="custom-select" id="sel1" formControlName="nombre_aso" required>
+								<select class="custom-select" id="sel1" formControlName="aso_ps" required>
 									<option>Escoja una asociación</option>
-									<option *ngFor="let asociacion of asociaciones">{{asociacion.nombre_aso}}</option>
+									<option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
 								</select>
-								<div class="invalid-feedback" role="alert" *ngIf="asociacionForm.get('nombre_aso').touched">
+								<div class="invalid-feedback" role="alert" *ngIf="productosSocioForm.get('asociacion._id')">
 									Campo requerido
 								</div>
-							</div>-->
+							</div>
 
 					<!--<div class="form-group">
 						<label><b>Nombre:</b></label>
@@ -42,7 +42,17 @@
 					<div class="form-group">
 						<label><b>Detalle:</b></label>
 						<input type="text" class="form-control" formControlName="desc_pro">
-					</div>-->
+					
+					 <div class="col">
+                        <label for="sel1"><b>Asociación:</b></label>
+                        <select class="custom-select" id="sel1" formControlName="id_soc" required>
+                            <option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
+                        </select>
+                        <div class="invalid-feedback" role="alert" *ngIf="usersForm.get('id_soc').touched">
+                            Campo requerido
+                        </div>
+                      </div>
+                </div></div>-->
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label><b>Cantidad:</b></label>
@@ -95,7 +105,7 @@
 					</div><br>
 					<form *ngIf="prodSocio">
 						Producto: {{prodSocio.id_pro.nom_pro.toString()}}<br>
-						Usuario: {{prodSocio.id_soc.nombre.toString()}}<br>
+						Usuario: {{prodSocio.id_soc.nombre}}<br>
 						Asociacion: {{prodSocio.aso_ps.nombre_aso.toString()}}<br>
 						Cantidad: {{prodSocio.can_ps}}<br>
 						Precio: {{prodSocio.pre_ps}}<br>

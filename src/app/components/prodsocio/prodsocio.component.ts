@@ -37,6 +37,8 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   categorias: categoriaProducto[];
   usuarios: Usuario[] = [];
   asociaciones: Asociacion[] = [];
+  usuario: any;
+
   constructor(
     private _auth: LoginService,
     private _router: Router,
@@ -72,6 +74,10 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
       }
     };
 
+    if (localStorage.getItem('idUsuario')) {
+      this.usuario = localStorage.getItem('idUsuario');
+    }
+
     this._userService.getUsers().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
     });
@@ -96,9 +102,15 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   }
 
   enviar(values) {
-    this.productoSocio1.aso_ps = this.asociaciones[0]._id;
+    this.productoSocio1.aso_ps = values['aso_ps'];
+   
     //Revisar de donde sacar el id del usuario   
-    this.productoSocio1.id_soc = this.usuarios[0]._id;
+    this.productoSocio1.id_soc = this.usuario;
+    /*[{
+       this.usuario.id_asociacion=[_id: this.usuarios[0]._id, 
+      id_asociacion: values['id_soc']
+    }
+  ]*/
 
     this.productoSocio1.id_pro = values['id_pro'];
     this.productoSocio1.can_ps = values['can_ps'];
@@ -159,8 +171,9 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   }
 
   onClick(prodSocio) {
+     
     this.prodSocio = prodSocio;
-   }
+  }
 
   delete() {
     Swal.fire({
