@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
         this.usuario.role = resp['usuario'].role;
         
         localStorage.setItem('idUsuario', resp['usuario']._id);
+        localStorage.setItem('roleUsuarioLogueado', this.usuario.role);
       }
+      
 
       Swal.close();
 
