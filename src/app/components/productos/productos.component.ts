@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { Asociacion } from 'src/app/models/asociaciones.models';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-productos',
@@ -38,6 +39,7 @@ export class ProductosComponent implements OnDestroy, OnInit {
     private _http: HttpClient,
     private _productosService: ProductosService,
     private activerouter: ActivatedRoute,
+    private _userService: UsuarioService,
     private _builder: FormBuilder) {
 
 
@@ -81,6 +83,10 @@ export class ProductosComponent implements OnDestroy, OnInit {
     this._productosService.getCategoria().subscribe((res: any) => {
       this.categorias = res.categoria;
       console.log(this.categorias);
+    });
+
+    this._userService.getAso().subscribe((res: any) => {
+      this.asociaciones = res.asociacion;
     });
 
     this._productosService.getProductos().subscribe((res: any) => {

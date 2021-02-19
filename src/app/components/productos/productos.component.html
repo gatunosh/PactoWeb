@@ -133,7 +133,7 @@
 					<form *ngIf="producto">
 						Categoría: {{producto.id_cat.nombre.toString()}}<br>
 						Nombre: {{producto.nom_pro}}<br>
-						Asociacion: {{producto.aso_ps}}<br>
+						Asociacion: {{producto.aso_ps.nombre_aso.toString()}}<br>
 						Descripición: {{producto.desc_pro}}<br>
 						Unidades: {{producto.uni_pro}}<br>
 						Stock: {{producto.sto_pro}}<br>
@@ -242,7 +242,7 @@
 						<tbody>
 							<tr *ngFor="let producto of productos">
 								<td>{{producto.nom_pro}}</td>
-								<td>{{producto.aso_ps}}</td>
+								<td>{{producto.aso_ps.nombre_aso.toString()}}</td>
 								<td>{{producto.desc_pro}}</td>
 								<td>{{producto.pvp_pro}}</td>
 								<td>
