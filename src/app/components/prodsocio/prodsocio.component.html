@@ -24,7 +24,7 @@
 					<div class="form-group">
 								<label for="sel1"><b>Asociación:</b></label>
 								<select class="custom-select" id="sel1" formControlName="aso_ps" required>
-									<option>Escoja una asociación</option>
+									<option selected disabled>Escoja una asociación</option>
 									<option *ngFor="let asociacion of asociaciones" [value]="asociacion._id">{{asociacion.nombre_aso}}</option>
 								</select>
 								<div class="invalid-feedback" role="alert" *ngIf="productosSocioForm.get('asociacion._id')">
