@@ -120,8 +120,8 @@ export class ProductosComponent implements OnDestroy, OnInit {
     //     console.log(this.categoria._id);
     // }
     this.producto1.id_cat = values['id_cat'];
-    // this.producto1.aso_ps = values['aso_ps'];
-    this.producto1.aso_ps = this.asociacion._id;
+    this.producto1.aso_ps = values['aso_ps'];
+    //this.producto1.aso_ps = this.asociacion._id;
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
