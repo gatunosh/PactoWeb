@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.usuario).subscribe(resp => {
       if (resp['usuario'].role) {
         this.usuario.role = resp['usuario'].role;
-        
         localStorage.setItem('idUsuario', resp['usuario']._id);
+        localStorage.setItem('idAsociacion',resp['usuario']['id_asociacion'][0].id_asociacion );
         localStorage.setItem('roleUsuarioLogueado', this.usuario.role);
       }
       

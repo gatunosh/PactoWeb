@@ -32,15 +32,13 @@ export class ProductosComponent implements OnDestroy, OnInit {
   productoUpdate: ProductosModel = new ProductosModel();
 
   asociaciones: Asociacion[] = [];
-
+  asociacion: any;
   constructor(
-    private _auth: LoginService,
-    private _router: Router,
-    private _http: HttpClient,
     private _productosService: ProductosService,
     private activerouter: ActivatedRoute,
     private _userService: UsuarioService,
-    private _builder: FormBuilder) {
+    private _builder: FormBuilder,
+  ) {
 
 
   }
@@ -87,6 +85,10 @@ export class ProductosComponent implements OnDestroy, OnInit {
 
     this._userService.getAso().subscribe((res: any) => {
       this.asociaciones = res.asociacion;
+      if (localStorage.getItem('idAsociacion')) {
+        this.asociacion = this.asociaciones.find(x => x._id === localStorage.getItem('idAsociacion'));
+       // this.productosForm.get('aso_ps').setValue(this.asociacion.nombre_aso);
+      }
     });
 
     this._productosService.getProductos().subscribe((res: any) => {
@@ -118,7 +120,8 @@ export class ProductosComponent implements OnDestroy, OnInit {
     //     console.log(this.categoria._id);
     // }
     this.producto1.id_cat = values['id_cat'];
-    this.producto1.aso_ps = values['aso_ps'];
+    // this.producto1.aso_ps = values['aso_ps'];
+    this.producto1.aso_ps = this.asociacion._id;
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
@@ -177,7 +180,7 @@ export class ProductosComponent implements OnDestroy, OnInit {
   }
 
   onClick(producto) {
-    
+
     this.producto = producto;
 
   }

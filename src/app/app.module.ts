@@ -34,6 +34,12 @@ import { AsociacionesComponent } from './components/asociaciones/asociaciones.co
 import { ProdsocioComponent } from './components/prodsocio/prodsocio.component';
 import { DirectivasComponent } from './components/directivas/directivas.component';
 
+// Import pdfmake-wrapper and the fonts to use
+import { PdfMakeWrapper } from 'pdfmake-wrapper';
+import pdfFonts from "pdfmake/build/vfs_fonts"; // fonts provided for pdfmake
+
+// Set the fonts to use
+PdfMakeWrapper.setFonts(pdfFonts);
 
 @NgModule({
   declarations: [
