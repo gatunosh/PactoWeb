@@ -59,14 +59,11 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-      //console.log(this.usuarios);
       this.dtTrigger.next();
     });
 
     this._userService.getAso().subscribe((res:any) =>{
       this.asociaciones= res.asociacion;
-      //console.log(this.asociaciones);
-      //this.dtTrigger.next();
     });
 
   }
@@ -77,7 +74,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       this.asociaciones = resp.asociacion1;
       console.log(resp.asociaciones);
       window.location.reload()
-      
     }, (err) => {
       console.log(err);
     });
