@@ -37,10 +37,32 @@ export class MaquinarianService {
             nom_maq: maquinaria1.nom_maq,
             tipo_maq: maquinaria1.tipo_maq,
             est_maq: maquinaria1.est_maq,
+            marca_man_maq: maquinaria1.marca_man_maq,
+            km_man_maq: maquinaria1.km_man_maq,
+            placa_man_maq: maquinaria1.placa_man_maq,
+            origen_man_maq: maquinaria1.origen_man_maq
             
         };
         return this._http.post(`${this.url}/maquinariasocio`,authData, {headers});
     }
+
+    updateMaquinarian(maquinaria1:Maquinarian){
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });
+
+        const authData = {
+            nom_maq: maquinaria1.nom_maq,
+            tipo_maq: maquinaria1.tipo_maq,
+            est_maq: maquinaria1.est_maq,
+            marca_man_maq: maquinaria1.marca_man_maq,
+            km_man_maq: maquinaria1.km_man_maq,
+            placa_man_maq: maquinaria1.placa_man_maq,
+            origen_man_maq: maquinaria1.origen_man_maq
+        };
+        return this._http.put(`${this.url}/maquinariasocio/${maquinaria1._id}`,authData,{headers});
+    }
+
 
    /* updatePedido(pedido:Pedido){
         const headers = new HttpHeaders({
