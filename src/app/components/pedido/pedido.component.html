@@ -1,228 +1,114 @@
 <!--NAVBAR-->
 <app-navbar></app-navbar>
 <!--MODAL-->
-<!--ADD Modal HTML -->
-<div id="addPedidoCli" class="modal fade">
-	<div class="modal-dialog">
+<!-- ADD Modal HTML -->
+
+<div id="addPedido" class="modal fade" tabindex="-1" role="dialog" style="text-align: center;">
+	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
-			<form>
-				<div class="modal-header">
-					<h4 class="modal-title">Nuevo Pedido</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label><b>Cliente:</b></label>
-					 <input type="text" class="form-control"name="nombre" [(ngModel)]="persona.nombre"/><br/>
-				</div>		
-				<div class="form-group col-md-6">
-					<label><b>Fecha :</b></label>
-						<input type="date" class="form-control" formControlName="fecha">
-					</div>	
-					<div class="form-group col-md-6">
-						<label><b>Producto:</b></label>
-					 <input type="text" class="form-control"name="producto"[(ngModel)]="persona.producto"/><br>
-				</div>
-				<div class="form-group col-md-6">
-					<label><b>Precio:</b></label>
-				<input type="text" class="form-control"name="precio"[(ngModel)]="persona.precio"/><br>
-			</div>
-				</div>
-				
-				<div class="form-row">
-					
-				<div class="form-group col-md-6">
-					<label><b>Cantidad:</b></label>
-					 <input type="text" class="form-control"name="cantidad"[(ngModel)]="persona.cantidad"/><br>
-					</div>
-					<div class="form-group col-md-6">
-						<label><b>Total:</b></label>
-					 <input type="text" class="form-control"name="total" [(ngModel)]="persona.total"/><br/>
-					</div>
-					<div class="form-group col-md-6">
-						<label><b>Estado:</b></label>
-					 <select name="estado" class="form-control" [(ngModel)]="persona.estado">
-						<option>En camino</option>
-						<option>Pendiente</option>
-						<option>Entregado</option>
-					
-					</select>
-				
-				</div>
-					<div class="form-group col-md-6">
-						<label><b>Detalle:</b></label>
-					 <input type="text" class="form-control" name="detalle"[(ngModel)]="persona.detalle"/><br>
-					</div>
-				</div>
-					
-					<input type="button" class="btn btn-success" value="Registrar Pedido" (click)="guardar()"/>
-					<br>
-					<br>
-					<label><b>Pedidos Ingresados</b></label>
-                    <br>
-					<table class="table">
-						<tr *ngFor="let persona of personas">
-							<td>{{persona.nombre}}</td>
-							<td>{{persona.fecha}}</td>
-							<td>{{persona.producto}}</td>
-							<td>{{persona.precio}}</td>
-							<td>{{persona.cantidad}}</td>
-							<td>{{persona.total}}</td>
-							<td>{{persona.estado}}</td>
-							<td>{{persona.detalle}}</td>
-							
+			<form class="was-validated" [formGroup]="productosForm" (ngSubmit)="enviar(productosForm.value)">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col"> Categoria </th>
+							<th scope="col"> Producto </th>
+							<th scope="col"> Precio</th>
+							<th scope="col"> Cantidad</th>
+							<th scope="col"> Subtotal</th>
 						</tr>
-					</table>
-					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="button" class="btn btn-success" data-dismiss="modal" value="Confirmar Pedido" (click)="guardar()"/>
-					
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!--Edit Modal HTML-->
-<div id="myModal" class="modal fade " tabindex="-1" role="dialog" style="text-align: center;">
-			<div class="modal-dialog modal-xl" role="document">
-		
-		<div class="modal-content">
-			<form>
-				<br>
-				<h1>DETALLE FACTURA PEDIDO</h1>
-				<br>
-				<table class="table">
-					<th scope="col">Cliente</th>
-					<th scope="col">Fecha</th>
-					<th scope="col">Producto</th>
-					<th scope="col">Precio</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Total</th>
-					<th scope="col">Estado</th>
-					<th scope="col">Detalle</th> 
-					<th></th>
-
-					<tr *ngFor="let persona of personas">
-						<td>{{persona.nombre}}</td>
-						<td>{{persona.fecha}}</td>
-						<td>{{persona.producto}}</td>
-						<td>{{persona.precio}}</td>
-						<td>{{persona.cantidad}}</td>
-						<td>{{persona.total}}</td>
-						<td>{{persona.estado}}</td>
-						<td>{{persona.detalle}}</td>
-						
-					</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let persona of personas">
+                            <td>{{persona.categoria}}</td>
+                            <td>{{persona.producto}}</td>
+                            <td>{{val1}}</td>
+                            <td>{{val2}}</td>
+							<td>{{rta}}</td>
+                            
+                        </tr>
+					</tbody>
 				</table>
 			</form>
-		</div>
-	</div>
-</div>
 
-<!--Delete Modal HTML -->
-<div id="deletePedidoCli" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form >
-				<div class="modal-header">
-					<h4 class="modal-title">Eliminar Pedido</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>¿Está seguro que quieres eliminar?</p>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-					<input type="submit" class="btn btn-danger" value="Eliminar">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+			<label><b>Fecha:</b></label>
 
-<!--TABLA-->
-<div class="container-fluid main-container">
-	<div class="table-title">
-		<div class="row">
-            <h3 class="col-md-10">&nbsp;&nbsp;Pedido</h3><br><br>			 
-			<div class="col">			
-				<a href="#addPedidoCli" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;<span> Nueva</span></a>
+			<input type="date" id="fechaActual" value="" ><br>
+
+			<label for="sel1"><b>Categoría:</b></label>
+
+			<input type="text" class="form-control"name="categoria"[(ngModel)]="persona.categoria"/><br>
+
+			
+
+			<label><b>Producto:</b></label>
+			<input type="text" class="form-control"name="producto"[(ngModel)]="persona.producto"/><br>
+			<label><b>Precio:</b></label>
+			<input type="number" class="form-control" id="val1" [(ngModel)]="val1"><br/>
+			<label><b>Cantidad:</b></label>
+			<input type="number" class="form-control" id="val2" [(ngModel)]="val2"><br/>
+			<label><b>Subtotal:</b></label>
+			<input type="number" class="form-control" id="rta" [(ngModel)]="rta"><br/>
+			<br>
+			<br>
+
+			<div class="form-group" >
+				<button class="btn btn-primary" (click)="operacion()"> Calcular </button>
+				<input type="button" class="btn btn-success" value="Registrar Pedido" (click)="guardar()"/>
+				<button class="btn btn-primary" (click)="fecha()"> Fecha Actual </button>
 			</div>
 		</div>
 	</div>
-	<div class="body animated fadeIn">
-		<div class="container-fluid">			
+</div>
+
+<!-- tabla principal -->
+	
+<div class="body animated fadeIn">
+	<div class="container-fluid">
+		<div>
+			<br>
+            <div class="row">
+				<div class="col-md-10">
+                    <h3>&nbsp;&nbsp;Pedidos</h3>
+                </div>
+                <div class="col">
+                    <a href="#addPedido" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-square">
+					</i>&nbsp;&nbsp;<span>Agregar Pedido</span></a>
+                </div>
+			</div>
 			<div class="card my-3">
 				<br>
-			  <div class="container-fluid" aria-label="Page navigation example">
-				  <div class="table-responsive">
-					<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
-						<thead >
-						  <tr>
-                            <!--<th scope="col">#</th>-->
-                            <th scope="col">Cliente</th>
-							<th scope="col">Fecha</th>
-							
-                            <th scope="col">Total</th>
-							<th scope="col">Estado</th>
-							<th scope="col">Detalle</th> 
-							<th></th>   
-				  </thead>
-
-				  <tbody>
-					<tr *ngFor="let pedido of pedidos">
-					
-						<td>{{pedido.id_cli['nombre']}} {{pedido.id_cli['apellido']}}</td>
-						<td>{{pedido.fec_fac |date}}</td>
-						
-						<td>{{pedido.tot_fac}}</td>
-						<td>{{pedido.estado}}</td>
-						<td>{{pedido.detalle}}</td>										
-											
-						
-						<td>
-						  <div style="text-align: center;">							
-							<a href="#myModal" data-toggle="modal" class="btn btn-outline-info">Detalle Pedido</a>&nbsp;&nbsp;&nbsp;
-							<a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal" (click)="openModalActualizar(pedido._id)"><i class="far fa-trash-alt"></i></a>
-							</div>
-						</td>
-					</tr>
-					
-					
-						<tr *ngFor="let persona of personas">
-							
-                            <td>{{persona.nombre}}</td>
-							<td>{{persona.fecha}}</td>
-							<td>{{persona.total}}</td>
-							<td>{{persona.estado}}</td>
-							<td>{{persona.detalle}}</td>
-
-                            <td>
-                                <div style="text-align: center">                            
-							<a href="#myModal" data-toggle="modal" class="btn btn-outline-info">Detalle Pedido</a>&nbsp;&nbsp;&nbsp;
-							<a href="#deletePedidoCli" class="btn btn-outline-danger" data-toggle="modal" (click)="openModalActualizar(pedido._id)"><i class="far fa-trash-alt"></i></a>
-      
-                                  </div>
-						    </td>
-						</tr>
-
-					
-					
-					
-					
-				  </tbody>
-				</table>
-				
-
-			  </div>
-			  <br>
-			 
+				<div class="container-fluid table-responsive" aria-label="Page navigation example">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col"> N# </th>
+								<th scope="col"> </th>
+								<th scope="col"> id_fac</th>
+								<th scope="col"> </th>
+								<th scope="col"> Fecha</th>
+								<th scope="col"> </th>
+								<th scope="col"> Total</th>
+								<th scope="col"> </th>
+								<th scope="col"> Descargar Factura</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td></td>
+								<td>123456</td>
+								<td></td>
+								<td>24/11/2020</td>
+								<td></td>
+								<td>1000</td>
+								<td></td>
+								<td>Archivo</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		  </div>
 		</div>
-	  </div>
+	</div>
 </div>
