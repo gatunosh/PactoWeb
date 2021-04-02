@@ -9,6 +9,8 @@ import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AsociacionesService } from '../../services/asociaciones.service';
+import { UsuarioModel, Usuario} from '../../models/usuario.models';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-directivas',
@@ -21,26 +23,25 @@ export class DirectivasComponent implements OnDestroy,OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   asociaciones: Asociacion[] = [];
+  asociacion: AsociacionesModel = new AsociacionesModel();
+  usuarios: Usuario[] = [];
+  usuario: UsuarioModel = new UsuarioModel();
   directivas: Directiva[] = [];
   directivasForm: FormGroup;
   directiva1: DirectivasModel = new DirectivasModel();
   directivaUpdate: DirectivasModel = new DirectivasModel();
 
-  constructor(private _auth: LoginService,
-     private _router: Router,
-      private _http: HttpClient,
-       private _directivasService:DirectivasService,
-       private _asociacionService:AsociacionesService,
-       private activerouter:ActivatedRoute,
-       private _builder: FormBuilder) { 
+  constructor(
+    private _userService:UsuarioService,
+    private _directivasService:DirectivasService,
+    private _asociacionService:AsociacionesService,
+    private _builder: FormBuilder) { 
     this.directivasForm = this._builder.group({
-      
       cargo_dir: ['',],
       nom_dir: ['',],
       ape_dir: ['',],
       periodo_dir: ['',],
       id_asociacion: ['',],
-      
     });
   }
 
@@ -58,10 +59,15 @@ export class DirectivasComponent implements OnDestroy,OnInit {
       this.dtTrigger.next();
     });
 
-    this._asociacionService.getAsociaciones().subscribe((res:any) =>{
-      
+    this._directivasService.getAso().subscribe((res:any) =>{
       this.asociaciones= res.asociacion;
-      console.log(this.asociaciones);
+      //console.log(this.asociaciones);
+      //this.dtTrigger.next();
+    });
+
+    this._userService.getUsers().subscribe((resp:any) => {
+      this.usuarios = resp.usuarios;
+      //console.log(this.usuarios);
       //this.dtTrigger.next();
     });
   }
@@ -71,12 +77,26 @@ export class DirectivasComponent implements OnDestroy,OnInit {
     this.directiva1.nom_dir = values['nom_dir'];
     this.directiva1.ape_dir = values['ape_dir'];
     this.directiva1.periodo_dir = values['periodo_dir'];
-    this.directiva1.id_asociacion=[{id_soc:values['id_soc'],_id:""}];
+    this.directiva1.id_asociacion=[{
+      _id: this.usuarios[0]._id,
+      id_asociacion: values['id_soc']
+    }];
     
-   
     this._directivasService.addDirectivas(this.directiva1).subscribe((resp:any) => {
       this.directivas = resp.directiva1;
-      console.log(resp.directivas);
+      //console.log(resp.directivas);
+      window.location.reload()
+      
+    }, (err) => {
+      //console.log(err);
+    });
+  }
+
+  enviarAso(values) {
+    this.asociacion.nombre_aso = values['nombre_aso'];
+    this._asociacionService.addAsociaciones(this.asociacion).subscribe((resp:any) => {
+      this.asociaciones = resp.asociacion1;
+      console.log(resp.asociaciones);
       window.location.reload()
       
     }, (err) => {
@@ -124,7 +144,8 @@ export class DirectivasComponent implements OnDestroy,OnInit {
     }
 
     return directivaActual;
-}
+  }
+
   delete() {
     Swal.fire({
       title: 'Espere',

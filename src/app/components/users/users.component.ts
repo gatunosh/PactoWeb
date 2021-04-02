@@ -1,7 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
 import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
 import { Subject } from 'rxjs';
@@ -62,14 +59,11 @@ export class UsersComponent implements OnDestroy, OnInit{
 
     this._userService.getUsers().subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
-      console.log(this.usuarios);
       this.dtTrigger.next();
     });
 
     this._userService.getAso().subscribe((res:any) =>{
       this.asociaciones= res.asociacion;
-      console.log(this.asociaciones);
-      //this.dtTrigger.next();
     });
 
   }
@@ -80,7 +74,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       this.asociaciones = resp.asociacion1;
       console.log(resp.asociaciones);
       window.location.reload()
-      
     }, (err) => {
       console.log(err);
     });
@@ -103,8 +96,6 @@ export class UsersComponent implements OnDestroy, OnInit{
       id_asociacion: values['id_soc']
     }
   ];
-    console.log( JSON.stringify(this.usuario, null, 4));
-    
     this._userService.addUsers(this.usuario).subscribe((resp:any) => {
       this.usuarios = resp.usuarios;
       window.location.reload()
@@ -135,7 +126,7 @@ export class UsersComponent implements OnDestroy, OnInit{
       _id: this.usuarioUpdate._id, 
       id_asociacion: this.idAsoc
     }];
-    console.log( JSON.stringify(this.usuarioUpdate, null, 4));
+   
     
     this._userService.updateUser(this.usuarioUpdate).subscribe(resp => {
       Swal.close();

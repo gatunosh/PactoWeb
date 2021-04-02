@@ -6,8 +6,10 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { ProductosModel, Producto } from '../../models/productos.models';
 import { categoriaProducto, categoriaProductoModel } from '../../models/categoria.models';
 import { Subject } from 'rxjs';
+import { Asociacion } from 'src/app/models/asociaciones.models';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-productos',
@@ -29,13 +31,14 @@ export class ProductosComponent implements OnDestroy, OnInit {
   categoria: categoriaProductoModel = new categoriaProductoModel();
   productoUpdate: ProductosModel = new ProductosModel();
 
+  asociaciones: Asociacion[] = [];
+  asociacion: any;
   constructor(
-    private _auth: LoginService,
-    private _router: Router,
-    private _http: HttpClient,
     private _productosService: ProductosService,
     private activerouter: ActivatedRoute,
-    private _builder: FormBuilder) {
+    private _userService: UsuarioService,
+    private _builder: FormBuilder,
+  ) {
 
 
   }
@@ -80,6 +83,14 @@ export class ProductosComponent implements OnDestroy, OnInit {
       console.log(this.categorias);
     });
 
+    this._userService.getAso().subscribe((res: any) => {
+      this.asociaciones = res.asociacion;
+      if (localStorage.getItem('idAsociacion')) {
+        this.asociacion = this.asociaciones.find(x => x._id === localStorage.getItem('idAsociacion'));
+       // this.productosForm.get('aso_ps').setValue(this.asociacion.nombre_aso);
+      }
+    });
+
     this._productosService.getProductos().subscribe((res: any) => {
       this.productos = res.producto;
       console.log(this.productos);
@@ -109,7 +120,8 @@ export class ProductosComponent implements OnDestroy, OnInit {
     //     console.log(this.categoria._id);
     // }
     this.producto1.id_cat = values['id_cat'];
-    this.producto1.aso_ps = this.productos[0].aso_ps;
+    this.producto1.aso_ps = values['aso_ps'];
+    //this.producto1.aso_ps = this.asociacion._id;
     this.producto1.nom_pro = values['nom_pro'];
     this.producto1.desc_pro = values['desc_pro'];
     this.producto1.uni_pro = values['uni_pro'];
@@ -168,7 +180,9 @@ export class ProductosComponent implements OnDestroy, OnInit {
   }
 
   onClick(producto) {
+
     this.producto = producto;
+
   }
 
   delete() {

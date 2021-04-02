@@ -14,16 +14,14 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { Usuario } from 'src/app/models/usuario.models';
 import { Asociacion } from 'src/app/models/asociaciones.models';
 import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { Columns, PdfMakeWrapper } from 'pdfmake-wrapper';
 @Component({
   selector: 'app-prodsocio',
   templateUrl: './prodsocio.component.html',
 })
 export class ProdsocioComponent implements OnInit, OnDestroy {
 
-  myDate = new Date();
-
-  //@Input() productoSocio: any = null;
+  @Input() prodSocio: any = null;
 
 
   private url: string = 'https://restserver-pacto.herokuapp.com';
@@ -38,7 +36,9 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
 
   categorias: categoriaProducto[];
   usuarios: Usuario[] = [];
-  asociaciones: Asociacion[] = [];
+  asociaciones: Asociacion;
+  usuario: any;
+
   constructor(
     private _auth: LoginService,
     private _router: Router,
@@ -49,22 +49,28 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     private _userService: UsuarioService,
 
     private _builder: FormBuilder) {
+    // this.generarPdf();
+    // this.downloadPDF();
   }
 
   /*get errorCtrProducto() {
     return this.productosSocioForm.controls;
   }*/
   ngOnInit(): void {
+
     this.productosSocioForm = this._builder.group({
       id_pro: ['', Validators.required],
       id_soc: ['', Validators.required],
+
       aso_ps: ['', Validators.required],
       can_ps: ['',],
       pre_ps: ['',],
       fech_ps: ['',],
       fecha_ela_pro: ['',],
       fecha_cad_pro: ['',],
+
     });
+
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -74,21 +80,20 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
       }
     };
 
+    if (localStorage.getItem('idUsuario')) {
+      this.usuario = localStorage.getItem('idUsuario');
+    }
+
     this._userService.getUsers().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
-      this.dtTrigger.next();
     });
 
     this._userService.getAso().subscribe((res: any) => {
       this.asociaciones = res.asociacion;
-      console.log(this.asociaciones);
-      //this.dtTrigger.next();
+
+      this.productosSocioForm.get('aso_ps').setValue(this.asociaciones.nombre_aso)
     });
 
-    // let productoid = this.activerouter.snapshot.paramMap.get('id');
-    // console.log(productoid);
-    //let idasociacion =this.activerouter.snapshot.paramMap.get('id');
-    //console.log(idasociacion);
     this._prodsocioService.getProdSocio().subscribe((res: any) => {
       this.prodSocios = res.prodSocio;
       console.log('prod', this.prodSocios);
@@ -96,9 +101,7 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     });
 
     this._productosService.getProductos().subscribe((res: any) => {
-      debugger;
       this.productos = res.producto;
-      console.log(this.productos);
     });
 
   }
@@ -107,17 +110,18 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
   }
 
   enviar(values) {
-    debugger;
-    this.productoSocio1.aso_ps = this.asociaciones[0]._id;
+    this.productoSocio1.aso_ps = this.asociaciones._id;
     //Revisar de donde sacar el id del usuario   
-    this.productoSocio1.id_soc = this.usuarios[0]._id;
-
+    this.productoSocio1.id_soc = this.usuario;
     this.productoSocio1.id_pro = values['id_pro'];
     this.productoSocio1.can_ps = values['can_ps'];
     this.productoSocio1.pre_ps = values['pre_ps'];
     this.productoSocio1.fech_ps = values['fech_ps'];
     this.productoSocio1.fecha_ela_pro = values['fecha_ela_pro'];
-    this.productoSocio1.fecha_cad_pro = values['fecha-cad_pro'];
+    this.productoSocio1.fecha_cad_pro = values['fecha_cad_pro'];
+
+    this.generarPdf();
+
     this._prodsocioService.addProdSocio(this.productoSocio1).subscribe((resp: any) => {
       this.prodSocios = resp.productoSocio1;
       console.log(resp.prodSocios);
@@ -170,8 +174,9 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     return productoActual;
   }
 
-  onClick(productoSocio1) {
-    this.productoSocio1 = productoSocio1;
+  onClick(prodSocio) {
+
+    this.prodSocio = prodSocio;
   }
 
   delete() {
@@ -202,6 +207,37 @@ export class ProdsocioComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
+
+  public generarPdf() {
+
+    let values = this.productosSocioForm.value;
+
+    this.productoSocio1.aso_ps = this.asociaciones._id;
+    //Revisar de donde sacar el id del usuario   
+    this.productoSocio1.id_soc = this.usuario;
+    this.productoSocio1.id_pro = values['id_pro'];
+    this.productoSocio1.can_ps = values['can_ps'];
+    this.productoSocio1.pre_ps = values['pre_ps'];
+    this.productoSocio1.fech_ps = values['fech_ps'];
+    this.productoSocio1.fecha_ela_pro = values['fecha_ela_pro'];
+    this.productoSocio1.fecha_cad_pro = values['fecha_cad_pro'];
+
+    let data = this.productoSocio1;
+    const pdf = new PdfMakeWrapper();
+    pdf.add('Asociación: ' + data.aso_ps );
+    pdf.add('Socio: ' + data.id_soc );
+    pdf.add('Producto: ' + data.id_pro );
+    pdf.add('Cantidad: ' + data.can_ps );
+    pdf.add('Precio: ' + data.pre_ps );
+    pdf.create().download();
+  }
+
+  // public downloadPDF(): void {
+  //   const doc = new jsPDF();
+
+  //   doc.text('Hello world!', 10, 10);
+  //   doc.save('hello-world.pdf');
+  // }
 }
 
 

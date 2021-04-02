@@ -21,6 +21,7 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
   maquinarias: Maquinarian[] = [];
   maquinariasForm: FormGroup;
   maquinaria1: MaquinarianModel = new MaquinarianModel();
+  maquinarianUpdate: MaquinarianModel = new MaquinarianModel();
   //usuarioUpdate: UsuarioModel = new UsuarioModel();
 
   constructor(
@@ -33,6 +34,10 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
     nom_maq: ['',],
     tipo_maq: ['',],
     est_maq: ['',],
+    marca_man_maq: ['',],
+    km_man_maq: ['',],
+    placa_man_maq: ['',],
+    origen_man_maq: ['',]
   });
 
    }
@@ -62,6 +67,10 @@ enviar(values){
   this.maquinaria1.nom_maq= values['nom_maq'];
   this.maquinaria1.tipo_maq = values['tipo_maq'];
   this.maquinaria1.est_maq = values['est_maq'];
+  this.maquinaria1.marca_man_maq = values['marca_man_maq'];
+  this.maquinaria1.km_man_maq = values['km_man_maq'];
+  this.maquinaria1.placa_man_maq = values['placa_man_maq'];
+  this.maquinaria1.origen_man_maq = values['origen_man_maq'];
   this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
   this.maquinarias = resp.maquinarias;
     window.location.reload()
@@ -71,4 +80,44 @@ enviar(values){
   });
 }
 
+openModalActualizar(id:string) {
+  this.maquinarianUpdate = this.buscadorMaquinarianActual(id);
+}
+onEdit( form:NgForm ) {
+  if (form.invalid) {return;}
+
+  Swal.fire({
+    title: 'Espere',
+    text: 'Guardando Información',
+    icon: 'info',
+    allowOutsideClick: false,
+    showConfirmButton: false
+  });
+
+  Swal.showLoading();
+
+  this._maquinarianService.updateMaquinarian(this.maquinarianUpdate).subscribe(resp => {
+    Swal.close();
+    window.location.reload();
+  },(err) => {
+    Swal.fire({
+      title: 'Error',
+      text: err.error.err.message,
+      icon: 'error',
+    });
+  });
+}
+
+buscadorMaquinarianActual(id:string){
+  let maquinarianActual: Maquinarian;
+  
+  for (let i = 0; i < this.maquinarias.length; i++) {
+    if(this.maquinarias[i]._id == id){
+      maquinarianActual = this.maquinarias[i];
+      break;
+    }
+  }
+
+  return maquinarianActual;
+}
 }
