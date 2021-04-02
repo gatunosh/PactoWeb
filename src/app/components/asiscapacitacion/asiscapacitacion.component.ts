@@ -9,6 +9,7 @@ import { UsuarioService } from '../../services/usuario.service';
 
 import { CapacitacionModel, Capacitacion } from '../../models/capacitacion.models'
 import { CapacitacionService } from '../../services/capacitacion.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-asiscapacitacion',
@@ -17,62 +18,85 @@ import { CapacitacionService } from '../../services/capacitacion.service'
 export class AsiscapacitacionComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  usuarios: Usuario[] = [];
-
-  capacitaciones: Capacitacion[]=[];
-
+  id: [];
+  socios:any;
   
 
- 
- 
+  usuarios: Usuario[] = [];
 
+  capacitaciones: Capacitacion[] = [];
+  capacitacionesForm: FormGroup;
+  capacitacion: CapacitacionModel = new CapacitacionModel();
+  idsoc: CapacitacionModel = new CapacitacionModel();
 
-  constructor(private http: HttpClient,private _userService: UsuarioService,) { }
+  //idCapAsis: string;
+  
+  constructor(
+    private http: HttpClient,
+    private _capacitacionService: CapacitacionService,
+    private _userService: UsuarioService,
+    private _builder: FormBuilder,
+    private route:ActivatedRoute,
+    
+    ){
+      /*this.capacitacionesForm = this._builder.group({    
+        nombre: ['',],
+        apeliido: ['',],
+          });    */
+    }
+
   ngOnInit(): void {
+    
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       language: {
         url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
       }
     };
-    this._userService.getUsers().subscribe((resp:any) => {
-      for (let i=0; i<resp.usuarios.length;i++){
-        if(resp.usuarios[i].role!="SOCIO_ROLE"){
-          resp.usuarios.splice(i,i); // ´pr
-      }
+  
+    this.id = this.route.snapshot.params['id'];
+    this._capacitacionService.getOne(this.id).subscribe(resp => {
+      this.socios = resp;
+       console.log(this.socios);
+  })
+  
+
+
+    
+    this._userService.getSocios().subscribe((resp:any) => {
+      //this.usuarios = resp.usuarios;
+                    
+      let socio: any;
+      for (let i=0; i<this.usuarios.length; i++){
+        if(this.usuarios[i].role == "SOCIO_ROLE")
+        {  
+                  
+          //socio = this.usuarios;
+          this.usuarios = resp.usuarios;
+          console.log(this.usuarios); 
+          //  
+          //console.log(this.usuarios);                 
+        }        
+        return socio;
     }
-      this.usuarios = resp.usuarios;      
-      this.dtTrigger.next();
-/*
-      for (let i=0; i<this.usuarios.length;i++){
-        if(this.usuarios[i].role!="SOCIO_ROLE"){
-          this.usuarios.splice(i,1); // probar con muchos datos xD
-      }
-*/
-
-      console.log(this.usuarios);
-    });
-         
+    //resp.usuarios=socio;
+    this.dtTrigger.next();         
+    });   
+  
+    
   }
-  /*enviar(values){
-    this.asiscapacitacion.nom_soc = values['tem_cap'];
-    this.asiscapacitacion.ape_soc = values['fech_ini_cap'];
-    this.asiscapacitacion.asis_cap = values['fech_fin_capi'];
-    this._AsisCapacitacionService.addCapacitaciones(this.asiscapacitacion).subscribe((resp:any) => {
-      this.asiscapacitaciones = resp.capacitacion;
-      window.location.reload()
-      
-    }, (err) => {
-    });
-  }*/
 
-  /*openModalActualizar(id:string) {
-    this.capacitacionUpdate = this.buscadorCapacitacionActual(id);
+  
+    
+
+  /*openModalActualizar(id:any) {
+    this.idsoc = this.IdCapBuscador(id);
   }*/
 
   /*onEdit( form:NgForm ) {
     if (form.invalid) {return;}
+
     Swal.fire({
       title: 'Espere',
       text: 'Guardando Información',
@@ -80,8 +104,12 @@ export class AsiscapacitacionComponent implements OnInit, OnDestroy {
       allowOutsideClick: false,
       showConfirmButton: false
     });
+
     Swal.showLoading();
-    this._asiscapacitacionService.updateAsisCapacitacion(this.asiscapacitacionUpdate).subscribe(resp => {
+    
+  
+    
+    /*this._capacitacionService.updateCapacitacionAsistencia(this.capacitacionAsistenciaUpdate).subscribe(resp => {
       Swal.close();
       window.location.reload();
     },(err) => {
@@ -91,9 +119,28 @@ export class AsiscapacitacionComponent implements OnInit, OnDestroy {
         icon: 'error',
       });
     });
+  
+  }*/
+
+ /* IdCapBuscador(id:string){
+    let capacitacionActual: Capacitacion;
+    
+    for (let i = 0; i < this.capacitaciones.length; i++) {
+      if(this.capacitaciones[i]._id == id){
+        capacitacionActual = this.capacitaciones[i];
+        break;
+      }
+    }
+    return capacitacionActual;
+} */
+  
+
+
+  /*openModalActualizar(id:string) {
+    this.capacitacionUpdate = this.buscadorCapacitacionActual(id);
   }*/
   
- /* buscadorsocios(id:string){
+ /*buscadorsocios(id:string){
     let socio: Capacitacion;
     
     for (let i = 0; i < this.capacitaciones.length; i++) {

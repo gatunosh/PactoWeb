@@ -29,6 +29,15 @@ export class UsuarioService {
         return this._http.get(`${this.url}/usuario`,{headers});
     }
 
+
+    getSocios() {
+        const headers = new HttpHeaders({
+            'token': this.leerToken()
+        });
+        
+        return this._http.get(`${this.url}/usuario`,{headers});
+    }
+
     getAso(){
         const headers = new HttpHeaders({
             'token': this.leerToken()

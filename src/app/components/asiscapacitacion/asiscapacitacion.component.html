@@ -3,20 +3,20 @@
 <div id="addAsiscapa" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<!--<form (ngSubmit)="onEdit( f )" #f="ngForm">-->
+				<form>
 				<div class="modal-header">						
 					<h4 class="modal-title">Nueva Asistencia</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label><b>Nombre:</b></label>
-						<input type="text" class="form-control" required>
+						<label><b>Nombre Completo del Socio:</b></label>
+						<select class="form-control" >
+							<option *ngFor="let usuario of usuarios">{{usuario.nombre}}{{usuario.apellido}}</option>
+						</select>
 					</div>
-					<div class="form-group">
-						<label><b>Apellido:</b></label>
-						<input type="text" class="form-control" required>
-					</div>
+					
 					<div class="form-group">
 						<label><b>Asistencia:</b></label>
 						<select class="form-control" id="exampleFormControlSelect1">                            
@@ -135,12 +135,11 @@
 				</tr>
 			  </thead>
 			  <tbody>
-				<tr  *ngFor="let usuario of usuarios" > 
-					
-					<td scope="row" class="text-center">{{usuario.nombre}}</td>
-					<td scope="row" class="text-center">{{usuario.apellido}}</td>
-					<td></td>
-					<td></td>
+				<tr  *ngFor="let socios of capacitacion.asis_cap"> 					
+					<td scope="row" class="text-center" >{{socios.id_soc}}</td>
+					<td scope="row" class="text-center">{{["id_soc"]}}</td>
+					<td>{{capacitacion._id}}></td>
+					<td>asdasdasd</td>
 								
 					<!--<td>
 						<div style="text-align: center">

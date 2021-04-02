@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {CapacitacionModel, Capacitacion} from '../../models/capacitacion.models'
 import { CapacitacionService } from '../../services/capacitacion.service'
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup,  NgForm, Validators  } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Subject } from 'rxjs';
 
@@ -21,9 +21,11 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
   capacitaciones: Capacitacion[] = [];
   capacitacionesForm: FormGroup;
   capacitacion: CapacitacionModel = new CapacitacionModel();
-  capacitacionUpdate: CapacitacionModel = new CapacitacionModel();
+  capacitacionAsistenciaUpdate: CapacitacionModel = new CapacitacionModel();
 
   entidades: Entidad[]=[];
+
+  idCapAsis: string;
   
 
   constructor(
@@ -32,12 +34,13 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     private _builder: FormBuilder
     ){
     this.capacitacionesForm = this._builder.group({
-    id_enti: ['',],
+    
     tem_cap: ['',],
     fech_ini_cap: ['',],
     fech_fin_cap: ['',],
     hora_ini_cap: ['',],
     hora_fin_cap: ['',],
+    id_enti: ['',],
       });
 }
 
@@ -52,40 +55,69 @@ export class CapacitacionComponent implements OnDestroy, OnInit{
     this._capacitacionService.getCapacitaciones().subscribe((resp:any) => {
       this.capacitaciones = resp.capacitacion;
       console.log(resp.capacitacion);
-      //this.dtTrigger.next();
+      this.dtTrigger.next();
     });  
 
     this._entidadService.getEntidades().subscribe((resp:any) => {
-      this.entidades = resp.entidad;
-     
+      this.entidades = resp.entidad;     
     });     
   }
 
-  enviar(values){
-    let split = values['id_enti'].split("-", 2);
+  enviar(values){    
     this.capacitacion.tem_cap = values['tem_cap'];
     this.capacitacion.fech_ini_cap = values['fech_ini_cap'];
     this.capacitacion.fech_fin_cap = values['fech_fin_cap'];
     this.capacitacion.hora_ini_cap = values['hora_ini_cap'];
     this.capacitacion.hora_fin_cap = values['hora_fin_cap'];
     this.capacitacion.prof_cap=[{
-      _id: split[0],
-      id_enti: split[1]    
-    }];
-    //this.capacitacion.prof_cap[0].id_enti = values['id_enti'];
+      _id: this.capacitaciones[0]._id, 
+      id_enti: values['id_enti']     
+    }
+  ];
+    console.log( JSON.stringify(this.capacitacion, null, 4));
     this._capacitacionService.addCapacitaciones(this.capacitacion).subscribe((resp:any) => {
-      this.capacitaciones = resp.capacitacion;
-      window.location.reload()
-      
+      this.capacitaciones = resp.capacitaciones;
+      window.location.reload()      
     }, (err) => {
-    });
-    console.log(this.capacitacion);
-    console.log(split +  values['id_enti']);
+    });    
   }
 
 
   openModalActualizar(id:string) {
-    this.capacitacionUpdate = this.buscadorCapacitacionActual(id);
+    this.capacitacionAsistenciaUpdate = this.buscadorCapacitacionActual(id);
+  }
+
+  onEdit( form:NgForm ) {
+    if (form.invalid) {return;}
+
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando Información',
+      icon: 'info',
+      allowOutsideClick: false,
+      showConfirmButton: false
+    });
+
+    Swal.showLoading();
+    
+    /*this.idCapAsis = this.capacitacionAsistenciaUpdate.asis_cap;
+    this.capacitacionAsistenciaUpdate.asis_cap = [{
+      _id: this.capacitacionAsistenciaUpdate._id, 
+      asis_cap: this.idCapAsis
+    }];
+    console.log( JSON.stringify(this.capacitacionAsistenciaUpdate, null, 4));
+    
+    /*this._capacitacionService.updateCapacitacionAsistencia(this.capacitacionAsistenciaUpdate).subscribe(resp => {
+      Swal.close();
+      window.location.reload();
+    },(err) => {
+      Swal.fire({
+        title: 'Error',
+        text: err.error.err.message,
+        icon: 'error',
+      });
+    });*/
+  
   }
  
   buscadorCapacitacionActual(id:string){
@@ -111,7 +143,7 @@ delete() {
 
   Swal.showLoading();
 
-  this._capacitacionService.deleteCapacitacion(this.capacitacionUpdate).subscribe(resp => {
+  this._capacitacionService.deleteCapacitacion(this.capacitacionAsistenciaUpdate).subscribe(resp => {
     Swal.close();
     window.location.reload();
   },(err) => {
