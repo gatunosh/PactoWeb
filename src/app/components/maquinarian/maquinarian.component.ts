@@ -30,14 +30,14 @@ export class MaquinarianComponent implements OnInit, OnDestroy {
 
   ) { this.maquinariasForm = this._builder.group({
     //id_mant:[''],
-    //id_soc: ['',],
+    id_soc: ['',],
     nom_maq: ['',],
     tipo_maq: ['',],
     est_maq: ['',],
-    marca_man_maq: ['',],
-    km_man_maq: ['',],
-    placa_man_maq: ['',],
-    origen_man_maq: ['',]
+    marca_maq: ['',],
+    km_maq: ['',],
+    placa_maq: ['',],
+    origen_maq: ['',]
   });
 
    }
@@ -67,10 +67,10 @@ enviar(values){
   this.maquinaria1.nom_maq= values['nom_maq'];
   this.maquinaria1.tipo_maq = values['tipo_maq'];
   this.maquinaria1.est_maq = values['est_maq'];
-  this.maquinaria1.marca_man_maq = values['marca_man_maq'];
-  this.maquinaria1.km_man_maq = values['km_man_maq'];
-  this.maquinaria1.placa_man_maq = values['placa_man_maq'];
-  this.maquinaria1.origen_man_maq = values['origen_man_maq'];
+  this.maquinaria1.marca_maq = values['marca_maq'];
+  this.maquinaria1.km_maq = values['km_maq'];
+  this.maquinaria1.placa_maq = values['placa_maq'];
+  this.maquinaria1.origen_maq = values['origen_maq'];
   this._maquinarianService.addMaquinaria(this.maquinaria1).subscribe((resp:any) => {
   this.maquinarias = resp.maquinarias;
     window.location.reload()

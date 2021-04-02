@@ -5,10 +5,10 @@ export class MaquinarianModel{
     nom_maq:string;
     tipo_maq:string;
     est_maq:string;
-    marca_man_maq:string;
-    km_man_maq:string;
-    placa_man_maq:string;
-    origen_man_maq:string;
+    marca_maq:string;
+    km_maq:string;
+    placa_maq:string;
+    origen_maq:string;
 }
 export interface Maquinarian{
     _id: string;
@@ -17,9 +17,9 @@ export interface Maquinarian{
     nom_maq:string;
     tipo_maq:string;
     est_maq:string;
-    marca_man_maq:string;
-    km_man_maq:string;
-    placa_man_maq:string;
-    origen_man_maq:string;
+    marca_maq:string;
+    km_maq:string;
+    placa_maq:string;
+    origen_maq:string;
 }
 

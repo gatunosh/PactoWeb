@@ -32,14 +32,14 @@ asistencia : Reuniones[]=[];
     private sanitizer: DomSanitizer
 
   ) { this.reunionesForm = this._builder.group({
-   // id_asoc_reu: ['',],
+   id_asoc_reu: ['',],
     tema_reun: ['',],
     tipo_reun: ['',],
     fec_reu: ['',],
     hor_reu: ['',],
     mul_reu: ['',],
-    id_soc: ['',],
-    asist_socio: ['',],
+    //id_soc: ['',],
+    //asist_socio: ['',],
     
   });
 
@@ -72,7 +72,7 @@ asistencia : Reuniones[]=[];
 
 }
 enviar(values){
-//  this.reunion1.id_asoc_reu=values['id_asoc_reu'],
+this.reunion1.id_asoc_reu=values['id_asoc_reu'],
   this.reunion1.tema_reun=values['tema_reun'],
   this.reunion1.tipo_reun=values['tipo_reun'],
   this.reunion1.fec_reu = values['fec_reu'];

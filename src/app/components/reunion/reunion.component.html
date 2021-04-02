@@ -15,11 +15,13 @@
 						<label><b>Tema:</b></label>
 						<input type="text" min="1" class="form-control" required formControlName="tema_reun">
 					</div>
+					
 					<div class="form-group">
 						<label><b>Tipo:</b></label>
 						<select  class="form-control" required formControlName="tipo_reun">
 							<option>Ordinaria</option>
 							<option >Extraordinaria</option>
+							<option >Otros</option>
 						  </select>
                     </div>
 					<div class="form-group">
@@ -35,8 +37,8 @@
 						<label><b>Multa:</b></label>
 						<input type="number" min="1" class="form-control" required formControlName="mul_reu">
                     </div>
-					</div>
-					<div class="form-row">
+				</div>
+					<!--<div class="form-row">
 						<div class="form-group col-md-6">
 							<label><b>Socio:</b></label>
 							<select class="custom-select" id="sel1" formControlName="id_soc" required>
@@ -50,7 +52,7 @@
 							<label></label>
 							<label></label>
 							<input type="checkbox" class="form-check-input" >
-						</div>
+						</div>-->
 						
 				</div>
 				<div class="modal-footer">
@@ -89,11 +91,12 @@
 							<th scope="col">Fecha</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Multa</th>
-							<th scope="col">Socio</th>
-							<th scope="col">Asistencia</th>
+							<th scope="col">Asistencia</th>  
+							<!--<th scope="col">Socio</th>
+							<th scope="col">Asistencia</th>-->
 							<th scope="col">Subir Acta</th>
 							<th scope="col">Descargar Acta</th>  
-                                                                           
+                                                                         
 						  </tr>
 						</thead>
 						<tbody>
@@ -104,15 +107,16 @@
 							  <td>{{reunion.fec_reu}}</td>
 							  <td>{{reunion.hor_reu}}</td>
 							  <td>{{reunion.mul_reu}}</td>
-							  <td *ngFor="let socio of reunion.asistencia">{{socio.id_soc["nombre"]}}</td>
-							  <td *ngFor="let socio of reunion.asistencia">{{socio.asist_socio}}</td>
+							  <td>
+								<button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
+							</td>	
+							  <!--<td *ngFor="let socio of reunion.asistencia">{{socio.id_soc["nombre"]}}</td>
+							  <td *ngFor="let socio of reunion.asistencia">{{socio.asist_socio}}</td>-->
 							  <td><input type="file"  name="archivosubido"></td>
 							  <td><a [href]="fileUrl" download="file.txt"  class="btn btn-info">Acta</a>
 							  </td>
 							  
-						<!---	  <td>
-								  <button [routerLink]="['/asisreunion/:id']" class="btn btn-outline-info">Asistencia</button>
-                              </td>	-->						  							  
+							  					  							  
 							</tr>
 						</tbody>
                       </table>
