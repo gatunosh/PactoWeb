@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Usuario, UsuarioModel } from '../../models/usuario.models';
 import { UsuarioService } from '../../services/usuario.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 //import { Person } from '../person';
@@ -23,6 +24,12 @@ import { UsuarioService } from '../../services/usuario.service';
 
 export class PedidoComponent implements OnInit, OnDestroy{
 
+  name = 'Angular';
+  total:number;
+
+  
+    
+  
   // los datos se van guardando en un arreglo, el cual se usa para
   // desplegar la tabla
   personas:any[] = [];
@@ -38,6 +45,30 @@ export class PedidoComponent implements OnInit, OnDestroy{
 
     // se crea un nuevo objeto para almacenar nuevos datos
     this.persona = {};
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  FechaActual:any[] =[];
+
+  FechaAct:any = {};
+
+  Fech(){
+    this.FechaActual.push(this.FechaAct);
+
+    this.FechaAct = {};
+  }
+
+
+  ///////////////////////////////////////////////////////////////////
+
+  Calcular(){
+    this.total = this.personas.reduce((
+      acc,
+      obj,
+    ) => acc + (obj.costo_producto * obj.cantidad_producto),
+    0);
+    console.log("Total: ", this.total)
   }
 
 
@@ -60,8 +91,9 @@ export class PedidoComponent implements OnInit, OnDestroy{
   //pedidoUpdate: PedidoModel = new PedidoModel();
 
   
-
+  fileUrl;
   constructor(
+    private sanitizer: DomSanitizer,
     private _auth: LoginService,
     private _router: Router,
     private _http: HttpClient,
@@ -105,6 +137,20 @@ export class PedidoComponent implements OnInit, OnDestroy{
       sto_pro: ['',],
       pvp_pro: ['', Validators.required],
     });
+    this.categoriaForm = this._builder.group({
+      nombre: ['', Validators.required],
+      descripcion: ['',],
+    });
+
+    let productoid = this.activerouter.snapshot.paramMap.get('id');
+    console.log(productoid);
+    let categoriaid = this.activerouter.snapshot.paramMap.get('id');
+    console.log(categoriaid);
+
+    this._productosService.getCategoria().subscribe((res: any) => {
+      this.categorias = res.categoria;
+      console.log(this.categorias);
+    });
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -113,6 +159,10 @@ export class PedidoComponent implements OnInit, OnDestroy{
         url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
       }
     };
+
+    const data = 'acta';
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
     this._pedidoService.getPedidos().subscribe((resp:any) => {
       this.pedidos = resp.factura;
@@ -129,6 +179,15 @@ export class PedidoComponent implements OnInit, OnDestroy{
       //console.log(this.usuarios);
       this.dtTrigger.next();
     });
+    this._productosService.getProductos().subscribe((res: any) => {
+      this.productos = res.producto;
+      console.log(this.productos);
+      this.dtTrigger.next();
+    });
+  }
+
+  get errorCtr() {
+    return this.productosForm.controls;
   }
   
   ngOnDestroy(): void {
@@ -201,10 +260,6 @@ export class PedidoComponent implements OnInit, OnDestroy{
     this.rta=this.val1*this.val2;
   }
 
-  fecha(){
-    var f = new Date();
-    document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
-  }
-
+  curDate=new Date();
 
 }
